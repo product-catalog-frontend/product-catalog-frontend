@@ -9,7 +9,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
-  { ignores: ['dist', 'vite.config.ts', 'eslint.config.js'] }, // додано конфігураційні файли
+  { ignores: ['dist', 'vite.config.ts', 'eslint.config.js'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended, prettier],
     files: ['**/*.{ts,tsx}'],
@@ -44,7 +44,7 @@ export default tseslint.config(
 
       'react/react-in-jsx-scope': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-      
+
       'import/no-unresolved': 'off',
     },
   },
