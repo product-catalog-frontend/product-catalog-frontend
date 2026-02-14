@@ -78,6 +78,8 @@ npm run preview
 
 ## 📁 Project Structure
 
+needs to be updated
+
 ```
 src/
 ├── components/          # Shared components
