@@ -49,6 +49,9 @@
     "src/**/*.{ts,tsx}": [
       "prettier --write",
       "eslint --fix"
+    ],
+    "*.{json,yml,yaml,md}": [
+      "prettier --write"
     ]
   }
 }
