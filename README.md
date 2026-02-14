@@ -77,7 +77,7 @@ npm run preview
 | `npm run fix-style`    | Run both Prettier and ESLint |
 
 ## 📁 Project Structure
-
+needs to be updated
 ```
 src/
 ├── components/          # Shared components
