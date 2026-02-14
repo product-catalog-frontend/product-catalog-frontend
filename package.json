@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "format": "prettier . --ignore-path .gitignore --write",
+    "format:check": "prettier . --ignore-path .gitignore --check",
     "lint": "eslint . --fix",
-    "format": "prettier . --write",
+    "lint:check": "eslint .",
     "fix-style": "npm run format && npm run lint",
     "preview": "vite preview",
     "prepare": "husky"
