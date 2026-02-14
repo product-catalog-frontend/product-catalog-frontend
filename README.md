@@ -1,5 +1,7 @@
 # Product Catalog
 
+Renata added some text
+
 An online store for phones, tablets, and accessories built with React, TypeScript, and Vite.
 
 ## 🎯 Project Overview
