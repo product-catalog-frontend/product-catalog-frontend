@@ -1,6 +1,4 @@
 export const App = () => {
-if(true){
+  console.log('test pre-commit');
   return <div>App works 🚀</div>;
-
-}
 };
