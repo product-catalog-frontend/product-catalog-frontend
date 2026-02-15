@@ -1,12 +1,6 @@
 @use 'reset-css/sass/reset' as *;
 @use './variables.scss' as *;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -39,7 +33,6 @@ a {
 button {
   font-family: inherit;
   cursor: pointer;
-  border: none;
   background: none;
 }
 
