@@ -31,9 +31,7 @@ a {
 }
 
 button {
-  font-family: inherit;
   cursor: pointer;
-  background: none;
 }
 
 img {
@@ -45,11 +43,6 @@ img {
   &:hover {
     transform: scale(1.1);
   }
-}
-
-ul,
-ol {
-  list-style: none;
 }
 
 input,
