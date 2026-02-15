@@ -21,7 +21,6 @@
   font-style: normal;
 }
 
-
 h1 {
   @include text-style(48px, 56px, 700, -0.01em);
   @include mobile {
@@ -31,19 +30,19 @@ h1 {
 h2 {
   @include text-style(32px, 41px, 700, -0.01em);
   @include mobile {
-    @include text-style(22px, 31px, 700, 0)
+    @include text-style(22px, 31px, 700, 0);
   }
 }
 h3 {
   @include text-style(22px, 31px, 700, 0);
   @include mobile {
-    @include text-style(20px, 26px, 600, 0)
+    @include text-style(20px, 26px, 600, 0);
   }
 }
 h4 {
   @include text-style(20px, 26px, 600, 0);
   @include mobile {
-    @include text-style(16px, 20px, 600, 0)
+    @include text-style(16px, 20px, 600, 0);
   }
 }
 

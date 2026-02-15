@@ -1,6 +1,12 @@
 @use '../variables.scss' as var;
 
-@mixin text-style($font-size, $line-height, $font-weight: 400, $letter-spacing: 0, $transform: none) {
+@mixin text-style(
+  $font-size,
+  $line-height,
+  $font-weight: 400,
+  $letter-spacing: 0,
+  $transform: none
+) {
   font-size: $font-size;
   line-height: $line-height;
   font-weight: $font-weight;
