@@ -1,0 +1,62 @@
+@use '../../shared/styles/variables.scss' as *;
+
+.product-card {
+  box-sizing: border-box;
+  padding: 32px;
+  width: 272px;
+  height: 506px;
+  border: 1px solid $elements-color;
+  display: flex;
+  flex-direction: column;
+
+  &__link {
+    box-sizing: border-box;
+    width: auto;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  &__image {
+    height: 100%;
+  }
+
+  &__price {
+    margin-top: 8px;
+
+    &::before {
+      content: '$';
+    }
+  }
+}
+
+.product-options {
+  border-top: 1px solid $elements-color;
+  margin-top: 8px;
+  padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
+
+  &__type {
+    p {
+      margin-top: 8px;
+    }
+    p:nth-child(3) {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__value {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    p {
+      margin-top: 8px;
+    }
+    p:nth-child(3) {
+      margin-bottom: 8px;
+    }
+  }
+}

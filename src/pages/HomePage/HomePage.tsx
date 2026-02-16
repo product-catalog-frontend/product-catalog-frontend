@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '../../services/supabaseClient';
+import { ProductCard } from '../../components/ProductCard/ProductCard';
 
 export const HomePage = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -9,7 +10,7 @@ export const HomePage = () => {
   const handleFetch = async () => {
     setLoading(true);
     // Робимо запит до таблиці products
-    const { data: products, error } = await supabase.from('products').select('*').limit(5);
+    const { data: products, error } = await supabase.from('products').select('*');
 
     if (error) {
       console.error('Помилка фетчу:', error);
@@ -22,6 +23,7 @@ export const HomePage = () => {
 
   return (
     <div style={{ padding: '20px' }}>
+      {data && data.length > 0 && <ProductCard product={data[22]} />}
       <h1>Home Page</h1>
 
       <button
