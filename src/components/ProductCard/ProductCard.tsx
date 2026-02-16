@@ -6,37 +6,36 @@ interface ProductCard {
 }
 
 export const ProductCard: React.FC<ProductCard> = ({ product }) => {
+  const { image, name, price, screen, capacity, ram } = product;
   return (
-    <div className="product-card">
+    <article className="product-card">
       <a
         href="#!"
         className="product-card__link"
       >
         <img
           className="product-card__image"
-          src={product.image}
-          alt={product.name}
+          src={image}
+          alt={name}
         />
+        <p className="body-text">{name}</p>
       </a>
-      <a
-        href="#!"
-        className="body-text"
-      >
-        {product.name}
-      </a>
-      <h3 className="product-card__price">{product.price}</h3>
+      <h3 className="product-card__price">{price}</h3>
       <div className="product-options">
-        <div className="product-options__type">
-          <p className="small-text">Screen</p>
-          <p className="small-text">Capacity</p>
-          <p className="small-text">RAM</p>
+        <div className="option">
+          <span className="small-text">Screen</span>
+          <span className="uppercase">{screen}</span>
         </div>
-        <div className="product-options__value">
-          <p className="uppercase">{product.screen}</p>
-          <p className="uppercase">{product.capacity}</p>
-          <p className="uppercase">{product.ram}</p>
+        <div className="option">
+          <span className="small-text">Capacity</span>
+          <span className="uppercase">{capacity}</span>
+        </div>
+        <div className="option">
+          <span className="small-text">RAM</span>
+          <span className="uppercase">{ram}</span>
         </div>
       </div>
-    </div>
+      <div className="product-buttons">{/* 2buttons here */}</div>
+    </article>
   );
 };

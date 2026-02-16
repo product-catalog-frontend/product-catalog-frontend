@@ -1,5 +1,6 @@
 @use 'reset-css/sass/reset' as *;
 @use './variables.scss' as *;
+@use '../../components/common/typography/typography.scss' as *;
 @use '../../components/ProductCard/ProductCard.module.scss' as *;
 
 html {

@@ -1,6 +1,6 @@
 export interface Product {
   id: number;
-  category: string;
+  category: 'phones' | 'tablets' | 'accessories';
   itemId: string;
   name: string;
   fullPrice: number;
