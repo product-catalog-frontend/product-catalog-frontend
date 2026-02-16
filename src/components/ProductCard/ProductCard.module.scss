@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 8px;
-    p {
+    .title-link {
       margin-top: 24px;
       align-self: flex-start;
     }
@@ -45,12 +45,12 @@
   justify-content: space-between;
 
   &:nth-child(3) {
-    span {
+    .option__info {
       margin-bottom: 8px;
     }
   }
 
-  span {
+  .option__info {
     margin-top: 8px;
   }
 

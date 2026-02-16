@@ -19,21 +19,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           src={image}
           alt={name}
         />
-        <p className="body-text">{name}</p>
+        <p className="title-link body-text">{name}</p>
       </a>
       <h3 className="product-card__price">{price}</h3>
       <div className="product-options">
         <div className="option">
-          <span className="small-text">Screen</span>
-          <span className="uppercase">{screen}</span>
+          <span className="option__info small-text">Screen</span>
+          <span className="option__info uppercase">{screen}</span>
         </div>
         <div className="option">
-          <span className="small-text">Capacity</span>
-          <span className="uppercase">{capacity}</span>
+          <span className="option__info small-text">Capacity</span>
+          <span className="option__info uppercase">{capacity}</span>
         </div>
         <div className="option">
-          <span className="small-text">RAM</span>
-          <span className="uppercase">{ram}</span>
+          <span className="option__info small-text">RAM</span>
+          <span className="option__info uppercase">{ram}</span>
         </div>
       </div>
       <div className="product-buttons">
