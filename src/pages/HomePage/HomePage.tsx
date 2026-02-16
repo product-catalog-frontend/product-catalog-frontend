@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../services/supabaseClient';
 import {
   NumberButton,
@@ -16,6 +17,8 @@ export const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isColorSelected, setIsColorSelected] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleFetch = async () => {
     setLoading(true);
@@ -115,7 +118,7 @@ export const HomePage = () => {
 
           <ArrowButton
             text="Back"
-            onClick={() => window.history.back()}
+            onClick={() => navigate(-1)}
           />
         </div>
       </section>
