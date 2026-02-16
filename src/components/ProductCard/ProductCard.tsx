@@ -1,11 +1,12 @@
 import type React from 'react';
 import type { Product } from '../../types/Product/Product';
+import { Icon } from '../common/Icon';
 
-interface ProductCard {
+interface ProductCardProps {
   product: Product;
 }
 
-export const ProductCard: React.FC<ProductCard> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { image, name, price, screen, capacity, ram } = product;
   return (
     <article className="product-card">
@@ -35,7 +36,14 @@ export const ProductCard: React.FC<ProductCard> = ({ product }) => {
           <span className="uppercase">{ram}</span>
         </div>
       </div>
-      <div className="product-buttons">{/* 2buttons here */}</div>
+      <div className="product-buttons">
+        <button className="button-wishlist">
+          <Icon
+            name="heart"
+            size={20}
+          />
+        </button>
+      </div>
     </article>
   );
 };
