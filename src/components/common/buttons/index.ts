@@ -1,6 +1,6 @@
-export { NumberButton } from './number-button';
-export { ChevronButton } from './chevron-button';
-export { RoundButton } from './round-button';
-export { HeartButton } from './heart-button';
-export { PrimaryButton } from './primary-button';
-export { ArrowButton } from './arrow-button';
+export { NumberButton } from './numberButton';
+export { ChevronButton } from './chevronButton';
+export { RoundButton } from './roundButton';
+export { HeartButton } from './heartButton';
+export { PrimaryButton } from './primaryButton';
+export { ArrowButton } from './arrowButton';

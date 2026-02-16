@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
 import { App } from './App';
 import './index.css';
-import './shared/styles/globals.scss';
+import './assets/styles/globals.scss';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

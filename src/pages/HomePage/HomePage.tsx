@@ -32,28 +32,21 @@ export const HomePage = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Home Page</h1>
+    <div className="p-5">
+      <h1 className="text-xl font-semibold mb-4">Home Page</h1>
 
       <button
         onClick={handleFetch}
         disabled={loading}
-        style={{ padding: '10px 20px', cursor: 'pointer' }}
+        className="px-5 py-2 border rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {loading ? 'Завантаження...' : 'Перевірити зв’язок з базою'}
       </button>
 
-      <section
-        style={{
-          marginTop: '32px',
-          padding: '24px',
-          border: '1px solid #eee',
-          borderRadius: '8px',
-          maxWidth: '600px',
-        }}
-      >
-        <h2 style={{ marginBottom: '16px', fontSize: '18px' }}>NumberButton</h2>
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '24px' }}>
+      <section className="mt-8 p-6 border border-gray-200 rounded-lg max-w-[600px]">
+        <h2 className="mb-4 text-lg font-medium">NumberButton</h2>
+
+        <div className="flex gap-2 items-center mb-6">
           <NumberButton
             number={1}
             selected={currentPage === 1}
@@ -71,8 +64,9 @@ export const HomePage = () => {
           />
         </div>
 
-        <h2 style={{ marginBottom: '16px', fontSize: '18px' }}>ChevronButton</h2>
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '24px' }}>
+        <h2 className="mb-4 text-lg font-medium">ChevronButton</h2>
+
+        <div className="flex gap-2 items-center mb-6">
           <ChevronButton
             direction="left"
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
@@ -87,52 +81,50 @@ export const HomePage = () => {
           />
         </div>
 
-        <h2 style={{ marginBottom: '16px', fontSize: '18px' }}>RoundButton</h2>
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '24px' }}>
+        <h2 className="mb-4 text-lg font-medium">RoundButton</h2>
+
+        <div className="flex gap-2 items-center mb-6">
           <RoundButton
             selected={isColorSelected}
             onClick={() => setIsColorSelected(!isColorSelected)}
           />
         </div>
 
-        <h2 style={{ marginBottom: '16px', fontSize: '18px' }}>HeartButton</h2>
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '24px' }}>
+        <h2 className="mb-4 text-lg font-medium">HeartButton</h2>
+
+        <div className="flex gap-2 items-center mb-6">
           <HeartButton
             selected={isFavorite}
             onClick={() => setIsFavorite(!isFavorite)}
           />
         </div>
 
-        <h2 style={{ marginBottom: '16px', fontSize: '18px' }}>PrimaryButton</h2>
-        <div
-          style={{
-            display: 'flex',
-            gap: '8px',
-            alignItems: 'center',
-            marginBottom: '24px',
-            flexWrap: 'wrap',
-          }}
-        >
-          <PrimaryButton onClick={() => {}} />
+        <h2 className="mb-4 text-lg font-medium">PrimaryButton</h2>
+
+        <div className="flex gap-2 items-center mb-6 flex-wrap">
+          <PrimaryButton />
         </div>
 
-        <h2 style={{ marginBottom: '16px', fontSize: '18px' }}>ArrowButton</h2>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+        <h2 className="mb-4 text-lg font-medium">ArrowButton</h2>
+
+        <div className="flex gap-4 items-center">
           <ArrowButton
             text="Default"
             onClick={() => {}}
           />
+
           <ArrowButton
-            text="Hover"
+            text="Back"
             onClick={() => window.history.back()}
           />
         </div>
       </section>
 
       {data && (
-        <div style={{ marginTop: '20px', textAlign: 'left' }}>
-          <h3>Результат:</h3>
-          <pre style={{ background: '#f4f4f4', padding: '10px', borderRadius: '5px' }}>
+        <div className="mt-5 text-left">
+          <h3 className="font-medium mb-2">Результат:</h3>
+
+          <pre className="bg-gray-100 p-3 rounded-md text-sm overflow-auto">
             {JSON.stringify(data, null, 2)}
           </pre>
         </div>
