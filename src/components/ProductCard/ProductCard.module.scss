@@ -1,7 +1,7 @@
 @use '../../assets/styles/variables.scss' as *;
 @use '../../components/common/typography/typography.scss' as *;
 
-.product-card {
+.card {
   box-sizing: border-box;
   padding: 32px;
   width: 300px;
@@ -10,29 +10,24 @@
   flex-direction: column;
   color: $icons-color;
 
-  &__link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 8px;
-    .title-link {
-      margin-top: 24px;
-      align-self: flex-start;
-    }
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+
+  .titleLink {
+    margin-top: 24px;
+    align-self: flex-start;
   }
 
-  &__image {
+  .imageLink {
     width: min-content;
-  }
-
-  &__price {
-    &::before {
-      content: '$';
-    }
   }
 }
 
-.product-options {
+.options {
   border-top: 1px solid $elements-color;
   margin-top: 8px;
   padding: 8px 0;
@@ -43,28 +38,23 @@
 .option {
   display: flex;
   justify-content: space-between;
+  margin-top: 8px;
 
   &:nth-child(3) {
-    .option__info {
-      margin-bottom: 8px;
-    }
+    margin-bottom: 8px;
   }
 
-  .option__info {
-    margin-top: 8px;
-  }
-
-  .small-text {
+  .label {
     color: $secondary-color;
   }
 }
 
-.product-buttons {
+.buttons {
   display: flex;
   justify-content: space-between;
 }
 
-.button-wishlist {
+.wishlistButton {
   width: 40px;
   height: 40px;
   background-color: transparent;

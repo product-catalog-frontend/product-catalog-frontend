@@ -1,6 +1,7 @@
 import type React from 'react';
 import type { Product } from '../../types/Product/Product';
 import { Icon } from '../common/Icon';
+import styles from './ProductCard.module.scss';
 
 interface ProductCardProps {
   product: Product;
@@ -9,35 +10,35 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { image, name, price, screen, capacity, ram } = product;
   return (
-    <article className="product-card">
+    <article className={styles.card}>
       <a
         href="#!"
-        className="product-card__link"
+        className={styles.link}
       >
         <img
-          className="product-card__image"
+          className={styles.imageLink}
           src={image}
           alt={name}
         />
-        <p className="title-link body-text">{name}</p>
+        <p className={`${styles.titleLink} body-text`}>{name}</p>
       </a>
-      <h3 className="product-card__price">{price}</h3>
-      <div className="product-options">
-        <div className="option">
-          <span className="option__info small-text">Screen</span>
-          <span className="option__info uppercase">{screen}</span>
+      <h3 className={styles.price}>${price}</h3>
+      <div className={styles.options}>
+        <div className={styles.option}>
+          <span className={`${styles.label} small-text`}>Screen</span>
+          <span className={`${styles.value} uppercase`}>{screen}</span>
         </div>
-        <div className="option">
-          <span className="option__info small-text">Capacity</span>
-          <span className="option__info uppercase">{capacity}</span>
+        <div className={styles.option}>
+          <span className={`${styles.label} small-text`}>Capacity</span>
+          <span className={`${styles.value} uppercase`}>{capacity}</span>
         </div>
-        <div className="option">
-          <span className="option__info small-text">RAM</span>
-          <span className="option__info uppercase">{ram}</span>
+        <div className={styles.option}>
+          <span className={`${styles.label} small-text`}>RAM</span>
+          <span className={`${styles.value} uppercase`}>{ram}</span>
         </div>
       </div>
-      <div className="product-buttons">
-        <button className="button-wishlist">
+      <div className={styles.buttons}>
+        <button className={styles.wishlistButton}>
           <Icon
             name="heart"
             size={20}
