@@ -1,0 +1,61 @@
+@use '../../assets/styles/variables.scss' as *;
+@use '../../components/common/typography/typography.scss' as *;
+
+.card {
+  box-sizing: border-box;
+  padding: 32px;
+  width: 300px;
+  border: 1px solid $elements-color;
+  display: flex;
+  flex-direction: column;
+  color: $icons-color;
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+
+  .titleLink {
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  .imageLink {
+    width: min-content;
+  }
+}
+
+.options {
+  border-top: 1px solid $elements-color;
+  margin-top: 8px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+
+  &:nth-child(3) {
+    margin-bottom: 8px;
+  }
+
+  .label {
+    color: $secondary-color;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wishlistButton {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid $secondary-color;
+}
