@@ -1,5 +1,5 @@
-import { Heart } from 'lucide-react';
 import { cn } from '../../../lib/utils';
+import { Icon } from '../../common/Icon';
 
 interface HeartButtonProps {
   selected?: boolean;
@@ -21,7 +21,8 @@ export function HeartButton({ selected, onClick, disabled }: HeartButtonProps) {
         },
       )}
     >
-      <Heart
+      <Icon
+        name="heart"
         className={cn('w-5 h-5', {
           'fill-[#E74C3C] text-[#E74C3C]': selected,
           'text-black': !selected,

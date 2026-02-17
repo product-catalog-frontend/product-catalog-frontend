@@ -1,5 +1,5 @@
-import { ChevronLeft } from 'lucide-react';
 import { cn } from '../../../lib/utils';
+import { Icon } from '../../common/Icon';
 
 interface ArrowButtonProps {
   text?: string;
@@ -18,7 +18,8 @@ export function ArrowButton({ text = 'Hover', onClick, disabled }: ArrowButtonPr
         'text-[#B4BDC4] cursor-not-allowed': disabled,
       })}
     >
-      <ChevronLeft
+      <Icon
+        name="chevronLeft"
         className={cn('w-4 h-4 shrink-0', {
           'text-black': !disabled,
           'text-[#B4BDC4]': disabled,

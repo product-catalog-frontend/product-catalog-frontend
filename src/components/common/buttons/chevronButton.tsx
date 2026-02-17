@@ -1,5 +1,5 @@
-import { ChevronRight } from 'lucide-react';
 import { cn } from '../../../lib/utils';
+import { Icon } from '../../common/Icon';
 
 interface ChevronButtonProps {
   direction?: 'left' | 'right';
@@ -14,14 +14,14 @@ export function ChevronButton({ direction = 'right', onClick, disabled }: Chevro
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        'w-10 h-10 flex items-center justify-center rounded-md bg-white transition-colors',
-        'border border-black hover:border-2',
+        'w-10 h-10 flex items-center justify-center rounded-md bg-white transition-colors border border-black hover:border-2',
         {
           'border-[#B4BDC4] text-[#B4BDC4] opacity-60 cursor-not-allowed': disabled,
         },
       )}
     >
-      <ChevronRight
+      <Icon
+        name="chevronRight"
         className={cn('w-4 h-4', {
           'rotate-180': direction === 'left',
         })}
