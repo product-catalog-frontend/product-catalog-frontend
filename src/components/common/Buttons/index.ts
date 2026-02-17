@@ -1,6 +1,6 @@
-export { NumberButton } from './NumberButton';
-export { ChevronButton } from './ChevronButton';
-export { RoundButton } from './RoundButton';
-export { HeartButton } from './HeartButton';
-export { PrimaryButton } from './PrimaryButton';
-export { ArrowButton } from './ArrowButton.tsx';
+export * from './ArrowButton';
+export * from './ChevronButton';
+export * from './HeartButton';
+export * from './NumberButton';
+export * from './PrimaryButton';
+export * from './RoundButton';
