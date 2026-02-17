@@ -10,11 +10,15 @@
   font-weight: 500;
   font-size: 14px;
 
-  border: 1px solid #B4BDC4;
+  border: 1px solid #b4bdc4;
   background: white;
   color: black;
 
-  transition: border 0.2s, background 0.2s, color 0.2s, opacity 0.2s;
+  transition:
+    border 0.2s,
+    background 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 
   &:hover {
     border-color: black;

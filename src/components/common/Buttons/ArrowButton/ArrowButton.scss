@@ -6,20 +6,20 @@
   font-size: 14px;
   font-weight: 500;
 
-  color: #A0A5AA;
+  color: #a0a5aa;
   transition: color 0.2s;
 
   &:hover {
-    color: #2C2C2C;
+    color: #2c2c2c;
     font-weight: 700;
   }
 
   &:disabled {
-    color: #B4BDC4;
+    color: #b4bdc4;
     cursor: not-allowed;
 
     .arrowIcon {
-      color: #B4BDC4;
+      color: #b4bdc4;
     }
   }
 
