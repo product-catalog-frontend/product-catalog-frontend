@@ -1,5 +1,5 @@
 import { cn } from '../../../lib/utils';
-import { Icon } from '../../common/Icon';
+import { Icon } from '../Icon';
 
 interface ArrowButtonProps {
   text?: string;
