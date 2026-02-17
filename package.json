@@ -28,9 +28,9 @@
     "react-paginate": "^8.3.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.13.0",
+    "reset-css": "^5.0.2",
     "tailwind-merge": "^3.4.1",
-    "tailwindcss": "^4.1.18",
-    "reset-css": "^5.0.2"
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -65,5 +65,8 @@
     "*.{json,yml,yaml,md}": [
       "prettier --write"
     ]
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.57.1"
   }
 }
