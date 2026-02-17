@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import { supabase } from '../../services/supabaseClient';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
+import {
+  NumberButton,
+  ChevronButton,
+  RoundButton,
+  HeartButton,
+  PrimaryButton,
+  ArrowButton,
+} from '../../components/common/Buttons';
 
 export const HomePage = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
