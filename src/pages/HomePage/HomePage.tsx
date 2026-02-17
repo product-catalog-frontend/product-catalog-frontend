@@ -8,7 +8,7 @@ import {
   HeartButton,
   PrimaryButton,
   ArrowButton,
-} from '../../components/common/Buttons';
+} from '../../components/common/buttons';
 
 export const HomePage = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

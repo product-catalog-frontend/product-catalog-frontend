@@ -16,10 +16,16 @@ export function ChevronButton({ direction = 'right', onClick, disabled }: Chevro
       className={cn(
         'w-10 h-10 flex items-center justify-center rounded-md bg-white transition-colors',
         'border border-black hover:border-2',
-        'disabled:border-[#B4BDC4] disabled:text-[#B4BDC4] disabled:opacity-60 disabled:cursor-not-allowed',
+        {
+          'border-[#B4BDC4] text-[#B4BDC4] opacity-60 cursor-not-allowed': disabled,
+        },
       )}
     >
-      <ChevronRight className={cn('w-4 h-4', direction === 'left' && 'rotate-180')} />
+      <ChevronRight
+        className={cn('w-4 h-4', {
+          'rotate-180': direction === 'left',
+        })}
+      />
     </button>
   );
 }
