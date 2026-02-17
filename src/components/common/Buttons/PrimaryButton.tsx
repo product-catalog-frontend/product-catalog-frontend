@@ -4,9 +4,11 @@ import { cn } from '../../../lib/utils';
 interface PrimaryButtonProps {
   onClick?: () => void;
   disabled?: boolean;
+  label?: string;
+  selectedLabel?: string;
 }
 
-export function PrimaryButton({ disabled }: PrimaryButtonProps) {
+export function PrimaryButton({ disabled, label, selectedLabel }: PrimaryButtonProps) {
   const [selected, setSelected] = useState(false);
 
   return (
@@ -15,14 +17,14 @@ export function PrimaryButton({ disabled }: PrimaryButtonProps) {
       disabled={disabled}
       onClick={() => !disabled && setSelected((p) => !p)}
       className={cn(
-        'rounded-md font-semibold text-sm uppercase tracking-wide transition-all px-[61px] py-[10px]',
+        'rounded-md text-sm button-text tracking-wide transition-all min-w-[160px] flex justify-center items-center',
         selected ?
           'bg-white text-[#51BA7D] border border-[#D1D5DA]'
         : 'bg-[#313237] text-white hover:bg-[#4a4a4a] shadow',
         disabled && 'opacity-50 cursor-not-allowed',
       )}
     >
-      {selected ? 'Selected' : 'Primary'}
+      {selected ? selectedLabel : label}
     </button>
   );
 }

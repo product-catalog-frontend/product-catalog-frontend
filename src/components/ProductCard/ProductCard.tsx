@@ -1,7 +1,7 @@
 import type React from 'react';
 import type { Product } from '../../types/Product/Product';
-import { Icon } from '../common/Icon';
 import styles from './ProductCard.module.scss';
+import { HeartButton, PrimaryButton } from '../common/Buttons';
 
 interface ProductCardProps {
   product: Product;
@@ -38,12 +38,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
       </div>
       <div className={styles.buttons}>
-        <button className={styles.wishlistButton}>
-          <Icon
-            name="heart"
-            size={20}
-          />
-        </button>
+        <PrimaryButton
+          label="Add to cart"
+          selectedLabel="Added"
+        />
+        <HeartButton />
       </div>
     </article>
   );
