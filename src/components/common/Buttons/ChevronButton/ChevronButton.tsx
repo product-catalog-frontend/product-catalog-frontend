@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './ChevronButton.module.scss';
 
@@ -6,6 +7,7 @@ interface ChevronButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   ariaLabel?: string;
+  className?: string;
 }
 
 export function ChevronButton({
@@ -13,6 +15,7 @@ export function ChevronButton({
   onClick,
   disabled,
   ariaLabel,
+  className,
 }: ChevronButtonProps) {
   const Icon = direction === 'left' ? ChevronLeft : ChevronRight;
 
@@ -22,7 +25,7 @@ export function ChevronButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={ariaLabel || direction}
-      className={styles.chevronButton}
+      className={classNames(styles.chevronButton, className)}
     >
       <Icon className={styles.icon} />
     </button>

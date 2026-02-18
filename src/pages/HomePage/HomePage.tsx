@@ -12,6 +12,7 @@ import {
   PrimaryButton,
   ArrowButton,
 } from '../../components/common/Buttons';
+import { ImageCarousel } from '../../components/ImageSlider/ImageCarousel';
 
 export const HomePage = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -47,7 +48,6 @@ export const HomePage = () => {
   return (
     <div className="p-5 max-w-[1200px] mx-auto">
       <h1 className="text-2xl font-bold mb-6">Home Page</h1>
-
       <div className="mb-10 p-6 bg-gray-50 rounded-xl border border-dashed border-gray-300">
         <button
           onClick={handleFetch}
@@ -56,6 +56,8 @@ export const HomePage = () => {
         >
           {loading ? 'Завантаження...' : 'Перевірити зв’язок з базою'}
         </button>
+
+        <ImageCarousel />
 
         {data.length > 0 && (
           <div className="mt-6 flex flex-col md:flex-row gap-6">
@@ -79,7 +81,6 @@ export const HomePage = () => {
           </div>
         )}
       </div>
-
       <section className="p-6 border border-gray-200 rounded-lg max-w-[700px] bg-white shadow-sm">
         <h2 className="text-xl font-semibold border-b pb-2 mb-6">UI Components Library</h2>
 
@@ -155,6 +156,7 @@ export const HomePage = () => {
           </div>
         </div>
       </section>
+      а{' '}
     </div>
   );
 };
