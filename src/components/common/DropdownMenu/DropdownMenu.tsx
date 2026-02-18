@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as DropdownPrimitive from '@radix-ui/react-dropdown-menu';
 import { Check, Circle, ChevronRight } from 'lucide-react';
-import './dropdown-menu.scss';
+import styles from './DropdownMenu.module.scss';
 
 const Dropdown = DropdownPrimitive.Root;
 const DropdownTrigger = DropdownPrimitive.Trigger;
@@ -16,11 +16,11 @@ const DropdownSubTrigger = React.forwardRef<
 >(({ children, ...props }, ref) => (
   <DropdownPrimitive.SubTrigger
     ref={ref}
-    className="dropdown-subtrigger"
+    className={styles.dropdownSubtrigger}
     {...props}
   >
     {children}
-    <ChevronRight className="dropdown-chevron" />
+    <ChevronRight className={styles.dropdownChevron} />
   </DropdownPrimitive.SubTrigger>
 ));
 DropdownSubTrigger.displayName = 'DropdownSubTrigger';
@@ -31,7 +31,7 @@ const DropdownSubContent = React.forwardRef<
 >(({ children, ...props }, ref) => (
   <DropdownPrimitive.SubContent
     ref={ref}
-    className="dropdown-subcontent"
+    className={styles.dropdownSubcontent}
     {...props}
   >
     {children}
@@ -46,7 +46,7 @@ const DropdownContent = React.forwardRef<
   <DropdownPortal>
     <DropdownPrimitive.Content
       ref={ref}
-      className="dropdown-content"
+      className={styles.dropdownContent}
       {...props}
     >
       {children}
@@ -61,7 +61,7 @@ const DropdownItem = React.forwardRef<
 >(({ children, ...props }, ref) => (
   <DropdownPrimitive.Item
     ref={ref}
-    className="dropdown-item"
+    className={styles.dropdownItem}
     {...props}
   >
     {children}
@@ -75,13 +75,14 @@ const DropdownCheckboxItem = React.forwardRef<
 >(({ children, checked, ...props }, ref) => (
   <DropdownPrimitive.CheckboxItem
     ref={ref}
-    className="dropdown-item"
+    className={styles.dropdownItem}
     checked={checked}
     {...props}
   >
-    <span className="dropdown-indicator">
-      <Check className="dropdown-icon-sm" />
-    </span>
+    <DropdownPrimitive.ItemIndicator className={styles.dropdownIndicator}>
+      <Check className={styles.dropdownIconSm} />
+    </DropdownPrimitive.ItemIndicator>
+
     {children}
   </DropdownPrimitive.CheckboxItem>
 ));
@@ -93,12 +94,13 @@ const DropdownRadioItem = React.forwardRef<
 >(({ children, ...props }, ref) => (
   <DropdownPrimitive.RadioItem
     ref={ref}
-    className="dropdown-item"
+    className={styles.dropdownItem}
     {...props}
   >
-    <span className="dropdown-indicator">
-      <Circle className="dropdown-icon-xs" />
-    </span>
+    <DropdownPrimitive.ItemIndicator className={styles.dropdownIndicator}>
+      <Circle className={styles.dropdownIconXs} />
+    </DropdownPrimitive.ItemIndicator>
+
     {children}
   </DropdownPrimitive.RadioItem>
 ));
@@ -110,7 +112,7 @@ const DropdownLabel = React.forwardRef<
 >(({ children, ...props }, ref) => (
   <DropdownPrimitive.Label
     ref={ref}
-    className="dropdown-label"
+    className={styles.dropdownLabel}
     {...props}
   >
     {children}
@@ -124,7 +126,7 @@ const DropdownSeparator = React.forwardRef<
 >(({ ...props }, ref) => (
   <DropdownPrimitive.Separator
     ref={ref}
-    className="dropdown-separator"
+    className={styles.dropdownSeparator}
     {...props}
   />
 ));
@@ -132,7 +134,7 @@ DropdownSeparator.displayName = 'DropdownSeparator';
 
 const DropdownShortcut = ({ children, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
   <span
-    className="dropdown-shortcut"
+    className={styles.dropdownShortcut}
     {...props}
   >
     {children}

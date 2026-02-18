@@ -1,0 +1,77 @@
+@import '../../assets/styles/utils/mixins.scss';
+@import '../../assets/styles/variables.scss';
+
+.banner {
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  grid-template-areas:
+    'prev slider next'
+    '.    dots   .   ';
+  margin: 20px 0;
+  column-gap: 16px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'slider'
+      'dots';
+  }
+
+  .js-prev,
+  .js-next {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: 1px solid $slider-border-color;
+    cursor: pointer;
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .js-prev {
+    grid-area: prev;
+  }
+  .js-next {
+    grid-area: next;
+  }
+
+  &__slider {
+    grid-area: slider;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 280px;
+    display: block;
+    object-fit: cover;
+  }
+
+  &__pagination {
+    grid-area: dots;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding-top: 16px;
+
+    :global(.swiper-pagination-bullet) {
+      width: 16px;
+      height: 4px;
+      border-radius: 0;
+      background: $elements-color;
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    :global(.swiper-pagination-bullet-active) {
+      background: $icons-color;
+      width: 28px;
+    }
+  }
+}

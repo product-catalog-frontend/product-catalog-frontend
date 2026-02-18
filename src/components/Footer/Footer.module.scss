@@ -1,0 +1,104 @@
+@use '../common/typography/typography.scss' as *;
+@use '../../assets/styles/variables.scss' as *;
+@use '../../assets/styles/utils/mixins.scss' as *;
+
+.footer {
+  border-top: 1px solid $elements-color;
+  background-color: $white;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: $spacing-xl 152px;
+}
+
+.logo img {
+  height: 28px;
+}
+
+.links {
+  display: flex;
+  gap: 106px;
+
+  a {
+    text-decoration: none;
+    color: $secondary-color;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.backToTop {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  span {
+    color: $secondary-color;
+  }
+}
+
+.topButton {
+  width: $spacing-xl;
+  height: $spacing-xl;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid $elements-color;
+  background: $white;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $primary-color;
+  }
+
+  svg {
+    width: $spacing-md;
+    height: $spacing-md;
+  }
+}
+
+@include tablet {
+  .container {
+    padding: $spacing-xl $spacing-xl;
+  }
+
+  .links {
+    gap: 14px;
+  }
+}
+
+@include mobile {
+  .container {
+    align-items: start;
+    flex-direction: column;
+    gap: $spacing-xl;
+    padding: $spacing-xl $spacing-md;
+  }
+
+  .links {
+    flex-direction: column;
+    align-items: start;
+    gap: $spacing-md;
+  }
+
+  .backToTop {
+    align-self: center;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+}
