@@ -1,20 +1,27 @@
 import { useState } from 'react';
-import './PrimaryButton.scss';
+import styles from './PrimaryButton.module.scss';
 
 interface PrimaryButtonProps {
   onClick?: () => void;
   disabled?: boolean;
 }
 
-export function PrimaryButton({ disabled }: PrimaryButtonProps) {
+export function PrimaryButton({ onClick, disabled }: PrimaryButtonProps) {
   const [selected, setSelected] = useState(false);
+
+  const handleClick = () => {
+    if (!disabled) {
+      setSelected((p) => !p);
+      onClick?.();
+    }
+  };
 
   return (
     <button
       type="button"
       disabled={disabled}
-      onClick={() => !disabled && setSelected((p) => !p)}
-      className={`primaryButton ${selected ? 'selected' : ''}`}
+      onClick={handleClick}
+      className={`${styles.primaryButton} ${selected ? styles.selected : ''}`}
     >
       {selected ? 'Selected' : 'Primary'}
     </button>

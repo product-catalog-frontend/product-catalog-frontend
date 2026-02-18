@@ -1,4 +1,4 @@
-import './NumberButton.scss';
+import styles from './NumberButton.module.scss';
 
 interface NumberButtonProps {
   number: number;
@@ -13,7 +13,7 @@ export function NumberButton({ number, selected, onClick, disabled }: NumberButt
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`numberButton ${selected ? 'selected' : ''}`}
+      className={`${styles.numberButton} ${selected ? styles.selected : ''}`}
     >
       {number}
     </button>

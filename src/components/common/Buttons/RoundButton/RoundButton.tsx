@@ -1,4 +1,4 @@
-import './RoundButton.scss';
+import styles from './RoundButton.module.scss';
 
 interface RoundButtonProps {
   selected?: boolean;
@@ -12,7 +12,7 @@ export function RoundButton({ selected, onClick, disabled }: RoundButtonProps) {
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className={`roundButton ${selected ? 'selected' : ''}`}
+      className={`${styles.roundButton} ${selected ? styles.selected : ''}`}
     />
   );
 }

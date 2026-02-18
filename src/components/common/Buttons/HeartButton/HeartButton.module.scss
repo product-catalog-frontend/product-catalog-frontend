@@ -1,0 +1,42 @@
+@use '../../../../assets/styles/variables.scss' as var;
+
+.heartButton {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var.$white;
+  border-radius: var.$border-radius-sm;
+  border: 1px solid var.$elements-color;
+
+  transition: border 0.2s, opacity 0.2s;
+
+  &:hover:not(:disabled) {
+    border-width: 2px;
+    border-color: var.$primary-color;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.selected {
+  border: 1px solid var.$elements-color;
+
+  .icon {
+    color: var.$error-color;
+    fill: var.$error-color;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+  transition: color 0.2s, fill 0.2s;
+}

@@ -1,21 +1,23 @@
 import { ChevronLeft } from 'lucide-react';
-import './ArrowButton.scss';
+import styles from './ArrowButton.module.scss';
 
 interface ArrowButtonProps {
   text?: string;
   onClick?: () => void;
   disabled?: boolean;
+  ariaLabel?: string;
 }
 
-export function ArrowButton({ text = 'Hover', onClick, disabled }: ArrowButtonProps) {
+export function ArrowButton({ text = 'Hover', onClick, disabled, ariaLabel }: ArrowButtonProps) {
   return (
     <button
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="arrowButton"
+      aria-label={ariaLabel || text}
+      className={styles.arrowButton}
     >
-      <ChevronLeft className="arrowIcon" />
+      <ChevronLeft className={styles.arrowIcon} />
       {text}
     </button>
   );
