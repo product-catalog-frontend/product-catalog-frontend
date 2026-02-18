@@ -20,7 +20,7 @@ const DropdownSubTrigger = React.forwardRef<
     {...props}
   >
     {children}
-    <ChevronRight className="ml-auto" />
+    <ChevronRight className="dropdown-chevron" />
   </DropdownPrimitive.SubTrigger>
 ));
 DropdownSubTrigger.displayName = 'DropdownSubTrigger';
@@ -80,7 +80,7 @@ const DropdownCheckboxItem = React.forwardRef<
     {...props}
   >
     <span className="dropdown-indicator">
-      <Check className="h-4 w-4" />
+      <Check className="dropdown-icon-sm" />
     </span>
     {children}
   </DropdownPrimitive.CheckboxItem>
@@ -97,7 +97,7 @@ const DropdownRadioItem = React.forwardRef<
     {...props}
   >
     <span className="dropdown-indicator">
-      <Circle className="h-2 w-2 fill-current" />
+      <Circle className="dropdown-icon-xs" />
     </span>
     {children}
   </DropdownPrimitive.RadioItem>
@@ -132,7 +132,7 @@ DropdownSeparator.displayName = 'DropdownSeparator';
 
 const DropdownShortcut = ({ children, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
   <span
-    className="ml-auto text-xs opacity-60"
+    className="dropdown-shortcut"
     {...props}
   >
     {children}

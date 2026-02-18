@@ -77,3 +77,27 @@
   align-items: center;
   justify-content: center;
 }
+
+.dropdown-chevron {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+}
+
+.dropdown-icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.dropdown-icon-xs {
+  width: 8px;
+  height: 8px;
+  fill: currentColor;
+}
+
+.dropdown-shortcut {
+  margin-left: auto;
+  font-size: 12px;
+  opacity: 0.6;
+}
