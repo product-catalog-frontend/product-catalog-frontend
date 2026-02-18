@@ -14,8 +14,9 @@
   color: var.$white;
   border: 1px solid transparent;
 
+
   &:hover:not(:disabled):not(.selected) {
-    background: var.$primary-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   &:disabled {
@@ -24,8 +25,10 @@
   }
 }
 
+
 .selected {
   background: var.$white;
   color: var.$success-color;
   border: 1px solid var.$elements-color;
+
 }
