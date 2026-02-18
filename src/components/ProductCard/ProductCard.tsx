@@ -45,10 +45,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
       <div className={styles.buttons}>
-        <PrimaryButton
-          label="Add to cart"
-          selectedLabel="Added"
-        />
+        <PrimaryButton />
         <HeartButton
           selected={isFavorite}
           onClick={onFavoriteClick}
