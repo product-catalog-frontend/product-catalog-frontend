@@ -12,7 +12,7 @@ import {
   PrimaryButton,
   ArrowButton,
 } from '../../components/common/Buttons';
-import { ImageCarousel } from '../../components/ImageSlider/ImageSlider';
+import { ImageCarousel } from '../../components/ImageSlider/ImageCarousel';
 
 export const HomePage = () => {
   const [data, setData] = useState<Product[]>([]);

@@ -5,13 +5,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import styles from './ImageSlider.module.scss';
+import styles from './ImageCarousel.module.scss';
 import { ChevronButton } from '../common/Buttons';
 
 export const ImageCarousel = () => {
   return (
     <div className={styles.banner}>
-      <ChevronButton direction="left" />
+      <ChevronButton
+        direction="left"
+        className={styles['js-prev']}
+      />
 
       <div className={styles.banner__slider}>
         <Swiper
@@ -57,7 +60,10 @@ export const ImageCarousel = () => {
         </Swiper>
       </div>
 
-      <ChevronButton direction="right" />
+      <ChevronButton
+        direction="right"
+        className={styles['js-next']}
+      />
 
       {/* Pagination Container */}
       <div className={styles.banner__pagination} />

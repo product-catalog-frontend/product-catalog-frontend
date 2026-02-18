@@ -24,6 +24,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    border: 1px solid $slider-border-color;
     cursor: pointer;
     @include mobile {
       display: none;
@@ -56,11 +57,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     padding-top: 16px;
 
     :global(.swiper-pagination-bullet) {
-      width: 14px;
+      width: 16px;
       height: 4px;
       border-radius: 0;
       background: $elements-color;
