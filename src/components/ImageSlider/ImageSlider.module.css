@@ -1,15 +1,15 @@
 .banner {
   display: grid;
   grid-template-columns: 32px 1fr 32px;
-  grid-template-areas: "prev slider next" ".    dots   .   ";
+  grid-template-areas: 'prev slider next' '.    dots   .   ';
   margin: 20px 0;
   -moz-column-gap: 16px;
-       column-gap: 16px;
+  column-gap: 16px;
 }
 @media (max-width: 320px) {
   .banner {
     grid-template-columns: 1fr;
-    grid-template-areas: "slider" "dots";
+    grid-template-areas: 'slider' 'dots';
   }
 }
 .banner .js-prev,
@@ -44,7 +44,7 @@
   height: 280px;
   display: block;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 @media (min-width: 640px) {
   .banner__image {
@@ -75,4 +75,4 @@
 .banner__pagination :global(.swiper-pagination-bullet-active) {
   background: #313237;
   width: 32px;
-}/*# sourceMappingURL=ImageSlider.module.css.map */
+} /*# sourceMappingURL=ImageSlider.module.css.map */
