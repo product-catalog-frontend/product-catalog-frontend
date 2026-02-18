@@ -1,5 +1,6 @@
 @use 'reset-css/sass/reset' as *;
 @use './variables.scss' as *;
+@use '../../components/common/typography/typography.scss' as *;
 
 html {
   scroll-behavior: smooth;
@@ -26,7 +27,7 @@ a {
   transition: color 0.3s;
 
   &:hover {
-    color: $accent-color;
+    color: $secondary-color;
   }
 }
 
