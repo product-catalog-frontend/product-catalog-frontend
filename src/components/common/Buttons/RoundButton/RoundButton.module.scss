@@ -17,7 +17,7 @@
     background 0.2s,
     opacity 0.2s;
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled):not(.selected) {
     border-width: 2px;
     border-color: var.$secondary-color;
   }
@@ -30,4 +30,8 @@
 
 .selected {
   border: 2px solid var.$primary-color;
+
+  &:hover {
+    border-color: var.$primary-color;
+  }
 }

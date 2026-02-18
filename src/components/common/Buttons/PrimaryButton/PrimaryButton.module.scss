@@ -14,7 +14,7 @@
   color: var.$white;
   border: 1px solid transparent;
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled):not(.selected) {
     background: var.$primary-color;
   }
 
