@@ -12,6 +12,7 @@ import {
   PrimaryButton,
   ArrowButton,
 } from '../../components/common/Buttons';
+import { ImageCarousel } from '../../components/ImageSlider/ImageSlider';
 
 export const HomePage = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -56,6 +57,8 @@ export const HomePage = () => {
         >
           {loading ? 'Завантаження...' : 'Перевірити зв’язок з базою'}
         </button>
+
+        <ImageCarousel />
 
         {data.length > 0 && (
           <div className="mt-6 flex flex-col md:flex-row gap-6">
