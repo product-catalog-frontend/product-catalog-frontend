@@ -1,0 +1,186 @@
+@font-face {
+  font-family: "Mont-Regular";
+  src: url("../../../assets/fonts/Mont-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont-SemiBold";
+  src: url("../../../assets/fonts/Mont-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Mont-Bold";
+  src: url("../../../assets/fonts/Mont-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+h1 {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  font-family: "Mont-Bold", sans-serif;
+}
+@media (max-width: 320px) {
+  h1 {
+    font-size: 32px;
+    line-height: 41px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    font-family: "Mont-Bold", sans-serif;
+  }
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 41px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  font-family: "Mont-Bold", sans-serif;
+}
+@media (max-width: 320px) {
+  h2 {
+    font-size: 22px;
+    line-height: 31px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: "Mont-Bold", sans-serif;
+  }
+}
+
+h3 {
+  font-size: 22px;
+  line-height: 31px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: "Mont-Bold", sans-serif;
+}
+@media (max-width: 320px) {
+  h3 {
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: "Mont-SemiBold", sans-serif;
+  }
+}
+
+h4 {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: "Mont-SemiBold", sans-serif;
+}
+@media (max-width: 320px) {
+  h4 {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    font-family: "Mont-SemiBold", sans-serif;
+  }
+}
+
+.uppercase {
+  font-size: 12px;
+  line-height: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: "Mont-Bold", sans-serif;
+}
+
+.button-text {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: "Mont-SemiBold", sans-serif;
+}
+
+.body-text {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: "Mont-Regular", sans-serif;
+}
+
+.small-text {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: "Mont-SemiBold", sans-serif;
+}
+
+.card {
+  box-sizing: border-box;
+  padding: 32px;
+  width: 300px;
+  border: 1px solid #e2e6e9;
+  display: flex;
+  flex-direction: column;
+  color: #313237;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.link .titleLink {
+  margin-top: 24px;
+  align-self: flex-start;
+}
+.link .imageLink {
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.options {
+  border-top: 1px solid #e2e6e9;
+  margin-top: 8px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+.option:nth-child(3) {
+  margin-bottom: 8px;
+}
+.option .label {
+  color: #89939a;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wishlistButton {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid #89939a;
+}/*# sourceMappingURL=ProductCard.module.css.map */

@@ -1,0 +1,78 @@
+.banner {
+  display: grid;
+  grid-template-columns: 32px 1fr 32px;
+  grid-template-areas: "prev slider next" ".    dots   .   ";
+  margin: 20px 0;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+}
+@media (max-width: 320px) {
+  .banner {
+    grid-template-columns: 1fr;
+    grid-template-areas: "slider" "dots";
+  }
+}
+.banner .js-prev,
+.banner .js-next {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: pointer;
+}
+@media (max-width: 320px) {
+  .banner .js-prev,
+  .banner .js-next {
+    display: none;
+  }
+}
+.banner .js-prev {
+  grid-area: prev;
+}
+.banner .js-next {
+  grid-area: next;
+}
+.banner__slider {
+  grid-area: slider;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 8px;
+}
+.banner__image {
+  width: 100%;
+  height: 280px;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 640px) {
+  .banner__image {
+    height: 360px;
+  }
+}
+@media (min-width: 1200px) {
+  .banner__image {
+    height: 400px;
+  }
+}
+.banner__pagination {
+  grid-area: dots;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding-top: 16px;
+}
+.banner__pagination :global(.swiper-pagination-bullet) {
+  width: 14px;
+  height: 4px;
+  border-radius: 0;
+  background: #e2e6e9;
+  opacity: 1;
+  cursor: pointer;
+}
+.banner__pagination :global(.swiper-pagination-bullet-active) {
+  background: #313237;
+  width: 32px;
+}/*# sourceMappingURL=ImageSlider.module.css.map */
