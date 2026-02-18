@@ -12,7 +12,10 @@
   border-radius: var.$border-radius-sm;
   border: 1px solid var.$primary-color;
 
-  transition: border 0.2s, color 0.2s, opacity 0.2s;
+  transition:
+    border 0.2s,
+    color 0.2s,
+    opacity 0.2s;
 
   &:hover:not(:disabled) {
     border-width: 2px;

@@ -12,7 +12,10 @@
   background-color: #f7e5d1;
   border: 1px solid var.$secondary-color;
 
-  transition: border 0.2s, background 0.2s, opacity 0.2s;
+  transition:
+    border 0.2s,
+    background 0.2s,
+    opacity 0.2s;
 
   &:hover:not(:disabled) {
     border-width: 2px;
