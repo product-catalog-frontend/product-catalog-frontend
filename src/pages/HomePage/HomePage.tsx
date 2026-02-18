@@ -40,6 +40,10 @@ export const HomePage = () => {
 
   const featuredProduct = data.length > 22 ? data[22] : data[0];
 
+  const onFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <div className="p-5 max-w-[1200px] mx-auto">
       <h1 className="text-2xl font-bold mb-6">Home Page</h1>
@@ -59,7 +63,11 @@ export const HomePage = () => {
               <h3 className="mb-2 text-sm text-gray-500 italic font-medium">
                 Тестовий ProductCard (index: {data.length > 22 ? 22 : 0}):
               </h3>
-              <ProductCard product={featuredProduct} />
+              <ProductCard
+                product={featuredProduct}
+                isFavorite={isFavorite}
+                onFavoriteClick={onFavoriteClick}
+              />
             </div>
 
             <div className="flex-1">
