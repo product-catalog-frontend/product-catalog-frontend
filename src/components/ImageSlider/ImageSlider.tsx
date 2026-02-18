@@ -11,10 +11,7 @@ import { ChevronButton } from '../common/Buttons';
 export const ImageCarousel = () => {
   return (
     <div className={styles.banner}>
-      <ChevronButton
-        direction="left"
-        className={styles['js-prev']}
-      />
+      <ChevronButton direction="left" />
 
       <div className={styles.banner__slider}>
         <Swiper
@@ -60,10 +57,7 @@ export const ImageCarousel = () => {
         </Swiper>
       </div>
 
-      <ChevronButton
-        direction="right"
-        className={styles['js-next']}
-      />
+      <ChevronButton direction="right" />
 
       {/* Pagination Container */}
       <div className={styles.banner__pagination} />
