@@ -31,7 +31,6 @@ export const BrandNewModelsCarousel = ({ data }: Props) => {
           modules={[Autoplay, Pagination, Navigation]}
           spaceBetween={0}
           slidesPerView={4}
-          loop={newModels.length > 4}
           speed={800}
           navigation={{
             prevEl: `.${styles['js-prev']}`,

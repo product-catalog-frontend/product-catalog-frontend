@@ -1,13 +1,24 @@
 @import '../../assets/styles/utils/mixins.scss';
 @import '../../assets/styles/variables.scss';
 
+article h1 {
+    margin: 56px 0;
+
+    @include tablet {
+      margin: 32px 0;
+    }
+
+    @include mobile {
+      margin: 24px 0;
+    }
+  }
+
 .banner {
   display: grid;
   grid-template-columns: 32px 1fr 32px;
   grid-template-areas:
     'prev slider next'
     '.    dots   .   ';
-  margin: 20px 0;
   column-gap: 16px;
 
   @include mobile {
