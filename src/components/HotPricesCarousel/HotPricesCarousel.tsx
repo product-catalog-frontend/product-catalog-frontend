@@ -56,7 +56,10 @@ export const HotPricesCarousel = ({ data }: Props) => {
         >
           {discountData.map((product) => (
             <SwiperSlide key={product.id}>
-              <ProductCard product={product} />
+              <ProductCard
+                product={product}
+                showFullPrice={true}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
