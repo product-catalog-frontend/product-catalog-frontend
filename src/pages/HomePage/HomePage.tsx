@@ -14,6 +14,7 @@ import {
 import { ImageCarousel } from '../../components/ImageCarousel/ImageCarousel';
 import { BrandNewModelsCarousel } from '../../components/BrandNewModelsCarousel/BrandNewModelsCarousel';
 import { ShopByCategory } from '../../components/ShopByCategory/ShopByCategory';
+import { HotPricesCarousel } from '../../components/HotPricesCarousel/HotPricesCarousel';
 
 export const HomePage = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -50,6 +51,7 @@ export const HomePage = () => {
       <ImageCarousel />
       <BrandNewModelsCarousel data={data} />
       <ShopByCategory data={data} />
+      <HotPricesCarousel data={data} />
       <div className="mb-10 p-6 bg-gray-50 rounded-xl border border-dashed border-gray-300">
         {!loading && data.length > 0 && (
           <div className="mt-6 flex flex-col md:flex-row gap-6">
