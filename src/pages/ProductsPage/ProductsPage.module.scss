@@ -1,0 +1,35 @@
+.productsPage {
+  padding: 0 32px;
+}
+
+.title {
+  margin-bottom: 4px;
+}
+
+.count {
+  color: #89939a;
+  margin-bottom: 24px;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.controlLabel {
+  font-size: 12px;
+  color: #89939a;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
