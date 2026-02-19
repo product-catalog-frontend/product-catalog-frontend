@@ -9,7 +9,14 @@
     'h2 prev next'
     'slider slider slider';
   column-gap: 16px;
-  row-gap: 28px;
+  row-gap: 24px;
+  margin-top: 80px;
+  @include tablet {
+    margin-top: 64px;
+  }
+  @include mobile {
+    margin-top: 56px;
+  }
 
   h2 {
     grid-area: h2;
