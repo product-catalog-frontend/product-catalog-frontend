@@ -23,7 +23,7 @@ export const HotPricesCarousel = ({ data }: Props) => {
     });
   return (
     <div className={styles.banner}>
-      <h2>Brand new models</h2>
+      <h2>Hot prices</h2>
       <ChevronButton
         direction="left"
         className={styles['js-prev']}

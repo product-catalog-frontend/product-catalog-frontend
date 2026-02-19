@@ -47,7 +47,6 @@ export const HomePage = () => {
 
   return (
     <div className="p-5 max-w-[1200px] mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Home Page</h1>
       <ImageCarousel />
       <BrandNewModelsCarousel data={data} />
       <ShopByCategory data={data} />
