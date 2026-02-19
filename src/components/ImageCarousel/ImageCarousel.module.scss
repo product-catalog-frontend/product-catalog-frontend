@@ -2,16 +2,16 @@
 @import '../../assets/styles/variables.scss';
 
 article h1 {
-    margin: 56px 0;
+  margin: 56px 0;
 
-    @include tablet {
-      margin: 32px 0;
-    }
-
-    @include mobile {
-      margin: 24px 0;
-    }
+  @include tablet {
+    margin: 32px 0;
   }
+
+  @include mobile {
+    margin: 24px 0;
+  }
+}
 
 .banner {
   display: grid;
