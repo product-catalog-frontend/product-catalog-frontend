@@ -7,14 +7,16 @@ interface ProductCardProps {
   product: Product;
   isFavorite?: boolean;
   onFavoriteClick?: () => void;
+  showFullPrice?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   isFavorite = false,
   onFavoriteClick,
+  showFullPrice = false,
 }) => {
-  const { image, name, price, screen, capacity, ram } = product;
+  const { image, name, fullPrice, price, screen, capacity, ram } = product;
 
   return (
     <article className={styles.card}>
@@ -31,7 +33,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       </a>
       <div className={styles.prices}>
         <h3 className={styles.realPrice}>${price}</h3>
-        {/* <h3 className={styles.price}>${fullPrice}</h3> */}
+        {showFullPrice && <h3 className={styles.price}>${fullPrice}</h3>}
       </div>
       <div className={styles.options}>
         <div className={styles.option}>
