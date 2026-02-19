@@ -5,10 +5,15 @@
   border-radius: var.$border-radius-sm;
 
   @include text-style(14px, 21px, 600, 0.05em, uppercase);
-
-  padding: 10px 61px;
-
   transition: all 0.2s;
+  // should change hardcode width
+  width: 160px;
+  @include tablet {
+    width: 125px;
+  }
+  @include mobile {
+    width: 100px;
+  }
 
   background: var.$icons-color;
   color: var.$white;
