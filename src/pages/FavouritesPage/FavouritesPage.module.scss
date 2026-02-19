@@ -1,0 +1,17 @@
+@use '../../assets/styles/variables.scss' as var;
+
+
+.favoritesPage {
+  padding: var.$spacing-xl;
+  color: var.$icons-color;
+
+  .productsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var.$spacing-md;
+  }
+
+  .emptyMessage {
+    color: var.$secondary-color;
+  }
+}

@@ -5,16 +5,16 @@ import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { CartPage } from './pages/CartPage';
-import { FavoritesPage } from './pages/FavoritesPage';
+import { FavouritesPage } from './pages/FavouritesPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { CartProvider } from './context/CartContext';
-import { FavoritesProvider } from './context/FavoritesContext';
+import { FavouritesProvider } from './context/FavouritesContext';
 import styles from './App.module.scss';
 
 export const App = () => {
   return (
     <CartProvider>
-      <FavoritesProvider>
+      <FavouritesProvider>
         <div className={styles.app}>
           <Header />
 
@@ -46,7 +46,7 @@ export const App = () => {
               />
               <Route
                 path="/favorites"
-                element={<FavoritesPage />}
+                element={<FavouritesPage />}
               />
               <Route
                 path="*"
@@ -57,7 +57,7 @@ export const App = () => {
 
           <Footer />
         </div>
-      </FavoritesProvider>
+      </FavouritesProvider>
     </CartProvider>
   );
 };
