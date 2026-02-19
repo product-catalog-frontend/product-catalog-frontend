@@ -14,7 +14,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   isFavorite = false,
   onFavoriteClick,
 }) => {
-  const { image, name, price, screen, capacity, ram } = product;
+  const { image, name, fullPrice, price, screen, capacity, ram } = product;
 
   return (
     <article className={styles.card}>
@@ -29,7 +29,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         />
         <p className={`${styles.titleLink} body-text`}>{name}</p>
       </a>
-      <h3 className={styles.price}>${price}</h3>
+      <h3 className={styles.realPrice}>${price}</h3>
+      <h3 className={styles.price}>${fullPrice}</h3>
       <div className={styles.options}>
         <div className={styles.option}>
           <span className={`${styles.label} small-text`}>Screen</span>
