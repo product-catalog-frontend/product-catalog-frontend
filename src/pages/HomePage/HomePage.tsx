@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../../services/supabaseClient';
-import { ProductCard } from '../../components/ProductCard/ProductCard';
 import type { Product } from '../../types/Product/Product';
 
 import {
@@ -12,7 +11,8 @@ import {
   PrimaryButton,
   ArrowButton,
 } from '../../components/common/Buttons';
-import { ImageCarousel } from '../../components/ImageSlider/ImageCarousel';
+import { ImageCarousel } from '../../components/ImageCarousel/ImageCarousel';
+import { BrandNewModelsCarousel } from '../../components/BrandNewModelsCarousel/BrandNewModelsCarousel';
 
 export const HomePage = () => {
   const [data, setData] = useState<Product[]>([]);
@@ -23,55 +23,34 @@ export const HomePage = () => {
 
   const navigate = useNavigate();
 
-  const handleFetch = async () => {
+  const featchProducts = async () => {
     setLoading(true);
     try {
       const { data: products, error } = await supabase.from('products').select('*');
 
-      if (error) throw error;
+      if (error) throw new Error();
 
       setData(products || []);
     } catch (error) {
-      console.error('Помилка фетчу:', error);
-      alert('Не вдалося завантажити дані');
+      console.error('Error fetch:', error);
+      alert(`Can't fetch`);
     } finally {
       setLoading(false);
     }
   };
 
-  const featuredProduct = data.length > 22 ? data[22] : data[0];
-
-  const onFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-  };
+  useEffect(() => {
+    featchProducts();
+  }, []);
 
   return (
     <div className="p-5 max-w-[1200px] mx-auto">
       <h1 className="text-2xl font-bold mb-6">Home Page</h1>
+      <ImageCarousel />
+      <BrandNewModelsCarousel data={data} />
       <div className="mb-10 p-6 bg-gray-50 rounded-xl border border-dashed border-gray-300">
-        <button
-          onClick={handleFetch}
-          disabled={loading}
-          className="px-6 py-2 bg-white border border-gray-300 rounded-md hover:bg-gray-100 transition disabled:opacity-50"
-        >
-          {loading ? 'Завантаження...' : 'Перевірити зв’язок з базою'}
-        </button>
-
-        <ImageCarousel />
-
-        {data.length > 0 && (
+        {!loading && data.length > 0 && (
           <div className="mt-6 flex flex-col md:flex-row gap-6">
-            <div className="w-full max-w-[300px]">
-              <h3 className="mb-2 text-sm text-gray-500 italic font-medium">
-                Тестовий ProductCard (index: {data.length > 22 ? 22 : 0}):
-              </h3>
-              <ProductCard
-                product={featuredProduct}
-                isFavorite={isFavorite}
-                onFavoriteClick={onFavoriteClick}
-              />
-            </div>
-
             <div className="flex-1">
               <h3 className="font-medium mb-2">Raw JSON Data:</h3>
               <pre className="bg-gray-900 text-green-400 p-4 rounded-md text-xs h-[300px] overflow-auto shadow-inner">
