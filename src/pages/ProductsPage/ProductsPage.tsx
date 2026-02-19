@@ -38,7 +38,7 @@ export const ProductsPage = ({ category }: ProductsPageProps) => {
 
   return (
     <div className={styles.productsPage}>
-      <h1 className={styles.title}>Mobile {category}</h1>
+      <h1 className={styles.title}>{category}</h1>
       <p className={styles.count}>95 models</p>
 
       <div className={styles.controls}>
@@ -83,12 +83,13 @@ export const ProductsPage = ({ category }: ProductsPageProps) => {
         <ProductCard product={testProduct} />
         <ProductCard product={testProduct} />
       </div>
-      <h1>{category}</h1>
-      <Pagination
-        pageCount={14}
-        initialPage={1}
-        visiblePages={4}
-      />
+      <div className={styles.pagination}>
+        <Pagination
+          pageCount={14}
+          initialPage={1}
+          visiblePages={4}
+        />
+      </div>
     </div>
   );
 };

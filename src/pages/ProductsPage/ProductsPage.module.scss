@@ -1,5 +1,6 @@
 .productsPage {
   padding: 0 32px;
+  margin-top: 80px;
 }
 
 .title {
@@ -32,4 +33,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
