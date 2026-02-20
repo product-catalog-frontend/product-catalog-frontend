@@ -14,7 +14,9 @@ interface Props {
 }
 
 export const BrandNewModelsCarousel = ({ data }: Props) => {
-  const newModels = data.filter((product) => product.year === 2022);
+  const newModels = data
+    .filter((product) => product.year === 2022)
+    .sort((a, b) => b.price - a.price);
   return (
     <div className={styles.banner}>
       <h2>Brand new models</h2>
