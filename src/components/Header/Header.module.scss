@@ -9,6 +9,9 @@
   width: 100%;
   background-color: $white;
   border-bottom: 1px solid $elements-color;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
 }
 
 .logoContainer {
