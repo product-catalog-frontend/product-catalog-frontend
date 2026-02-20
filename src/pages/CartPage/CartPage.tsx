@@ -2,78 +2,65 @@ import { useState } from 'react';
 import styles from './CartPage.module.scss';
 import { PrimaryButton, ArrowButton } from '../../components/common/Buttons';
 import { CartItem } from '../../components/CartItem/CartItem';
+import type { CartItemType } from '../../components/CartItem/CartItem';
 
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-};
-
-type CartItem = Product & {
-  quantity: number;
-};
 export const CartPage = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  // ЗАГЛУШКА: Зараз це useState, але структура і назви функцій
+  const [cart, setCart] = useState<CartItemType[]>([]);
 
-  function removeItem(id: number) {
+  // Ці методи потім просто переїдуть у Zustand стор
+  const removeItem = (id: number) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
-  }
+  };
 
-  function increaseQuantity(id: number) {
-    setCart((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item)),
-    );
-  }
-
-  function decreaseQuantity(id: number) {
+  const changeQuantity = (id: number, delta: number) => {
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item,
+        item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item,
       ),
     );
-  }
+  };
 
   const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  if (cart.length === 0) {
-    return <h2 className={styles.cartEmpty}>CART IS EMPTY</h2>;
-  }
-
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.arrowButtonWrapper}>
-        <ArrowButton text="Back" />
+        <ArrowButton
+          text="Back"
+          onClick={() => window.history.back()}
+        />
       </div>
 
       <h1 className={styles.cartTitle}>Cart</h1>
 
-      <div className={styles.cartPage}>
-        <div className={styles.cartItems}>
-          {cart.map((item) => (
-            <CartItem
-              key={item.id}
-              item={item}
-              onRemove={removeItem}
-              onIncrease={increaseQuantity}
-              onDecrease={decreaseQuantity}
-            />
-          ))}
+      {cart.length === 0 ?
+        <h2 className={styles.cartEmpty}>Your cart is empty</h2>
+      : <div className={styles.cartPage}>
+          <div className={styles.cartItems}>
+            {cart.map((item) => (
+              <CartItem
+                key={item.id}
+                item={item}
+                onRemove={removeItem}
+                onIncrease={(id) => changeQuantity(id, 1)}
+                onDecrease={(id) => changeQuantity(id, -1)}
+              />
+            ))}
+          </div>
+
+          <div className={styles.cartSummary}>
+            <div className={styles.summaryInfo}>
+              <p className={styles.totalAmount}>${totalAmount}</p>
+              <p className={styles.totalItems}>
+                Total for {totalQuantity} item{totalQuantity !== 1 ? 's' : ''}
+              </p>
+            </div>
+            <PrimaryButton />
+          </div>
         </div>
-
-        <div className={styles.cartSummary}>
-          <p className={styles.totalAmount}>${totalAmount}</p>
-
-          <p className={styles.totalItems}>
-            Total for {totalQuantity} item
-            {totalQuantity > 1 ? 's' : ''}
-          </p>
-
-          <PrimaryButton />
-        </div>
-      </div>
-    </>
+      }
+    </div>
   );
 };

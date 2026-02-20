@@ -1,12 +1,9 @@
 import React from 'react';
 import styles from './CartItem.module.scss';
 import { Icon } from '../common/Icon';
+import type { Product } from '../../types/Product/Product';
 
-export type CartItemType = {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
+export type CartItemType = Product & {
   quantity: number;
 };
 
@@ -33,18 +30,19 @@ export const CartItem: React.FC<CartItemProps> = ({ item, onRemove, onIncrease, 
 
       <img
         src={item.image}
-        alt={item.title}
+        alt={item.name}
         className={styles.cartItemImage}
       />
 
       <div className={styles.cartItemInfo}>
-        <h3 className={styles.cartItemTitle}>{item.title}</h3>
+        <h3 className={styles.cartItemTitle}>{item.name}</h3>
       </div>
 
       <div className={styles.cartItemQuantity}>
         <button
           className={styles.quantityBtn}
           onClick={() => onDecrease(item.id)}
+          disabled={item.quantity <= 1}
         >
           <Icon name="minus" />
         </button>
