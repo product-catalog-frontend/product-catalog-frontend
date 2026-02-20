@@ -1,5 +1,5 @@
-@import '../../assets/styles/utils/mixins.scss';
-@import '../../assets/styles/variables.scss';
+@use '../../assets/styles/utils/mixins' as *;
+@use '../../assets/styles/variables' as *;
 
 .banner {
   display: grid;
@@ -11,6 +11,7 @@
   column-gap: 16px;
   row-gap: 24px;
   margin-top: 80px;
+
   @include tablet {
     margin-top: 64px;
   }
@@ -47,5 +48,6 @@
   &__slider {
     grid-area: slider;
     overflow: hidden;
+    min-width: 0;
   }
 }
