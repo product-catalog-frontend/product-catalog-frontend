@@ -1,18 +1,6 @@
 @use '../../assets/styles/utils/mixins' as *;
 @use '../../assets/styles/variables' as *;
 
-article h1 {
-  margin: 56px 0;
-
-  @include tablet {
-    margin: 32px 0;
-  }
-
-  @include mobile {
-    margin: 24px 0;
-  }
-}
-
 .banner {
   display: grid;
   grid-template-columns: 32px 1fr 32px;

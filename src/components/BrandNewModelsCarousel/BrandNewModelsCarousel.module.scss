@@ -44,10 +44,4 @@
     grid-area: next;
     justify-self: end;
   }
-
-  &__slider {
-    grid-area: slider;
-    overflow: hidden;
-    min-width: 0;
-  }
 }

@@ -1,0 +1,13 @@
+@use '../../assets/styles/utils/mixins.scss' as *;
+
+.welcomeTitle {
+  margin: 56px 0;
+
+  @include tablet {
+    margin: 32px 0;
+  }
+
+  @include mobile {
+    margin: 24px 0;
+  }
+}

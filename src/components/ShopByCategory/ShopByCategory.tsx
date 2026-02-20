@@ -1,15 +1,11 @@
 import { Link } from 'react-router-dom';
 import styles from './ShopByCategory.module.scss';
-import type { Product } from '../../types/Product/Product';
+import { useProductStore } from '../../store/useProductStore';
 
-interface Props {
-  data: Product[];
-}
-
-export const ShopByCategory = ({ data }: Props) => {
-  const mobilesCounter = data.filter((product) => product.category === 'phones').length;
-  const tabletesCounter = data.filter((product) => product.category === 'tablets').length;
-  const accessoriesCounter = data.filter((product) => product.category === 'accessories').length;
+export const ShopByCategory = () => {
+  const mobilesCounter = useProductStore((state) => state.mobilesCounter);
+  const tabletsCounter = useProductStore((state) => state.tabletsCounter);
+  const accessoriesCounter = useProductStore((state) => state.accessoriesCounter);
 
   return (
     <article className={styles.categor}>
@@ -41,7 +37,7 @@ export const ShopByCategory = ({ data }: Props) => {
             />
           </Link>
           <h4>Tablets</h4>
-          <p>{tabletesCounter} models</p>
+          <p>{tabletsCounter} models</p>
         </div>
         <div className={styles.category}>
           <Link
