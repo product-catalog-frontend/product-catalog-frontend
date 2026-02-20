@@ -19,8 +19,6 @@
   margin-bottom: $spacing-xxl;
 }
 
-
-
 .cartSummary {
   flex: 1;
   border: 1px solid $elements-color;
@@ -87,8 +85,6 @@
     flex-direction: column;
   }
 
-  
-
   .cartSummary {
     width: 100%;
   }
@@ -107,7 +103,6 @@
   .cartItems {
     margin-bottom: $spacing-xl;
   }
- 
 
   .cartSummary {
     margin-top: $spacing-lg;
