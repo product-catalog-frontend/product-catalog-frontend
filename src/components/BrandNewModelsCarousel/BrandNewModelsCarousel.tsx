@@ -14,7 +14,9 @@ interface Props {
 }
 
 export const BrandNewModelsCarousel = ({ data }: Props) => {
-  const newModels = data.filter((product) => product.year === 2022);
+  const newModels = data
+    .filter((product) => product.year === 2022)
+    .sort((a, b) => b.price - a.price);
   return (
     <div className={styles.banner}>
       <h2>Brand new models</h2>
@@ -29,7 +31,7 @@ export const BrandNewModelsCarousel = ({ data }: Props) => {
       <div className={styles['banner__slider']}>
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
-          spaceBetween={0}
+          spaceBetween={16}
           slidesPerView={4}
           speed={800}
           navigation={{
