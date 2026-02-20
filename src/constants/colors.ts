@@ -1,0 +1,26 @@
+export const AVAILABLE_COLORS = [
+  'black',
+  'blue',
+  'coral',
+  'gold',
+  'graphite',
+  'green',
+  'midnight',
+  'midnightgreen',
+  'pink',
+  'purple',
+  'red',
+  'rose gold',
+  'rosegold',
+  'sierrablue',
+  'silver',
+  'sky blue',
+  'space gray',
+  'spaceblack',
+  'spacegray',
+  'starlight',
+  'white',
+  'yellow',
+] as const;
+
+export type Color = (typeof AVAILABLE_COLORS)[number];
