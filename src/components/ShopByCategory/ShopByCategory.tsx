@@ -22,8 +22,8 @@ export const ShopByCategory = () => {
               className={styles.categoryImage}
             />
           </Link>
-          <h4>Mobile phones</h4>
-          <p>{mobilesCounter} models</p>
+          <h3>Mobile phones</h3>
+          <p className="body-text">{mobilesCounter} models</p>
         </div>
         <div className={styles.category}>
           <Link
@@ -36,8 +36,8 @@ export const ShopByCategory = () => {
               className={styles.categoryImage}
             />
           </Link>
-          <h4>Tablets</h4>
-          <p>{tabletsCounter} models</p>
+          <h3>Tablets</h3>
+          <p className="body-text">{tabletsCounter} models</p>
         </div>
         <div className={styles.category}>
           <Link
@@ -50,8 +50,8 @@ export const ShopByCategory = () => {
               className={styles.categoryImage}
             />
           </Link>
-          <h4>Accessories</h4>
-          <p>{accessoriesCounter} models</p>
+          <h3>Accessories</h3>
+          <p className="body-text">{accessoriesCounter} models</p>
         </div>
       </div>
     </article>

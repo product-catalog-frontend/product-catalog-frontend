@@ -8,6 +8,7 @@
     'prev slider next'
     '.    dots   .   ';
   column-gap: 16px;
+  margin: 0 -16px;
 
   @include mobile {
     grid-template-columns: 1fr;

@@ -20,7 +20,7 @@ export const Slider = ({ data, showFullPrice = false }: Props) => {
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={16}
         slidesPerView={4}
-        loop={true}
+        loop={data.length > 4}
         speed={800}
         navigation={{
           prevEl: `.${buttonStyle['js-prev']}`,
