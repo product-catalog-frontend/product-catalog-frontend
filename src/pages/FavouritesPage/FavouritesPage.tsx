@@ -1,22 +1,26 @@
 import React from 'react';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
+import { getCleanImagePath } from '../../utils/getCleanImagePath';
+
 import styles from './FavouritesPage.module.scss';
 
 export const FavouritesPage: React.FC = () => {
-  const { favourites } = useFavouritesStore();
+  const favourites = useFavouritesStore((state) => state.favourites);
+  const isEmpty = favourites.length === 0;
 
   return (
     <div className={styles.favouritesPage}>
       <h1>My Favourites</h1>
 
-      {favourites.length === 0 ?
+      {isEmpty ?
         <div className={styles.emptyState}>
           <img
-            src="/img/no-favourites.png"
+            src={getCleanImagePath('favourites-is-empty.png')}
             alt="No favourites"
             className={styles.emptyImage}
           />
+
           <p className={styles.emptyMessage}>Your favourites list is empty.</p>
         </div>
       : <div className={styles.productsList}>
