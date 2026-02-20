@@ -3,13 +3,15 @@ import type { Product } from '../../types/Product/Product';
 import styles from './ProductCard.module.scss';
 import { HeartButton, PrimaryButton } from '../common/Buttons';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
+import { getCleanImagePath } from '../../utils/getCleanImagePath';
 
 interface ProductCardProps {
   product: Product;
+  showFullPrice?: boolean;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const { image, name, price, screen, capacity, ram } = product;
+export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice = false }) => {
+  const { image, name, price, screen, capacity, ram, fullPrice } = product;
 
   const { favourites, toggleFavourite } = useFavouritesStore();
 
