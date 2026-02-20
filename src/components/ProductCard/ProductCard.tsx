@@ -2,6 +2,7 @@ import type React from 'react';
 import type { Product } from '../../types/Product/Product';
 import styles from './ProductCard.module.scss';
 import { HeartButton, PrimaryButton } from '../common/Buttons';
+import { getCleanImagePath } from '../../utils/getCleanImagePath';
 
 interface ProductCardProps {
   product: Product;
@@ -26,7 +27,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       >
         <img
           className={styles.imageLink}
-          src={image}
+          src={getCleanImagePath(image)}
           alt={name}
         />
         <p className={`${styles.titleLink} body-text`}>{name}</p>
