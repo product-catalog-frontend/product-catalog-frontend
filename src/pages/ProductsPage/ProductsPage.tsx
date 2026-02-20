@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { Product } from '../../types/Product/Product';
+import { useEffect, useState } from 'react';
+import { useProductStore } from '../../store/useProductStore';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import {
   Dropdown,
@@ -14,21 +14,6 @@ interface ProductsPageProps {
   category: 'phones' | 'tablets' | 'accessories';
 }
 
-const testProduct: Product = {
-  id: 1,
-  category: 'phones',
-  itemId: 'apple-iphone-xr-64gb-silver',
-  name: 'Apple iPhone XR 64GB Silver',
-  fullPrice: 899,
-  price: 799,
-  screen: '6.1" IPS',
-  capacity: '64GB',
-  color: 'silver',
-  ram: '3GB',
-  year: 2019,
-  image: 'https://placehold.co/200x300',
-};
-
 const SORT_OPTIONS = ['Newest', 'Alphabetically', 'Cheapest'];
 const ITEMS_OPTIONS = ['4', '8', '16'];
 
@@ -36,10 +21,19 @@ export const ProductsPage = ({ category }: ProductsPageProps) => {
   const [sortBy, setSortBy] = useState('Newest');
   const [itemsOnPage, setItemsOnPage] = useState('16');
 
+  const products = useProductStore((state) => state.products);
+  const fetchProducts = useProductStore((state) => state.fetchProducts);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  const filteredProducts = products.filter((product) => product.category === category);
+
   return (
     <div className={styles.productsPage}>
       <h1 className={styles.title}>{category}</h1>
-      <p className={styles.count}>95 models</p>
+      <p className={styles.count}>{filteredProducts.length} models</p>
 
       <div className={styles.controls}>
         <div className={styles.control}>
@@ -78,14 +72,17 @@ export const ProductsPage = ({ category }: ProductsPageProps) => {
       </div>
 
       <div className={styles.grid}>
-        <ProductCard product={testProduct} />
-        <ProductCard product={testProduct} />
-        <ProductCard product={testProduct} />
-        <ProductCard product={testProduct} />
+        {filteredProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+          />
+        ))}
       </div>
+
       <div className={styles.pagination}>
         <Pagination
-          pageCount={14}
+          pageCount={Math.ceil(filteredProducts.length / Number(itemsOnPage))}
           initialPage={1}
           visiblePages={4}
         />
