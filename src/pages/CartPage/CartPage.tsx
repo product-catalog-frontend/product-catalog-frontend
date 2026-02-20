@@ -1,84 +1,66 @@
-import { useCartStore } from '../../store/useCartStore';
-import type { Product } from '../../types/Product/Product';
+import { useState } from 'react';
+import styles from './CartPage.module.scss';
+import { PrimaryButton, ArrowButton } from '../../components/common/Buttons';
+import { CartItem } from '../../components/CartItem/CartItem';
+import type { CartItemType } from '../../components/CartItem/CartItem';
 
 export const CartPage = () => {
-  const cart = useCartStore((state) => state.cart);
-  const addToCart = useCartStore((state) => state.addToCart);
-  const removeItem = useCartStore((state) => state.removeItem);
-  const changeQuantity = useCartStore((state) => state.changeQuantity);
-  const totalItems = useCartStore((state) => state.totalItems());
+  // ЗАГЛУШКА: Зараз це useState, але структура і назви функцій
+  const [cart, setCart] = useState<CartItemType[]>([]);
 
-  // Тимчасові продукти для тесту
-  const demoProducts: Product[] = [
-    {
-      id: 1,
-      itemId: 'p1',
-      category: 'phones',
-      name: 'iPhone 14',
-      fullPrice: 1000,
-      price: 900,
-      screen: '6.1',
-      capacity: '128GB',
-      color: 'Black',
-      ram: '6GB',
-      year: 2023,
-      image: '',
-    },
-    {
-      id: 2,
-      itemId: 'p2',
-      category: 'phones',
-      name: 'iPhone 14 Pro',
-      fullPrice: 1200,
-      price: 1100,
-      screen: '6.1',
-      capacity: '256GB',
-      color: 'Silver',
-      ram: '6GB',
-      year: 2023,
-      image: '',
-    },
-  ];
+  // Ці методи потім просто переїдуть у Zustand стор
+  const removeItem = (id: number) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const changeQuantity = (id: number, delta: number) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item,
+      ),
+    );
+  };
+
+  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <div>
-      <h1>Cart Demo</h1>
-      <p>Total items in cart: {totalItems}</p>
+    <div className={styles.container}>
+      <div className={styles.arrowButtonWrapper}>
+        <ArrowButton
+          text="Back"
+          onClick={() => window.history.back()}
+        />
+      </div>
 
-      <h2>Products:</h2>
-      {demoProducts.map((product) => {
-        const cartItem = cart.find((item) => item.id === product.id);
+      <h1 className={styles.cartTitle}>Cart</h1>
 
-        return (
-          <div
-            key={product.id}
-            style={{ marginBottom: '16px' }}
-          >
-            <span>{product.name}</span>
-
-            <button
-              onClick={() => addToCart(product)}
-              style={{ marginLeft: '8px' }}
-            >
-              Add to Cart
-            </button>
-
-            {cartItem && (
-              <span style={{ marginLeft: '16px' }}>
-                <button onClick={() => changeQuantity(product.id, 'minus')}>-</button>
-                <span style={{ margin: '0 8px' }}>{cartItem.quantity}</span>
-                <button onClick={() => changeQuantity(product.id, 'plus')}>+</button>
-                <button
-                  onClick={() => removeItem(product.id)}
-                  style={{ marginLeft: '8px' }}
-                >
-                  Remove
-                </button>
-              </span>
-            )}
+      {cart.length === 0 ?
+        <h2 className={styles.cartEmpty}>Your cart is empty</h2>
+      : <div className={styles.cartPage}>
+          <div className={styles.cartItems}>
+            {cart.map((item) => (
+              <CartItem
+                key={item.id}
+                item={item}
+                onRemove={removeItem}
+                onIncrease={(id) => changeQuantity(id, 1)}
+                onDecrease={(id) => changeQuantity(id, -1)}
+              />
+            ))}
           </div>
-        );
-      })}
+
+          <div className={styles.cartSummary}>
+            <div className={styles.summaryInfo}>
+              <p className={styles.totalAmount}>${totalAmount}</p>
+              <p className={styles.totalItems}>
+                Total for {totalQuantity} item{totalQuantity !== 1 ? 's' : ''}
+              </p>
+            </div>
+            <PrimaryButton />
+          </div>
+        </div>
+      }
     </div>
   );
 };

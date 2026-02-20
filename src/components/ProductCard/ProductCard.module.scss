@@ -1,14 +1,25 @@
 @use '../../assets/styles/variables.scss' as *;
 @use '../../components/common/typography/typography.scss' as *;
+@use '../../assets/styles/utils/mixins.scss' as *;
 
 .card {
   box-sizing: border-box;
   padding: 32px;
-  width: 300px;
+  width: 272px;
   border: 1px solid $elements-color;
   display: flex;
   flex-direction: column;
   color: $icons-color;
+  min-height: 547px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @include tablet {
+    width: 237px;
+  }
+  @include mobile {
+    width: 212px;
+  }
 }
 .link {
   display: flex;
@@ -23,6 +34,7 @@
 
   .imageLink {
     width: min-content;
+    height: 234px;
   }
 }
 
@@ -53,9 +65,12 @@
   justify-content: space-between;
 }
 
-.wishlistButton {
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
-  border: 1px solid $secondary-color;
+.prices {
+  display: flex;
+  gap: 8px;
+}
+
+.price {
+  color: $secondary-color;
+  text-decoration: line-through;
 }

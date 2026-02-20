@@ -4,15 +4,16 @@ import { Icon } from '../common/Icon';
 import logo from '../../../public/img/logo/logo.svg';
 import { Link, NavLink } from 'react-router-dom';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
+import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 
 type HeaderProps = {
   favouritesCount?: number;
 };
 
-export const Header: React.FC<HeaderProps> = ({ favouritesCount = 3 }) => {
+export const Header: React.FC<HeaderProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { favourites } = useFavouritesStore();
   const totalCartItems = useCartStore((state) => state.totalItems());
 
   return (
@@ -68,7 +69,7 @@ export const Header: React.FC<HeaderProps> = ({ favouritesCount = 3 }) => {
 
         <div className={styles.buttons}>
           <NavLink
-            to="/favorites"
+            to="/favourites"
             className={({ isActive }) =>
               `${styles.iconButton} ${isActive ? styles.activeIcon : ''}`
             }
@@ -78,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({ favouritesCount = 3 }) => {
               strokeWidth={2}
             />
 
-            {favouritesCount > 0 && <span className={styles.badge}>{favouritesCount}</span>}
+            {favourites.length > 0 && <span className={styles.badge}>{favourites.length}</span>}
           </NavLink>
 
           <NavLink
@@ -110,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ favouritesCount = 3 }) => {
       <BurgerMenu
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
-        favouritesCount={favouritesCount}
+        favouritesCount={favourites.length}
         cartCount={totalCartItems}
       />
     </>

@@ -5,59 +5,61 @@ import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { CartPage } from './pages/CartPage';
-import { FavoritesPage } from './pages/FavoritesPage';
+import { FavouritesPage } from './pages/FavouritesPage';
 import { NotFoundPage } from './pages/NotFoundPage';
-import { CartProvider } from './context/CartContext';
-import { FavoritesProvider } from './context/FavoritesContext';
 import styles from './App.module.scss';
+import { useEffect } from 'react';
+import { useProductStore } from './store/useProductStore';
 
 export const App = () => {
+  const fetchProducts = useProductStore((state) => state.fetchProducts);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
   return (
-    <CartProvider>
-      <FavoritesProvider>
-        <div className={styles.app}>
-          <Header />
+    <div className={styles.app}>
+      <Header />
 
-          <main className={styles.main}>
-            <Routes>
-              <Route
-                path="/"
-                element={<HomePage />}
-              />
-              <Route
-                path="/phones"
-                element={<ProductsPage category="phones" />}
-              />
-              <Route
-                path="/tablets"
-                element={<ProductsPage category="tablets" />}
-              />
-              <Route
-                path="/accessories"
-                element={<ProductsPage category="accessories" />}
-              />
-              <Route
-                path="/product/:productId"
-                element={<ProductDetailsPage />}
-              />
-              <Route
-                path="/cart"
-                element={<CartPage />}
-              />
-              <Route
-                path="/favorites"
-                element={<FavoritesPage />}
-              />
-              <Route
-                path="*"
-                element={<NotFoundPage />}
-              />
-            </Routes>
-          </main>
+      <main className={styles.main}>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage />}
+          />
+          <Route
+            path="/phones"
+            element={<ProductsPage category="phones" />}
+          />
+          <Route
+            path="/tablets"
+            element={<ProductsPage category="tablets" />}
+          />
+          <Route
+            path="/accessories"
+            element={<ProductsPage category="accessories" />}
+          />
+          <Route
+            path="/product/:productId"
+            element={<ProductDetailsPage />}
+          />
+          <Route
+            path="/cart"
+            element={<CartPage />}
+          />
+          <Route
+            path="/favourites"
+            element={<FavouritesPage />}
+          />
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
+        </Routes>
+      </main>
 
-          <Footer />
-        </div>
-      </FavoritesProvider>
-    </CartProvider>
+      <Footer />
+    </div>
   );
 };

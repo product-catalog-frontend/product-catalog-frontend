@@ -4,11 +4,28 @@ import { Check, Circle, ChevronRight } from 'lucide-react';
 import styles from './DropdownMenu.module.scss';
 
 const Dropdown = DropdownPrimitive.Root;
-const DropdownTrigger = DropdownPrimitive.Trigger;
 const DropdownGroup = DropdownPrimitive.Group;
 const DropdownPortal = DropdownPrimitive.Portal;
 const DropdownSub = DropdownPrimitive.Sub;
 const DropdownRadioGroup = DropdownPrimitive.RadioGroup;
+
+const DropdownTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof DropdownPrimitive.Trigger>
+>(({ children, ...props }, ref) => (
+  <DropdownPrimitive.Trigger
+    ref={ref}
+    className={styles.dropdownTrigger}
+    {...props}
+  >
+    {children}
+    <ChevronRight
+      className={styles.dropdownChevron}
+      style={{ transform: 'rotate(90deg)' }}
+    />
+  </DropdownPrimitive.Trigger>
+));
+DropdownTrigger.displayName = 'DropdownTrigger';
 
 const DropdownSubTrigger = React.forwardRef<
   React.ElementRef<typeof DropdownPrimitive.SubTrigger>,
@@ -82,7 +99,6 @@ const DropdownCheckboxItem = React.forwardRef<
     <DropdownPrimitive.ItemIndicator className={styles.dropdownIndicator}>
       <Check className={styles.dropdownIconSm} />
     </DropdownPrimitive.ItemIndicator>
-
     {children}
   </DropdownPrimitive.CheckboxItem>
 ));
@@ -100,7 +116,6 @@ const DropdownRadioItem = React.forwardRef<
     <DropdownPrimitive.ItemIndicator className={styles.dropdownIndicator}>
       <Circle className={styles.dropdownIconXs} />
     </DropdownPrimitive.ItemIndicator>
-
     {children}
   </DropdownPrimitive.RadioItem>
 ));
