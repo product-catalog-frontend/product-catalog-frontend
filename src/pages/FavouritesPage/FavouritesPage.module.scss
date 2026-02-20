@@ -1,0 +1,33 @@
+@use '../../assets/styles/variables.scss' as var;
+
+.favouritesPage {
+  padding: var.$spacing-xl;
+  color: var.$icons-color;
+
+  .emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .emptyImage {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .emptyMessage {
+      color: var.$secondary-color;
+    }
+  }
+
+  .productsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var.$spacing-md;
+  }
+}

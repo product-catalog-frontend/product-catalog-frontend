@@ -5,7 +5,7 @@ import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { CartPage } from './pages/CartPage';
-import { FavoritesPage } from './pages/FavoritesPage';
+import { FavouritesPage } from './pages/FavouritesPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import styles from './App.module.scss';
 import { useEffect } from 'react';
@@ -49,8 +49,8 @@ export const App = () => {
             element={<CartPage />}
           />
           <Route
-            path="/favorites"
-            element={<FavoritesPage />}
+            path="/favourites"
+            element={<FavouritesPage />}
           />
           <Route
             path="*"
