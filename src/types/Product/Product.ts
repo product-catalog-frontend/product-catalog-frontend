@@ -1,7 +1,7 @@
 export interface ProductDetails {
   id: string;
   category: ProductCategory;
-  namespace: string;
+  namespaceId: string;
   name: string;
   capacityAvailable: string[];
   capacity: string;
