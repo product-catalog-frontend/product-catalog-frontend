@@ -1,28 +1,19 @@
-import { useState } from 'react';
 import styles from './CartPage.module.scss';
 import { PrimaryButton, ArrowButton } from '../../components/common/Buttons';
 import { CartItem } from '../../components/CartItem/CartItem';
-import type { CartItemType } from '../../components/CartItem/CartItem';
+import { useCartStore } from '../../store/useCartStore';
 
 export const CartPage = () => {
-  // ЗАГЛУШКА: Зараз це useState, але структура і назви функцій
-  const [cart, setCart] = useState<CartItemType[]>([]);
+  const cart = useCartStore((state) => state.cart);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const changeQuantity = useCartStore((state) => state.changeQuantity);
+  const totalAmount = useCartStore((state) => state.totalAmount());
+  const totalItems = useCartStore((state) => state.totalItems());
+  const clearCart = useCartStore((state) => state.clearCart);
 
-  // Ці методи потім просто переїдуть у Zustand стор
-  const removeItem = (id: number) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+  const handleCheckout = () => {
+    clearCart();
   };
-
-  const changeQuantity = (id: number, delta: number) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item,
-      ),
-    );
-  };
-
-  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <div className={styles.container}>
@@ -44,8 +35,8 @@ export const CartPage = () => {
                 key={item.id}
                 item={item}
                 onRemove={removeItem}
-                onIncrease={(id) => changeQuantity(id, 1)}
-                onDecrease={(id) => changeQuantity(id, -1)}
+                onIncrease={(id) => changeQuantity(id, 'plus')}
+                onDecrease={(id) => changeQuantity(id, 'minus')}
               />
             ))}
           </div>
@@ -54,10 +45,10 @@ export const CartPage = () => {
             <div className={styles.summaryInfo}>
               <p className={styles.totalAmount}>${totalAmount}</p>
               <p className={styles.totalItems}>
-                Total for {totalQuantity} item{totalQuantity !== 1 ? 's' : ''}
+                Total for {totalItems} item{totalItems !== 1 ? 's' : ''}
               </p>
             </div>
-            <PrimaryButton />
+            <PrimaryButton onClick={handleCheckout}>Checkout</PrimaryButton>
           </div>
         </div>
       }
