@@ -6,21 +6,14 @@ import 'swiper/swiper-bundle.css';
 import styles from './HotPricesCarousel.module.scss';
 import '../../assets/styles/variables.scss';
 import { ChevronButton } from '../common/Buttons';
-import type { Product } from '../../types/Product/Product';
 import { ProductCard } from '../ProductCard/ProductCard';
+import type { Product } from '../../types/Product/Product';
 
 interface Props {
   data: Product[];
 }
-export const HotPricesCarousel = ({ data }: Props) => {
-  const discountData = data
-    .filter((product) => product.fullPrice - product.price !== 0)
-    .sort((a, b) => {
-      const discountA = a.fullPrice - a.price;
-      const discountB = b.fullPrice - a.price;
 
-      return discountB - discountA;
-    });
+export const HotPricesCarousel = ({ data }: Props) => {
   return (
     <div className={styles.banner}>
       <h2>Hot prices</h2>
@@ -54,7 +47,7 @@ export const HotPricesCarousel = ({ data }: Props) => {
             },
           }}
         >
-          {discountData.map((product) => (
+          {data?.map((product) => (
             <SwiperSlide key={product.id}>
               <ProductCard
                 product={product}

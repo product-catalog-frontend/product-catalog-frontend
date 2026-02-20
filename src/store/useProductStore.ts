@@ -1,9 +1,10 @@
 import { create } from 'zustand';
-import { getProducts } from '../api/products';
+import { getDiscountProducts, getProducts } from '../api/products';
 import type { Product } from '../types/Product/Product';
 
 interface ProductStore {
   products: Product[];
+  discountProducts: Product[];
   isLoading: boolean;
   error: string | null;
   fetchProducts: () => Promise<void>;
@@ -11,6 +12,7 @@ interface ProductStore {
 
 export const useProductStore = create<ProductStore>((set, get) => ({
   products: [],
+  discountProducts: [],
   isLoading: false,
   error: null,
 
@@ -20,8 +22,11 @@ export const useProductStore = create<ProductStore>((set, get) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const products = await getProducts();
-      set({ products, isLoading: false });
+      const [products, discountProducts] = await Promise.all([
+        getProducts(),
+        getDiscountProducts(),
+      ]);
+      set({ products, discountProducts, isLoading: false });
     } catch (error: unknown) {
       if (error instanceof Error) {
         set({ error: error.message, isLoading: false });
