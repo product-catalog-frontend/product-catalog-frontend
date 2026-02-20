@@ -35,7 +35,7 @@ export const HotPricesCarousel = ({ data }: Props) => {
       <div className={styles['banner__slider']}>
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
-          spaceBetween={0}
+          spaceBetween={16}
           slidesPerView={4}
           speed={800}
           navigation={{
