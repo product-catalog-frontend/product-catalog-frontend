@@ -183,8 +183,6 @@
   }
 }
 
-
-
 @media (max-width: $mobile) {
   .cartPage {
     padding: $spacing-md;
@@ -195,7 +193,7 @@
     margin-left: $spacing-sm;
   }
 
-  .cartItems{
+  .cartItems {
     margin-bottom: $spacing-xl;
   }
   .cartItem {
