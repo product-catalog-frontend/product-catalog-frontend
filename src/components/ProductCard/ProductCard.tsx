@@ -2,19 +2,22 @@ import type React from 'react';
 import type { Product } from '../../types/Product/Product';
 import styles from './ProductCard.module.scss';
 import { HeartButton, PrimaryButton } from '../common/Buttons';
+import { getCleanImagePath } from '../../utils/getCleanImagePath';
 
 interface ProductCardProps {
   product: Product;
   isFavorite?: boolean;
   onFavoriteClick?: () => void;
+  showFullPrice?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   isFavorite = false,
   onFavoriteClick,
+  showFullPrice = false,
 }) => {
-  const { image, name, price, screen, capacity, ram } = product;
+  const { image, name, fullPrice, price, screen, capacity, ram } = product;
 
   return (
     <article className={styles.card}>
@@ -24,12 +27,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       >
         <img
           className={styles.imageLink}
-          src={image}
+          src={getCleanImagePath(image)}
           alt={name}
         />
         <p className={`${styles.titleLink} body-text`}>{name}</p>
       </a>
-      <h3 className={styles.price}>${price}</h3>
+      <div className={styles.prices}>
+        <h3 className={styles.realPrice}>${price}</h3>
+        {showFullPrice && <h3 className={styles.price}>${fullPrice}</h3>}
+      </div>
       <div className={styles.options}>
         <div className={styles.option}>
           <span className={`${styles.label} small-text`}>Screen</span>

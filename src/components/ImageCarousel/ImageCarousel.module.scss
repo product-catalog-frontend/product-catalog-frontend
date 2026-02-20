@@ -1,5 +1,17 @@
-@import '../../assets/styles/utils/mixins.scss';
-@import '../../assets/styles/variables.scss';
+@use '../../assets/styles/utils/mixins' as *;
+@use '../../assets/styles/variables' as *;
+
+article h1 {
+  margin: 56px 0;
+
+  @include tablet {
+    margin: 32px 0;
+  }
+
+  @include mobile {
+    margin: 24px 0;
+  }
+}
 
 .banner {
   display: grid;
@@ -7,7 +19,6 @@
   grid-template-areas:
     'prev slider next'
     '.    dots   .   ';
-  margin: 20px 0;
   column-gap: 16px;
 
   @include mobile {
@@ -19,6 +30,8 @@
 
   .js-prev,
   .js-next {
+    width: 32px;
+    box-sizing: border-box;
     align-self: stretch;
     display: flex;
     align-items: center;
@@ -26,6 +39,7 @@
     height: 100%;
     border: 1px solid $slider-border-color;
     cursor: pointer;
+
     @include mobile {
       display: none;
     }
@@ -43,13 +57,21 @@
     overflow: hidden;
     width: 100%;
     border-radius: 8px;
+    min-width: 0;
   }
 
   &__image {
     width: 100%;
-    height: 280px;
+    height: 400px;
     display: block;
     object-fit: cover;
+
+    @include tablet {
+      height: 190px;
+    }
+    @include mobile {
+      height: 320px;
+    }
   }
 
   &__pagination {
@@ -58,6 +80,10 @@
     justify-content: center;
     align-items: center;
     padding-top: 16px;
+
+    @include mobile {
+      gap: 6px;
+    }
 
     :global(.swiper-pagination-bullet) {
       width: 16px;
