@@ -5,7 +5,8 @@ import { HotPricesCarousel } from '../../components/HotPricesCarousel/HotPricesC
 import { useProductStore } from '../../store/useProductStore';
 
 export const HomePage = () => {
-  const { products } = useProductStore();
+  const products = useProductStore((state) => state.products);
+
   return (
     <>
       <ImageCarousel />

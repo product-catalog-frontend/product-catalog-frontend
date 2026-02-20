@@ -5,6 +5,7 @@ import 'swiper/swiper-bundle.css';
 
 import styles from './ImageCarousel.module.scss';
 import { ChevronButton } from '../common/Buttons';
+import { BANNER_IMAGES } from '../../constants';
 
 export const ImageCarousel = () => {
   return (
@@ -36,27 +37,15 @@ export const ImageCarousel = () => {
               nextEl: `.${styles['js-next']}`,
             }}
           >
-            <SwiperSlide>
-              <img
-                src="img/main.png"
-                alt="iPhone 14 Pro"
-                className={styles.banner__image}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="img/banner-phones.png"
-                alt="Phones"
-                className={styles.banner__image}
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                src="img/banner-accessories.png"
-                alt="Accessories"
-                className={styles.banner__image}
-              />
-            </SwiperSlide>
+            {BANNER_IMAGES.map((image, index) => (
+              <SwiperSlide key={index}>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className={styles.banner__image}
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
 
