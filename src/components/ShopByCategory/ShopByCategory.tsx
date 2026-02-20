@@ -22,7 +22,7 @@ export const ShopByCategory = ({ data }: Props) => {
           >
             <img
               src="img/category-phones.webp"
-              alt=""
+              alt="Category-phones"
               className={styles.categoryImage}
             />
           </Link>
@@ -36,7 +36,7 @@ export const ShopByCategory = ({ data }: Props) => {
           >
             <img
               src="img/category-tablets.png"
-              alt=""
+              alt="Category-tablets"
               className={styles.categoryImage}
             />
           </Link>
@@ -50,7 +50,7 @@ export const ShopByCategory = ({ data }: Props) => {
           >
             <img
               src="img/category-accessories.webp"
-              alt=""
+              alt="Category-accessories"
               className={styles.categoryImage}
             />
           </Link>
