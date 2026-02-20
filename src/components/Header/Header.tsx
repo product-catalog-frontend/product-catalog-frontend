@@ -4,14 +4,16 @@ import { Icon } from '../common/Icon';
 import logo from '../../../public/img/logo/logo.svg';
 import { Link, NavLink } from 'react-router-dom';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
+import { useCartStore } from '../../store/useCartStore';
 
 type HeaderProps = {
   favouritesCount?: number;
-  cartCount?: number;
 };
 
-export const Header: React.FC<HeaderProps> = ({ favouritesCount = 3, cartCount = 1 }) => {
+export const Header: React.FC<HeaderProps> = ({ favouritesCount = 3 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const totalCartItems = useCartStore((state) => state.totalItems());
 
   return (
     <>
@@ -90,7 +92,7 @@ export const Header: React.FC<HeaderProps> = ({ favouritesCount = 3, cartCount =
               strokeWidth={2}
             />
 
-            {cartCount > 0 && <span className={styles.badge}>{cartCount}</span>}
+            {totalCartItems > 0 && <span className={styles.badge}>{totalCartItems}</span>}
           </NavLink>
         </div>
 
@@ -109,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ favouritesCount = 3, cartCount =
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         favouritesCount={favouritesCount}
-        cartCount={cartCount}
+        cartCount={totalCartItems}
       />
     </>
   );
