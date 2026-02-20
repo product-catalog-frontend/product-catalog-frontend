@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './CartPage.module.scss';
 import { PrimaryButton, ArrowButton } from '../../components/common/Buttons';
-import { Icon } from '../../components/common/Icon';
+import { CartItem } from '../../components/CartItem/CartItem';
 
 type Product = {
   id: number;
@@ -10,12 +10,9 @@ type Product = {
   image: string;
 };
 
-type CartItem = {
-  id: number;
+type CartItem = Product & {
   quantity: number;
-  product: Product;
 };
-
 export const CartPage = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
@@ -37,7 +34,7 @@ export const CartPage = () => {
     );
   }
 
-  const totalAmount = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -56,51 +53,13 @@ export const CartPage = () => {
       <div className={styles.cartPage}>
         <div className={styles.cartItems}>
           {cart.map((item) => (
-            <div
+            <CartItem
               key={item.id}
-              className={styles.cartItem}
-            >
-              <button
-                className={styles.cartItemRemove}
-                onClick={() => removeItem(item.id)}
-              >
-                <Icon
-                  className={styles.removeIcon}
-                  name="close"
-                  size={20}
-                />
-              </button>
-
-              <img
-                src={item.product.image}
-                alt={item.product.title}
-                className={styles.cartItemImage}
-              />
-
-              <div className={styles.cartItemInfo}>
-                <h3 className={styles.cartItemTitle}>{item.product.title}</h3>
-              </div>
-
-              <div className={styles.cartItemQuantity}>
-                <button
-                  className={styles.quantityBtn}
-                  onClick={() => decreaseQuantity(item.id)}
-                >
-                  <Icon name="minus" />
-                </button>
-
-                <span className={styles.quantityValue}>{item.quantity}</span>
-
-                <button
-                  className={styles.quantityBtn}
-                  onClick={() => increaseQuantity(item.id)}
-                >
-                  <Icon name="plus" />
-                </button>
-              </div>
-
-              <p className={styles.cartItemPrice}>${item.product.price}</p>
-            </div>
+              item={item}
+              onRemove={removeItem}
+              onIncrease={increaseQuantity}
+              onDecrease={decreaseQuantity}
+            />
           ))}
         </div>
 
