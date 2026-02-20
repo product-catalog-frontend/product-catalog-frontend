@@ -45,8 +45,12 @@ article h1 {
     }
   }
 
-  .js-prev { grid-area: prev; }
-  .js-next { grid-area: next; }
+  .js-prev {
+    grid-area: prev;
+  }
+  .js-next {
+    grid-area: next;
+  }
 
   &__slider {
     grid-area: slider;
