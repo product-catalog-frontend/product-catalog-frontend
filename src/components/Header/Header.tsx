@@ -4,11 +4,11 @@ import { Icon } from '../common/Icon';
 import logo from '../../../public/img/logo/logo.svg';
 import { Link, NavLink } from 'react-router-dom';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
-import { useFavourites } from '../../context/FavouritesContext';
+import { useFavouritesStore } from '../../store/useFavouritesStore';
 
 export const Header: React.FC<{ cartCount?: number }> = ({ cartCount = 1 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { favourites } = useFavourites();
+  const { favourites } = useFavouritesStore();
 
   return (
     <>
@@ -63,7 +63,7 @@ export const Header: React.FC<{ cartCount?: number }> = ({ cartCount = 1 }) => {
 
         <div className={styles.buttons}>
           <NavLink
-            to="/favorites"
+            to="/favourites"
             className={({ isActive }) =>
               `${styles.iconButton} ${isActive ? styles.activeIcon : ''}`
             }

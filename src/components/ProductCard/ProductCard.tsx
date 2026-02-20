@@ -2,7 +2,8 @@ import type React from 'react';
 import type { Product } from '../../types/Product/Product';
 import styles from './ProductCard.module.scss';
 import { HeartButton, PrimaryButton } from '../common/Buttons';
-import { useFavourites } from '../../context/FavouritesContext';
+import { useFavouritesStore } from '../../store/useFavouritesStore';
+
 interface ProductCardProps {
   product: Product;
 }
@@ -10,14 +11,12 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { image, name, price, screen, capacity, ram } = product;
 
-  const { addToFavourite, removeFromFavourite, isFavourite } = useFavourites();
+  const { favourites, toggleFavourite } = useFavouritesStore();
 
-  const handleFavoriteClick = () => {
-    if (isFavourite(product.id)) {
-      removeFromFavourite(product.id);
-    } else {
-      addToFavourite(product);
-    }
+  const isFavourite = favourites.some((item) => item.id === product.id);
+
+  const handleFavouriteClick = () => {
+    toggleFavourite(product);
   };
 
   return (
@@ -51,8 +50,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className={styles.buttons}>
         <PrimaryButton />
         <HeartButton
-          selected={isFavourite(product.id)}
-          onClick={handleFavoriteClick}
+          selected={isFavourite}
+          onClick={handleFavouriteClick}
         />
       </div>
     </article>
