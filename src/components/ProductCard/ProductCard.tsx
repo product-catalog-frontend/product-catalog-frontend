@@ -27,12 +27,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       >
         <img
           className={styles.imageLink}
-          src={image}
+          src={getCleanImagePath(image)}
           alt={name}
         />
         <p className={`${styles.titleLink} body-text`}>{name}</p>
       </a>
-      <h3 className={styles.price}>${price}</h3>
+      <div className={styles.prices}>
+        <h3 className={styles.realPrice}>${price}</h3>
+        {showFullPrice && <h3 className={styles.price}>${fullPrice}</h3>}
+      </div>
       <div className={styles.options}>
         <div className={styles.option}>
           <span className={`${styles.label} small-text`}>Screen</span>

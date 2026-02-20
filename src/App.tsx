@@ -8,8 +8,16 @@ import { CartPage } from './pages/CartPage';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import styles from './App.module.scss';
+import { useEffect } from 'react';
+import { useProductStore } from './store/useProductStore';
 
 export const App = () => {
+  const fetchProducts = useProductStore((state) => state.fetchProducts);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
   return (
     <div className={styles.app}>
       <Header />
