@@ -3,7 +3,9 @@ import type { Product } from '../../types/Product/Product';
 import styles from './ProductCard.module.scss';
 import { HeartButton, PrimaryButton } from '../common/Buttons';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
+
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { useCartStore } from '../../store/useCartStore';
 
 interface ProductCardProps {
   product: Product;
@@ -21,6 +23,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
 
   const handleFavouriteClick = () => {
     toggleFavourite(product);
+  };
+
+  const addToCart = useCartStore((state) => state.addToCart);
+  const isInCart = useCartStore((state) => state.isInCart(product.id));
+
+  const handleAddToCart = () => {
+    addToCart(product);
   };
 
   return (
@@ -54,8 +63,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
           <span className={`${styles.value} uppercase`}>{ram}</span>
         </div>
       </div>
+
       <div className={styles.buttons}>
-        <PrimaryButton />
+        <PrimaryButton
+          onClick={handleAddToCart}
+          selected={isInCart}
+        >
+          {isInCart ? 'Added to cart' : 'Add to cart'}
+        </PrimaryButton>
+
         <HeartButton
           selected={isFavourite}
           onClick={handleFavouriteClick}
