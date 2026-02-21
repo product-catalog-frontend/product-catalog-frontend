@@ -42,7 +42,6 @@ export const CartItem: React.FC<CartItemProps> = ({ item, onRemove, onIncrease, 
         <button
           className={styles.quantityBtn}
           onClick={() => onDecrease(item.id)}
-          disabled={item.quantity <= 1}
         >
           <Icon name="minus" />
         </button>

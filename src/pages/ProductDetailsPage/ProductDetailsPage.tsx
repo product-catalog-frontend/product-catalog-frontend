@@ -1,3 +1,5 @@
+import styles from './ProductDetailsPage.module.scss';
+
 import { useParams } from 'react-router-dom';
 import { useProductStore } from '../../store/useProductStore';
 import { getProductDetails } from '../../api/productsDetails';
@@ -76,6 +78,7 @@ export const ProductDetailsPage = () => {
     colorsAvailable,
     capacityAvailable,
     priceRegular,
+    priceDiscount,
     screen,
     resolution,
     processor,
@@ -88,28 +91,36 @@ export const ProductDetailsPage = () => {
   } = details;
 
   return (
-    <>
-      <div>
-        <h2>{name}</h2>
-        <div>
-          <div>
+    <div className={styles.container}>
+      <h2 className={styles.title}>{name}</h2>
+
+      <div className={styles.mainContent}>
+        <div className={styles.gallery}>
+          <div className={styles.thumbnails}>
             {images.map((image: string) => (
-              <img
+              <div
                 key={image}
-                src={getCleanImagePath(image)}
-                alt={image}
-              />
+                className={`${styles.thumbnail} ${selectedImage === image ? styles.thumbnailActive : ''}`}
+              >
+                <img
+                  src={getCleanImagePath(image)}
+                  alt="preview"
+                />
+              </div>
             ))}
-            <div>
-              <img
-                src={getCleanImagePath(selectedImage || images[0])}
-                alt={selectedImage}
-              />
-            </div>
           </div>
-          <div>
-            <div>
-              <p>Available colors</p>
+          <div className={styles.mainImage}>
+            <img
+              src={getCleanImagePath(selectedImage || images[0])}
+              alt={selectedImage}
+            />
+          </div>
+        </div>
+
+        <div className={styles.infoPanel}>
+          <div className={styles.optionSection}>
+            <p className={styles.smallTextSecondary}>Available colors</p>
+            <div className={styles.colorOptions}>
               {colorsAvailable.map((colorItem: string) => (
                 <RoundButton
                   key={colorItem}
@@ -118,8 +129,11 @@ export const ProductDetailsPage = () => {
                 />
               ))}
             </div>
-            <div>
-              <p>Select capacity</p>
+          </div>
+
+          <div className={styles.optionSection}>
+            <p className={styles.smallTextSecondary}>Select capacity</p>
+            <div className={styles.capacityOptions}>
               {capacityAvailable.map((cap: string) => (
                 <NumberButton
                   key={cap}
@@ -129,92 +143,100 @@ export const ProductDetailsPage = () => {
                 />
               ))}
             </div>
-            <div>
-              <div>
-                <h2>{priceRegular}</h2>
-                <PrimaryButton />
-                <HeartButton
-                  selected={isFavourite}
-                  onClick={handleFavouriteClick}
-                />
-              </div>
-              <div>
-                <div>
-                  <span>Screen</span>
-                  <span>{screen}</span>
-                </div>
-                <div>
-                  <span>Resolution</span>
-                  <span>{resolution}</span>
-                </div>
-                <div>
-                  <span>Processor</span>
-                  <span>{processor}</span>
-                </div>
-                <div>
-                  <span>RAM</span>
-                  <span>{ram}</span>
-                </div>
-              </div>
+          </div>
+
+          <div className={styles.purchaseSection}>
+            <div className={styles.priceContainer}>
+              <h2 className={styles.price}>${priceDiscount || priceRegular}</h2>
+              {priceDiscount && <span className={styles.oldPrice}>${priceRegular}</span>}
+            </div>
+
+            <div className={styles.actions}>
+              <PrimaryButton />
+              <HeartButton
+                selected={isFavourite}
+                onClick={handleFavouriteClick}
+              />
             </div>
           </div>
-          <div>{product.id}</div>
-        </div>
 
-        <div>
-          <div>
-            <h3>About</h3>
-            {description.map((desc, index) => (
-              <div key={index}>
-                <h4>{desc.title}</h4>
-                <span>{desc.text}</span>
-              </div>
-            ))}
-          </div>
-
-          <div>
-            <h3>Tech specs</h3>
-            <div>
-              <div>
-                <span>Screen</span>
-                <span>{screen}</span>
-              </div>
-              <div>
-                <span>Resolution</span>
-                <span>{resolution}</span>
-              </div>
-              <div>
-                <span>Processor</span>
-                <span>{processor}</span>
-              </div>
-              <div>
-                <span>RAM</span>
-                <span>{ram}</span>
-              </div>
-              <div>
-                <span>Built in memory</span>
-                <span>{capacity}</span>
-              </div>
-              <div>
-                <span>Camera</span>
-                <span>{camera}</span>
-              </div>
-              <div>
-                <span>Zoom</span>
-                <span>{zoom}</span>
-              </div>
-              <div>
-                <span>Cell</span>
-                <span>{cell}</span>
-              </div>
+          <div className={styles.specsShort}>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Screen</span>
+              <span className={styles.smallTextPrimary}>{screen}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Resolution</span>
+              <span className={styles.smallTextPrimary}>{resolution}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Processor</span>
+              <span className={styles.smallTextPrimary}>{processor}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>RAM</span>
+              <span className={styles.smallTextPrimary}>{ram}</span>
             </div>
           </div>
         </div>
 
-        <div>
-          <HotPricesCarousel data={products} />
+        <span className={styles.itemId}>ID: {product.id}</span>
+      </div>
+
+      <div className={styles.detailsSection}>
+        <div className={styles.aboutBlock}>
+          <h3>About</h3>
+          {description.map((desc, index) => (
+            <div
+              key={index}
+              className={styles.descriptionItem}
+            >
+              <h4>{desc.title}</h4>
+              <p>{desc.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.techSpecsBlock}>
+          <h3>Tech specs</h3>
+          <div className={styles.specsList}>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Screen</span>
+              <span className={styles.smallTextPrimary}>{screen}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Resolution</span>
+              <span className={styles.smallTextPrimary}>{resolution}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Processor</span>
+              <span className={styles.smallTextPrimary}>{processor}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>RAM</span>
+              <span className={styles.smallTextPrimary}>{ram}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Built in memory</span>
+              <span className={styles.smallTextPrimary}>{capacity}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Camera</span>
+              <span className={styles.smallTextPrimary}>{camera}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Zoom</span>
+              <span className={styles.smallTextPrimary}>{zoom}</span>
+            </div>
+            <div className={styles.specLine}>
+              <span className={styles.smallTextSecondary}>Cell</span>
+              <span className={styles.smallTextPrimary}>{cell.join(', ')}</span>
+            </div>
+          </div>
         </div>
       </div>
-    </>
+
+      <HotPricesCarousel data={products} />
+    </div>
   );
 };

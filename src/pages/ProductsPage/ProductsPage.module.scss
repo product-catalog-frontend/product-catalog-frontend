@@ -1,6 +1,19 @@
+@use '../../assets/styles/variables.scss' as var;
+@use '../../assets/styles/utils/mixins.scss' as mix;
+
 .productsPage {
   padding: 0 32px;
   margin-top: 80px;
+
+  @include mix.tablet {
+    padding: 0 24px;
+    margin-top: 40px;
+  }
+
+  @include mix.mobile {
+    padding: 0 16px;
+    margin-top: 24px;
+  }
 }
 
 .title {
@@ -8,7 +21,6 @@
 }
 
 .count {
-  color: #89939a;
   margin-bottom: 24px;
 }
 
@@ -16,6 +28,10 @@
   display: flex;
   gap: 16px;
   margin-bottom: 24px;
+
+  @include mix.mobile {
+    flex-direction: column;
+  }
 }
 
 .control {
@@ -26,17 +42,24 @@
 
 .controlLabel {
   font-size: 12px;
-  color: #89939a;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
+
+  @include mix.tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mix.mobile {
+    grid-template-columns: 1fr;
+  }
 }
 
 .pagination {
   display: flex;
   justify-content: center;
-  margin: 20px 0px;
+  margin: 20px 0;
 }
