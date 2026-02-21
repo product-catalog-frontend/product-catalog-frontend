@@ -28,6 +28,10 @@ export const ProductsPage = ({ category }: ProductsPageProps) => {
     fetchProducts();
   }, [fetchProducts]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   const filteredProducts = products.filter((product) => product.category === category);
 
   return (
