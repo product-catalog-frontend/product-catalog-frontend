@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import type { Product } from '../types/Product/Product';
 
 interface FavouritesState {
@@ -9,38 +10,41 @@ interface FavouritesState {
   toggleFavourite: (product: Product) => void;
 }
 
-export const useFavouritesStore = create<FavouritesState>((set, get) => ({
-  favourites: [],
+export const useFavouritesStore = create<FavouritesState>()(
+  persist(
+    (set, get) => ({
+      favourites: [],
 
-  addToFavourites: (product) => {
-    set((state) => {
-      const exists = state.favourites.some((p) => p.id === product.id);
-      if (exists) return state;
+      addToFavourites: (product) => {
+        set((state) => {
+          const exists = state.favourites.some((p) => p.id === product.id);
+          if (exists) return state;
 
-      return {
-        favourites: [...state.favourites, product],
-      };
-    });
-  },
+          return {
+            favourites: [...state.favourites, product],
+          };
+        });
+      },
 
-  removeFromFavourites: (productId) => {
-    set((state) => ({
-      favourites: state.favourites.filter((p) => p.id !== productId),
-    }));
-  },
+      removeFromFavourites: (productId) => {
+        set((state) => ({
+          favourites: state.favourites.filter((p) => p.id !== productId),
+        }));
+      },
 
-  toggleFavourite: (product) => {
-    const { favourites } = get();
-    const exists = favourites.some((p) => p.id === product.id);
+      toggleFavourite: (product) => {
+        const { favourites, addToFavourites, removeFromFavourites } = get();
+        const exists = favourites.some((p) => p.id === product.id);
 
-    if (exists) {
-      set({
-        favourites: favourites.filter((p) => p.id !== product.id),
-      });
-    } else {
-      set({
-        favourites: [...favourites, product],
-      });
-    }
-  },
-}));
+        if (exists) {
+          removeFromFavourites(product.id);
+        } else {
+          addToFavourites(product);
+        }
+      },
+    }),
+    {
+      name: 'favourites-storage',
+    },
+  ),
+);

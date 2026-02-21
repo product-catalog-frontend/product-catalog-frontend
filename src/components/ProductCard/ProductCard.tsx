@@ -15,7 +15,10 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice = false }) => {
   const { image, name, price, screen, capacity, ram, fullPrice } = product;
 
-  const { favourites, toggleFavourite } = useFavouritesStore();
+  const favourites = useFavouritesStore((state) => state.favourites);
+
+  const toggleFavourite = useFavouritesStore((state) => state.toggleFavourite);
+
   const isFavourite = favourites.some((item) => item.id === product.id);
 
   const handleFavouriteClick = () => {
