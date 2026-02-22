@@ -6,6 +6,9 @@ import { ProductsPage } from './pages/ProductsPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { CartPage } from './pages/CartPage';
 import { FavouritesPage } from './pages/FavouritesPage';
+import { About } from './pages/AboutPage/About';
+import { Contacts } from './pages/ContactsPage/Contacts';
+import { Privacy } from './pages/PrivacyPage/Privacy';
 import { NotFoundPage } from './pages/NotFoundPage';
 import styles from './App.module.scss';
 import { useEffect } from 'react';
@@ -43,6 +46,18 @@ export const App = () => {
           <Route
             path="/favourites"
             element={<FavouritesPage />}
+          />
+          <Route
+            path="/about"
+            element={<About />}
+          />
+          <Route
+            path="/contacts"
+            element={<Contacts />}
+          />
+          <Route
+            path="/privacy"
+            element={<Privacy />}
           />
           <Route
             path="*"

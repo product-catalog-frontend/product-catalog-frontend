@@ -12,6 +12,9 @@ import {
   ChevronRight,
   X,
   Menu,
+  Github,
+  Mail,
+  Linkedin,
 } from 'lucide-react';
 
 const icons = {
@@ -27,6 +30,9 @@ const icons = {
   chevronRight: ChevronRight,
   close: X,
   menu: Menu,
+  gitHub: Github,
+  mail: Mail,
+  linkedin: Linkedin,
 };
 
 export type IconName = keyof typeof icons;
