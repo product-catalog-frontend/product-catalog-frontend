@@ -53,7 +53,7 @@ export const Contacts: React.FC = () => {
 
         <div className={styles.card}>
           <img
-            src="/img/dmytrok-contacts.jpg"
+            src="/img/stanislav-contacts.jpg"
             alt="Stanislav Mosakov"
             className={styles.photo}
           />
@@ -91,7 +91,7 @@ export const Contacts: React.FC = () => {
 
         <div className={styles.card}>
           <img
-            src="/img/stanislav-contacts.webp"
+            src="/img/dmytrok-contacts.webp"
             alt="Dmytro Kerziuk"
             className={styles.photo}
           />
