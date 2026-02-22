@@ -10,9 +10,8 @@ import {
 } from '../../components/common/DropdownMenu/DropdownMenu';
 import { Pagination } from '../../components/common/Pagination';
 import styles from './ProductsPage.module.scss';
-import type { Product } from '../../types/Product/Product';
+import type { Product } from '../../types/product';
 
-// Типізуємо параметри з URL
 type Params = {
   category?: 'phones' | 'tablets' | 'accessories';
 };
@@ -20,8 +19,8 @@ type Params = {
 const SORT_OPTIONS = [
   { label: 'Newest', value: 'age' },
   { label: 'Alphabetically', value: 'title' },
-  { label: 'Low to High', value: 'priceAsc' }, // Виправлено typo
-  { label: 'High to Low', value: 'priceDesc' }, // Виправлено typo
+  { label: 'Low to High', value: 'priceAsc' },
+  { label: 'High to Low', value: 'priceDesc' },
 ];
 
 const ITEMS_OPTIONS = ['4', '8', '16', 'all'];

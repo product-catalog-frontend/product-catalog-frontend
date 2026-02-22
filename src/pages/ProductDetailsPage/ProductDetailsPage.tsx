@@ -5,6 +5,7 @@ import { useProductStore } from '../../store/useProductStore';
 import { getProductDetails } from '../../api/productsDetails';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { useState, useEffect } from 'react';
+import cn from 'classnames';
 import {
   HeartButton,
   NumberButton,
@@ -12,7 +13,7 @@ import {
   RoundButton,
 } from '../../components/common/Buttons';
 import { HotPricesCarousel } from '../../components/HotPricesCarousel/HotPricesCarousel';
-import type { ProductDetails } from '../../types/Product/Product';
+import type { ProductDetails } from '../../types/product';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { colorMap } from '../../utils/colorMap';
@@ -21,13 +22,12 @@ export const ProductDetailsPage = () => {
   const navigate = useNavigate();
   const { productId = '' } = useParams();
   const getProductByItemId = useProductStore((state) => state.getProductByItemId);
-  const products = useProductStore((state) => state.products);
-
   const product = getProductByItemId(productId);
+
+  const products = useProductStore((state) => state.products);
 
   const favourites = useFavouritesStore((state) => state.favourites);
   const toggleFavourite = useFavouritesStore((state) => state.toggleFavourite);
-
   const isFavourite = product ? favourites.some((item) => item.id === product.id) : false;
 
   const handleFavouriteClick = () => {
@@ -38,9 +38,8 @@ export const ProductDetailsPage = () => {
 
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeItem);
-  const checkIsInCart = useCartStore((state) => state.isInCart);
-
-  const isInCart = product ? checkIsInCart(product.id) : false;
+  const cart = useCartStore((state) => state.cart);
+  const isInCart = product ? cart.some((item) => item.id === product.id) : false;
 
   const handleAddToCart = () => {
     if (product) {
@@ -54,65 +53,66 @@ export const ProductDetailsPage = () => {
 
   const [details, setDetails] = useState<ProductDetails | null>(null);
   const [selectedImage, setSelectedImage] = useState<string>('');
-  const [selectedColor, setSelectedColor] = useState<string>('');
-  const [selectedCapacity, setSelectedCapacity] = useState<string>('');
 
   useEffect(() => {
     const fetchDetails = async () => {
+      setDetails(null);
+
       if (productId && product?.category) {
         try {
           const data = await getProductDetails(productId, product.category);
           setDetails(data);
-
           setSelectedImage(data.images[0]);
-          setSelectedColor(data.color);
-          setSelectedCapacity(data.capacity);
         } catch (error) {
           console.error('Failed to load details', error);
         }
       }
     };
-
     fetchDetails();
   }, [productId, product?.category]);
 
-  if (!details) {
-    return <div>Loading product details...</div>;
-  }
-
-  if (!product) {
+  if (!details || !product) {
     return (
-      <div>
-        <img
-          src={getCleanImagePath('product-not-found.png')}
-          alt="product-not-found"
-        />
+      <div className={styles.container}>
+        {!product && !details ?
+          <img
+            src={getCleanImagePath('product-not-found.png')}
+            alt="Not found"
+          />
+        : <div>Loading product details...</div>}
       </div>
     );
   }
 
   const {
-    namespaceId,
     category,
+    namespaceId,
     name,
-    images,
-    colorsAvailable,
     capacityAvailable,
+    selectedCapacity,
     priceRegular,
     priceDiscount,
+    colorsAvailable,
+    selectedColor,
+    images,
+    description,
     screen,
     resolution,
     processor,
     ram,
-    description,
-    capacity,
     camera,
     zoom,
     cell,
   } = details;
 
   const handleColorChange = (newColor: string) => {
-    const newProductId = `${namespaceId}-${capacity.toLowerCase()}-${newColor}`;
+    const newProductId = `${namespaceId}-${selectedCapacity.toLowerCase()}-${newColor}`;
+
+    navigate(`/${category}/${newProductId}`);
+  };
+
+  const handleCapacityChange = (newCapacity: string) => {
+    const newProductId = `${namespaceId}-${newCapacity.toLowerCase()}-${selectedColor}`;
 
     navigate(`/${category}/${newProductId}`);
   };
@@ -125,21 +125,25 @@ export const ProductDetailsPage = () => {
         <div className={styles.gallery}>
           <div className={styles.thumbnails}>
             {images.map((image: string) => (
-              <div
+              <button
                 key={image}
-                className={`${styles.thumbnail} ${selectedImage === image ? styles.thumbnailActive : ''}`}
+                type="button"
+                onClick={() => setSelectedImage(image)}
+                className={cn(styles.thumbnail, {
+                  [styles.thumbnailActive]: selectedImage === image,
+                })}
               >
                 <img
                   src={getCleanImagePath(image)}
                   alt="preview"
                 />
-              </div>
+              </button>
             ))}
           </div>
           <div className={styles.mainImage}>
             <img
               src={getCleanImagePath(selectedImage || images[0])}
-              alt={selectedImage}
+              alt={name}
             />
           </div>
         </div>
@@ -162,12 +166,12 @@ export const ProductDetailsPage = () => {
           <div className={styles.optionSection}>
             <p className={styles.smallTextSecondary}>Select capacity</p>
             <div className={styles.capacityOptions}>
-              {capacityAvailable.map((cap: string) => (
+              {capacityAvailable.map((capacity: string) => (
                 <NumberButton
-                  key={cap}
-                  text={cap}
-                  selected={selectedCapacity === cap}
-                  onClick={() => setSelectedCapacity(cap)}
+                  key={capacity}
+                  text={capacity}
+                  selected={selectedCapacity === capacity}
+                  onClick={() => handleCapacityChange(capacity)}
                 />
               ))}
             </div>
@@ -219,9 +223,9 @@ export const ProductDetailsPage = () => {
       <div className={styles.detailsSection}>
         <div className={styles.aboutBlock}>
           <h3>About</h3>
-          {description.map((desc, index) => (
+          {description.map((desc) => (
             <div
-              key={index}
+              key={desc.title}
               className={styles.descriptionItem}
             >
               <h4>{desc.title}</h4>
@@ -251,7 +255,7 @@ export const ProductDetailsPage = () => {
             </div>
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>Built in memory</span>
-              <span className={styles.smallTextPrimary}>{capacity}</span>
+              <span className={styles.smallTextPrimary}>{selectedCapacity}</span>
             </div>
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>Camera</span>

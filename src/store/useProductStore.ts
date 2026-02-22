@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { getProducts } from '../api/products';
-import type { Product } from '../types/Product/Product';
+import type { Product } from '../types/product';
 
 interface ProductStore {
   products: Product[];

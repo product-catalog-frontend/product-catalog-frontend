@@ -1,5 +1,5 @@
 import { supabase } from '../services/supabaseClient';
-import type { ProductCategory, ProductDetails } from '../types/Product/Product';
+import type { ProductCategory, ProductDetails } from '../types/product';
 
 export const getProductDetails = async (
   itemId: string,
