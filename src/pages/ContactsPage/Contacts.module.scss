@@ -1,5 +1,4 @@
-
- @use '../../assets/styles/variables.scss' as var;
+@use '../../assets/styles/variables.scss' as var;
 @use '../../assets/styles/utils/mixins.scss' as mix;
 
 .contacts {
@@ -68,18 +67,18 @@
   gap: var.$spacing-md;
 }
 
- .link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var.$spacing-sm;
-    color: var.$black;
-    transition: all var.$transition-default;
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var.$spacing-sm;
+  color: var.$black;
+  transition: all var.$transition-default;
 
-    &:hover {
-      background: transparent;
-    }
+  &:hover {
+    background: transparent;
   }
+}
 
 .linkedinIcon {
   display: flex;
