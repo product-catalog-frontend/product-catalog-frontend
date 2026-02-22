@@ -1,6 +1,6 @@
 import styles from './ProductDetailsPage.module.scss';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useProductStore } from '../../store/useProductStore';
 import { getProductDetails } from '../../api/productsDetails';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
@@ -14,8 +14,11 @@ import {
 import { HotPricesCarousel } from '../../components/HotPricesCarousel/HotPricesCarousel';
 import type { ProductDetails } from '../../types/Product/Product';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
+import { useCartStore } from '../../store/useCartStore';
+import { colorMap } from '../../utils/colorMap';
 
 export const ProductDetailsPage = () => {
+  const navigate = useNavigate();
   const { productId = '' } = useParams();
   const getProductByItemId = useProductStore((state) => state.getProductByItemId);
   const products = useProductStore((state) => state.products);
@@ -30,6 +33,22 @@ export const ProductDetailsPage = () => {
   const handleFavouriteClick = () => {
     if (product) {
       toggleFavourite(product);
+    }
+  };
+
+  const addToCart = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeItem);
+  const checkIsInCart = useCartStore((state) => state.isInCart);
+
+  const isInCart = product ? checkIsInCart(product.id) : false;
+
+  const handleAddToCart = () => {
+    if (product) {
+      if (!isInCart) {
+        addToCart(product);
+      } else {
+        removeFromCart(product.id);
+      }
     }
   };
 
@@ -57,6 +76,10 @@ export const ProductDetailsPage = () => {
     fetchDetails();
   }, [productId, product?.category]);
 
+  if (!details) {
+    return <div>Loading product details...</div>;
+  }
+
   if (!product) {
     return (
       <div>
@@ -68,11 +91,9 @@ export const ProductDetailsPage = () => {
     );
   }
 
-  if (!details) {
-    return <div>Loading product details...</div>;
-  }
-
   const {
+    namespaceId,
+    category,
     name,
     images,
     colorsAvailable,
@@ -89,6 +110,12 @@ export const ProductDetailsPage = () => {
     zoom,
     cell,
   } = details;
+
+  const handleColorChange = (newColor: string) => {
+    const newProductId = `${namespaceId}-${capacity.toLowerCase()}-${newColor}`;
+
+    navigate(`/${category}/${newProductId}`);
+  };
 
   return (
     <div className={styles.container}>
@@ -124,8 +151,9 @@ export const ProductDetailsPage = () => {
               {colorsAvailable.map((colorItem: string) => (
                 <RoundButton
                   key={colorItem}
+                  color={colorMap[colorItem] ?? colorItem}
                   selected={selectedColor === colorItem}
-                  onClick={() => setSelectedColor(colorItem)}
+                  onClick={() => handleColorChange(colorItem)}
                 />
               ))}
             </div>
@@ -152,7 +180,12 @@ export const ProductDetailsPage = () => {
             </div>
 
             <div className={styles.actions}>
-              <PrimaryButton />
+              <PrimaryButton
+                onClick={handleAddToCart}
+                selected={isInCart}
+              >
+                {isInCart ? 'Added to cart' : 'Add to cart'}
+              </PrimaryButton>
               <HeartButton
                 selected={isFavourite}
                 onClick={handleFavouriteClick}

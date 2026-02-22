@@ -29,19 +29,11 @@ export const App = () => {
             element={<HomePage />}
           />
           <Route
-            path="/phones"
-            element={<ProductsPage category="phones" />}
+            path="/:category"
+            element={<ProductsPage />}
           />
           <Route
-            path="/tablets"
-            element={<ProductsPage category="tablets" />}
-          />
-          <Route
-            path="/accessories"
-            element={<ProductsPage category="accessories" />}
-          />
-          <Route
-            path="/product/:productId"
+            path="/:category/:productId"
             element={<ProductDetailsPage />}
           />
           <Route

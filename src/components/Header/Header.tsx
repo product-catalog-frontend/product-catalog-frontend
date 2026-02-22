@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import styles from './Header.module.scss';
 import { Icon } from '../common/Icon';
-import logo from '../../../public/img/logo/logo.svg';
 import { Link, NavLink } from 'react-router-dom';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
+import { getCleanImagePath } from '../../utils/getCleanImagePath';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { favourites } = useFavouritesStore();
   const totalCartItems = useCartStore((state) => state.totalItems());
+
+  const logo = getCleanImagePath('/img/logo.svg');
 
   return (
     <>
