@@ -1,14 +1,14 @@
 import { supabase } from '../services/supabaseClient';
-import type { ProductCategory, ProductDetails } from '../types/Product/Product';
+import type { ProductCategory, ProductDetails } from '../types/product';
 
-export const getProductDescription = async (
+export const getProductDetails = async (
   itemId: string,
   category: ProductCategory,
 ): Promise<ProductDetails> => {
   const { data, error } = await supabase
     .from(category)
     .select('*')
-    .eq('itemId', itemId)
+    .eq('id', itemId)
     .single<ProductDetails>();
 
   if (error) {

@@ -1,12 +1,13 @@
 import { create } from 'zustand';
 import { getProducts } from '../api/products';
-import type { Product } from '../types/Product/Product';
+import type { Product } from '../types/product';
 
 interface ProductStore {
   products: Product[];
   isLoading: boolean;
   error: string | null;
   fetchProducts: () => Promise<void>;
+  getProductByItemId: (itemId: string) => Product | null;
 }
 
 export const useProductStore = create<ProductStore>((set, get) => ({
@@ -29,5 +30,10 @@ export const useProductStore = create<ProductStore>((set, get) => ({
         set({ error: 'Something went wrong', isLoading: false });
       }
     }
+  },
+
+  getProductByItemId: (itemId: string) => {
+    const { products } = get();
+    return products.find((product) => product.itemId === itemId) || null;
   },
 }));

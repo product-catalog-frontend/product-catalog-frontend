@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './ShopByCategory.module.scss';
-import type { Product } from '../../types/Product/Product';
+import type { Product } from '../../types/product';
 
 interface Props {
   data: Product[];

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Product } from '../types/Product/Product';
+import type { Product } from '../types/product';
 
 interface CartItem extends Omit<Product, 'description' | 'specs'> {
   quantity: number;

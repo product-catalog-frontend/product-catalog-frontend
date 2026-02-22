@@ -6,7 +6,7 @@ import 'swiper/swiper-bundle.css';
 import styles from './HotPricesCarousel.module.scss';
 import '../../assets/styles/variables.scss';
 import { ChevronButton } from '../common/Buttons';
-import type { Product } from '../../types/Product/Product';
+import type { Product } from '../../types/product';
 import { ProductCard } from '../ProductCard/ProductCard';
 
 interface Props {
