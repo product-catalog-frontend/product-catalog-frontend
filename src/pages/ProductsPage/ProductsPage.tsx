@@ -11,6 +11,7 @@ import { Pagination } from '../../components/common/Pagination';
 import styles from './ProductsPage.module.scss';
 import type { Product } from '../../types/product';
 import { ArrowButton } from '../../components/common/Buttons';
+import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { ProductList } from '../ProductList/ProductList';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 
@@ -44,6 +45,7 @@ const sortProducts = (products: Product[], sort: string): Product[] => {
 
 export const ProductsPage = () => {
   const { category } = useParams<Params>();
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const sort = searchParams.get('sort') || 'age';
@@ -112,6 +114,10 @@ export const ProductsPage = () => {
       return prev;
     });
   };
+
+  if (!['phones', 'tablets', 'accessories'].includes(category as string)) {
+    return <NotFoundPage />;
+  }
 
   return (
     <div className={styles.productsPage}>
