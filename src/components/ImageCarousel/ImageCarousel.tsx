@@ -10,7 +10,6 @@ import { BANNER_IMAGES } from '../../constants';
 export const ImageCarousel = () => {
   return (
     <article>
-      <h1>Welcome to Nice Gadgets store!</h1>
       <div className={styles.banner}>
         <ChevronButton
           direction="left"

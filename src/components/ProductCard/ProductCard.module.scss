@@ -5,9 +5,9 @@
 .card {
   box-sizing: border-box;
   padding: 32px;
-  width: 100%;
   border: 1px solid $elements-color;
   display: flex;
+  width: 100%;
   flex-direction: column;
   color: $icons-color;
   min-height: 547px;

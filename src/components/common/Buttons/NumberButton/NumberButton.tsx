@@ -1,13 +1,13 @@
 import styles from './NumberButton.module.scss';
 
 interface NumberButtonProps {
-  number: number;
+  text: string;
   selected?: boolean;
   onClick?: () => void;
   disabled?: boolean;
 }
 
-export function NumberButton({ number, selected, onClick, disabled }: NumberButtonProps) {
+export function NumberButton({ text, selected, onClick, disabled }: NumberButtonProps) {
   return (
     <button
       type="button"
@@ -15,7 +15,7 @@ export function NumberButton({ number, selected, onClick, disabled }: NumberButt
       disabled={disabled}
       className={`${styles.numberButton} ${selected ? styles.selected : ''}`}
     >
-      {number}
+      {text}
     </button>
   );
 }

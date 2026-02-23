@@ -2,6 +2,7 @@ import React from 'react';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { ArrowButton } from '../../components/common/Buttons';
 
 import styles from './FavouritesPage.module.scss';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
@@ -12,6 +13,10 @@ export const FavouritesPage: React.FC = () => {
 
   return (
     <div className={styles.favouritesPage}>
+      <ArrowButton
+        text="Back"
+        back
+      />
       <Breadcrumbs categoryName="Favourites" />
       <h1 className={styles.pageName}>Favourites</h1>
 

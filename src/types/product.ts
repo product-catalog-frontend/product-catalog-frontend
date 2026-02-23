@@ -1,14 +1,14 @@
 export interface ProductDetails {
   id: string;
   category: ProductCategory;
-  namespace: string;
+  namespaceId: string;
   name: string;
   capacityAvailable: string[];
-  capacity: string;
+  selectedCapacity: string;
   priceRegular: number;
   priceDiscount: number;
   colorsAvailable: string[];
-  color: string;
+  selectedColor: string;
   images: string[];
   description: Description[];
   screen: string;
@@ -19,6 +19,7 @@ export interface ProductDetails {
   zoom: string;
   cell: string[];
 }
+
 interface Description {
   title: string;
   text: string[];

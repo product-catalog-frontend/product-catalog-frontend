@@ -1,11 +1,12 @@
 import type React from 'react';
-import type { Product } from '../../types/Product/Product';
+import type { Product } from '../../types/product';
 import styles from './ProductCard.module.scss';
 import { HeartButton, PrimaryButton } from '../common/Buttons';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { useCartStore } from '../../store/useCartStore';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   product: Product;
@@ -26,16 +27,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
   };
 
   const addToCart = useCartStore((state) => state.addToCart);
-  const isInCart = useCartStore((state) => state.isInCart(product.id));
+  const removeFromCart = useCartStore((state) => state.removeItem);
+  const cart = useCartStore((state) => state.cart);
+  const isInCart = product ? cart.some((item) => item.id === product.id) : false;
 
   const handleAddToCart = () => {
-    addToCart(product);
+    if (product) {
+      if (!isInCart) {
+        addToCart(product);
+      } else {
+        removeFromCart(product.id);
+      }
+    }
   };
 
   return (
     <article className={styles.card}>
-      <a
-        href="#!"
+      <Link
+        to={`/${product.category}/${product.itemId}`}
         className={styles.link}
       >
         <img
@@ -44,7 +53,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
           alt={name}
         />
         <p className={`${styles.titleLink} body-text`}>{name}</p>
-      </a>
+      </Link>
       <div className={styles.prices}>
         <h3 className={styles.realPrice}>${price}</h3>
         {showFullPrice && <h3 className={styles.price}>${fullPrice}</h3>}

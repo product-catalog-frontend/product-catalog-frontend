@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 import { useProductStore } from '../../store/useProductStore';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import {
@@ -10,18 +10,18 @@ import {
 } from '../../components/common/DropdownMenu/DropdownMenu';
 import { Pagination } from '../../components/common/Pagination';
 import styles from './ProductsPage.module.scss';
-import type { Product } from '../../types/Product/Product';
-import { Breadcrumbs } from '../../components/Breadcrumbs';
+import type { Product } from '../../types/product';
+import { ArrowButton } from '../../components/common/Buttons';
 
-interface ProductsPageProps {
-  category: 'phones' | 'tablets' | 'accessories';
-}
+type Params = {
+  category?: 'phones' | 'tablets' | 'accessories';
+};
 
 const SORT_OPTIONS = [
   { label: 'Newest', value: 'age' },
   { label: 'Alphabetically', value: 'title' },
-  { label: 'Low to Hight', value: 'priceAsc' },
-  { label: 'Hight to Low', value: 'priceDesc' },
+  { label: 'Low to High', value: 'priceAsc' },
+  { label: 'High to Low', value: 'priceDesc' },
 ];
 
 const ITEMS_OPTIONS = ['4', '8', '16', 'all'];
@@ -41,7 +41,8 @@ const sortProducts = (products: Product[], sort: string): Product[] => {
   }
 };
 
-export const ProductsPage = ({ category }: ProductsPageProps) => {
+export const ProductsPage = () => {
+  const { category } = useParams<Params>();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const sort = searchParams.get('sort') || 'age';
@@ -54,6 +55,10 @@ export const ProductsPage = ({ category }: ProductsPageProps) => {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
 
   const filteredProducts = useMemo(
     () => products.filter((product) => product.category === category),
@@ -109,65 +114,77 @@ export const ProductsPage = ({ category }: ProductsPageProps) => {
 
   return (
     <div className={styles.productsPage}>
-      <Breadcrumbs categoryName={category} />
-      <h1 className={styles.title}>{category}</h1>
+      <ArrowButton
+        text="Back"
+        back
+      />
+
+      <h1 className={styles.title}>
+        {category === 'phones' && 'Mobile phones'}
+        {category === 'tablets' && 'Tablets'}
+        {category === 'accessories' && 'Accessories'}
+      </h1>
       <p className={styles.count}>{filteredProducts.length} models</p>
 
-      <div className={styles.controls}>
-        <div className={styles.control}>
-          <span className={styles.controlLabel}>Sort by</span>
-          <Dropdown>
-            <DropdownTrigger>{currentSortLabel}</DropdownTrigger>
-            <DropdownContent>
-              {SORT_OPTIONS.map((option) => (
-                <DropdownItem
-                  key={option.value}
-                  onSelect={() => handleSortChange(option.value)}
-                >
-                  {option.label}
-                </DropdownItem>
-              ))}
-            </DropdownContent>
-          </Dropdown>
-        </div>
+      {filteredProducts.length > 0 ?
+        <>
+          <div className={styles.controls}>
+            <div className={styles.control}>
+              <span className={styles.controlLabel}>Sort by</span>
+              <Dropdown>
+                <DropdownTrigger>{currentSortLabel}</DropdownTrigger>
+                <DropdownContent>
+                  {SORT_OPTIONS.map((option) => (
+                    <DropdownItem
+                      key={option.value}
+                      onSelect={() => handleSortChange(option.value)}
+                    >
+                      {option.label}
+                    </DropdownItem>
+                  ))}
+                </DropdownContent>
+              </Dropdown>
+            </div>
 
-        <div className={styles.control}>
-          <span className={styles.controlLabel}>Items on page</span>
-          <Dropdown>
-            <DropdownTrigger>{perPage}</DropdownTrigger>
-            <DropdownContent>
-              {ITEMS_OPTIONS.map((option) => (
-                <DropdownItem
-                  key={option}
-                  onSelect={() => handlePerPageChange(option)}
-                >
-                  {option}
-                </DropdownItem>
-              ))}
-            </DropdownContent>
-          </Dropdown>
-        </div>
-      </div>
+            <div className={styles.control}>
+              <span className={styles.controlLabel}>Items on page</span>
+              <Dropdown>
+                <DropdownTrigger>{perPage}</DropdownTrigger>
+                <DropdownContent>
+                  {ITEMS_OPTIONS.map((option) => (
+                    <DropdownItem
+                      key={option}
+                      onSelect={() => handlePerPageChange(option)}
+                    >
+                      {option}
+                    </DropdownItem>
+                  ))}
+                </DropdownContent>
+              </Dropdown>
+            </div>
+          </div>
 
-      <div className={styles.grid}>
-        {visibleProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-          />
-        ))}
-      </div>
+          <div className={styles.grid}>
+            {visibleProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+              />
+            ))}
+          </div>
 
-      {perPage !== 'all' && pageCount > 1 && (
-        <div className={styles.pagination}>
-          <Pagination
-            pageCount={pageCount}
-            initialPage={page}
-            visiblePages={4}
-            onPageChange={handlePageChange}
-          />
-        </div>
-      )}
+          {perPage !== 'all' && pageCount > 1 && (
+            <div className={styles.pagination}>
+              <Pagination
+                pageCount={pageCount}
+                currentPage={page}
+                visiblePages={4}
+                onPageChange={handlePageChange}
+              />
+            </div>
+          )}
+        </>
+      : <p className={styles.noProducts}>No products found in this category.</p>}
     </div>
   );
 };
