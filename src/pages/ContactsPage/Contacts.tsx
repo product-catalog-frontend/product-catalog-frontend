@@ -15,7 +15,7 @@ export const Contacts: React.FC = () => {
       <section className={styles.team}>
         <div className={styles.card}>
           <img
-            src="/img/dmytroh-contacts.jpg"
+            src="/img/dmytroh-contacts.webp"
             alt="Dmytro Halieba"
             className={styles.photo}
           />
