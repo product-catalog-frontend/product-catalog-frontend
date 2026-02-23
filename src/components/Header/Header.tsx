@@ -6,11 +6,14 @@ import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { favourites } = useFavouritesStore();
   const totalCartItems = useCartStore((state) => state.totalItems());
+  const { t } = useTranslation();
 
   const logo = getCleanImagePath('/img/logo.svg');
 
@@ -34,7 +37,7 @@ export const Header: React.FC = () => {
               `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
             }
           >
-            Home
+            {t('nav.home')}
           </NavLink>
 
           <NavLink
@@ -43,7 +46,7 @@ export const Header: React.FC = () => {
               `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
             }
           >
-            Phones
+            {t('nav.phones')}
           </NavLink>
 
           <NavLink
@@ -52,7 +55,7 @@ export const Header: React.FC = () => {
               `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
             }
           >
-            Tablets
+            {t('nav.tablets')}
           </NavLink>
 
           <NavLink
@@ -61,11 +64,15 @@ export const Header: React.FC = () => {
               `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
             }
           >
-            Accessories
+            {t('nav.accessories')}
           </NavLink>
         </nav>
 
         <div className={styles.buttons}>
+          <div className={styles.iconButton}>
+            <LanguageSwitcher />
+          </div>
+
           <NavLink
             to="/favourites"
             className={({ isActive }) =>

@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "home": "Home",
+    "phones": "Phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories"
+  },
+  "common": {
+    "back": "Back"
+  },
+  "favourites": {
+    "title": "Favourites",
+    "empty": "Your favourites list is empty."
+  },
+  "footer": {
+    "about": "About",
+    "contacts": "Contacts",
+    "privacy": "Privacy",
+    "backToTop": "Back to top"
+  },
+  "home": {
+    "catalog": "Product Catalog",
+    "welcome": "Welcome to Nice Gadgets store!"
+  }
+}

@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
 import { Icon } from '../../common/Icon';
+import { LanguageSwitcher } from '../../common/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   isOpen: boolean;
@@ -16,6 +18,7 @@ export const BurgerMenu: React.FC<Props> = ({
   favouritesCount = 0,
   cartCount = 0,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
       <nav className={styles.nav}>
@@ -26,7 +29,7 @@ export const BurgerMenu: React.FC<Props> = ({
           }
           onClick={onClose}
         >
-          Home
+          {t('nav.home')}
         </NavLink>
 
         <NavLink
@@ -36,7 +39,7 @@ export const BurgerMenu: React.FC<Props> = ({
           }
           onClick={onClose}
         >
-          Phones
+          {t('nav.phones')}
         </NavLink>
 
         <NavLink
@@ -46,7 +49,7 @@ export const BurgerMenu: React.FC<Props> = ({
           }
           onClick={onClose}
         >
-          Tablets
+          {t('nav.tablets')}
         </NavLink>
 
         <NavLink
@@ -56,11 +59,15 @@ export const BurgerMenu: React.FC<Props> = ({
           }
           onClick={onClose}
         >
-          Accessories
+          {t('nav.accessories')}
         </NavLink>
       </nav>
 
       <div className={styles.bottom}>
+        <div className={styles.bottomButton}>
+          <LanguageSwitcher />
+        </div>
+
         <NavLink
           to="/favorites"
           className={({ isActive }) =>

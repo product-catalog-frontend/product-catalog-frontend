@@ -1,0 +1,25 @@
+{
+  "nav": {
+    "home": "Головна",
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари"
+  },
+  "common": {
+    "back": "Назад"
+  },
+  "favourites": {
+    "title": "Обране",
+    "empty": "Ваш список обраного порожній."
+  },
+  "footer": {
+    "about": "Про нас",
+    "contacts": "Контакти",
+    "privacy": "Конфіденційність",
+    "backToTop": "Вгору"
+  },
+  "home": {
+    "catalog": "Каталог продуктів",
+    "welcome": "Ласкаво просимо до Nice Gadgets!"
+  }
+}
