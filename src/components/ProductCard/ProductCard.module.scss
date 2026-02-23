@@ -7,16 +7,13 @@
   padding: 32px;
   border: 1px solid $elements-color;
   display: flex;
+  width: 100%;
   flex-direction: column;
   color: $icons-color;
   min-height: 547px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  @include mobile {
-    min-height: 563px;
-  }
 }
 .link {
   display: flex;
