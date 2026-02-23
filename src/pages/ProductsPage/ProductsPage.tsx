@@ -55,13 +55,6 @@ export const ProductsPage = () => {
     fetchProducts();
   }, [fetchProducts]);
 
-  useEffect(() => {
-    setSearchParams((prev) => {
-      prev.delete('page');
-      return prev;
-    });
-  }, [category, setSearchParams]);
-
   const filteredProducts = useMemo(
     () => products.filter((product) => product.category === category),
     [products, category],
@@ -174,7 +167,7 @@ export const ProductsPage = () => {
             <div className={styles.pagination}>
               <Pagination
                 pageCount={pageCount}
-                initialPage={page}
+                currentPage={page}
                 visiblePages={4}
                 onPageChange={handlePageChange}
               />
