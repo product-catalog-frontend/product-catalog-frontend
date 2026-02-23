@@ -5,6 +5,7 @@ import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { ArrowButton } from '../../components/common/Buttons';
 
 import styles from './FavouritesPage.module.scss';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const FavouritesPage: React.FC = () => {
   const favourites = useFavouritesStore((state) => state.favourites);
@@ -12,11 +13,13 @@ export const FavouritesPage: React.FC = () => {
 
   return (
     <div className={styles.favouritesPage}>
+      <Breadcrumbs categoryName="Favourites" />
+
       <ArrowButton
         text="Back"
         back
       />
-      <h1>My Favourites</h1>
+      <h1 className={styles.title}>Favourites</h1>
 
       {isEmpty ?
         <div className={styles.emptyState}>

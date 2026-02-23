@@ -1,7 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { useSearchParams, useParams } from 'react-router-dom';
 import { useProductStore } from '../../store/useProductStore';
-import { ProductCard } from '../../components/ProductCard/ProductCard';
 import {
   Dropdown,
   DropdownTrigger,
@@ -13,6 +12,8 @@ import styles from './ProductsPage.module.scss';
 import type { Product } from '../../types/product';
 import { ArrowButton } from '../../components/common/Buttons';
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
+import { ProductList } from '../ProductList/ProductList';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 type Params = {
   category?: 'phones' | 'tablets' | 'accessories';
@@ -120,10 +121,13 @@ export const ProductsPage = () => {
 
   return (
     <div className={styles.productsPage}>
+      {category && <Breadcrumbs categoryName={category} />}
+
       <ArrowButton
         text="Back"
         back
       />
+
       <h1 className={styles.title}>
         {category === 'phones' && 'Mobile phones'}
         {category === 'tablets' && 'Tablets'}
@@ -169,14 +173,7 @@ export const ProductsPage = () => {
             </div>
           </div>
 
-          <div className={styles.grid}>
-            {visibleProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-              />
-            ))}
-          </div>
+          <ProductList products={visibleProducts} />
 
           {perPage !== 'all' && pageCount > 1 && (
             <div className={styles.pagination}>

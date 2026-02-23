@@ -3,7 +3,7 @@
 
 .productsPage {
   padding: 0 32px;
-  margin-top: 80px;
+  margin-top: 24px;
 
   @include mix.tablet {
     padding: 0 24px;
@@ -17,6 +17,7 @@
 }
 
 .title {
+  margin-top: 16px;
   margin-bottom: 4px;
 }
 
@@ -42,20 +43,6 @@
 
 .controlLabel {
   font-size: 12px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-
-  @include mix.tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include mix.mobile {
-    grid-template-columns: 1fr;
-  }
 }
 
 .pagination {
