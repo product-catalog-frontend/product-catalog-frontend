@@ -1,8 +1,13 @@
 @use '../../assets/styles/variables.scss' as var;
 
 .favouritesPage {
-  padding: var.$spacing-xl;
+  padding: 0 var.$spacing-xl;
+  margin-top: 24px;
   color: var.$icons-color;
+
+  .title {
+    margin-top: 16px;
+  }
 
   .emptyState {
     display: flex;

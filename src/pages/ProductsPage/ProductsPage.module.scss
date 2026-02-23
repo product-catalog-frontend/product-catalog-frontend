@@ -3,7 +3,7 @@
 
 .productsPage {
   padding: 0 32px;
-  margin-top: 80px;
+  margin-top: 24px;
 
   @include mix.tablet {
     padding: 0 24px;
@@ -17,6 +17,7 @@
 }
 
 .title {
+  margin-top: 16px;
   margin-bottom: 4px;
 }
 
