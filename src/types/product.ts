@@ -33,8 +33,8 @@ export interface Product {
   fullPrice: number;
   price: number;
   screen: string;
-  selectedCapacity: string;
-  selectedColor: string;
+  capacity: string;
+  color: string;
   ram: string;
   year: number;
   image: string;
