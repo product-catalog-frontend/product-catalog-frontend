@@ -60,13 +60,6 @@ export const ProductsPage = () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  const filteredProducts = products.filter((product) => product.category === category);
-    setSearchParams((prev) => {
-      prev.delete('page');
-      return prev;
-    });
-  }, [category, setSearchParams]);
-
   const filteredProducts = useMemo(
     () => products.filter((product) => product.category === category),
     [products, category],
