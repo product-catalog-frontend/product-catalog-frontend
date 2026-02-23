@@ -57,6 +57,10 @@ export const ProductsPage = () => {
   }, [fetchProducts]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
+  const filteredProducts = products.filter((product) => product.category === category);
     setSearchParams((prev) => {
       prev.delete('page');
       return prev;
