@@ -1,12 +1,14 @@
 import { Link, NavLink } from 'react-router-dom';
 import styles from './Footer.module.scss';
-import logo from '../../../public/img/logo/logo.svg';
 import { Icon } from '../common/Icon';
+import { getCleanImagePath } from '../../utils/getCleanImagePath';
 
 export const Footer: React.FC = () => {
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const logo = getCleanImagePath('/img/logo.svg');
 
   return (
     <footer className={styles.footer}>
@@ -22,9 +24,9 @@ export const Footer: React.FC = () => {
         </Link>
 
         <nav className={`${styles.links} uppercase`}>
-          <NavLink to="#">About</NavLink>
-          <NavLink to="#">Contacts</NavLink>
-          <NavLink to="#">Privacy</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contacts">Contacts</NavLink>
+          <NavLink to="/privacy">Privacy</NavLink>
         </nav>
 
         <div className={styles.backToTop}>

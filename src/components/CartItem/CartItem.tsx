@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './CartItem.module.scss';
 import { Icon } from '../common/Icon';
-import type { Product } from '../../types/Product/Product';
+import type { Product } from '../../types/product';
 
 export type CartItemType = Product & {
   quantity: number;
@@ -42,7 +42,6 @@ export const CartItem: React.FC<CartItemProps> = ({ item, onRemove, onIncrease, 
         <button
           className={styles.quantityBtn}
           onClick={() => onDecrease(item.id)}
-          disabled={item.quantity <= 1}
         >
           <Icon name="minus" />
         </button>

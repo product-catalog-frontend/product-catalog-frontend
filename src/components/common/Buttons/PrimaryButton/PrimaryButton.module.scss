@@ -4,7 +4,7 @@
 .primaryButton {
   border-radius: var.$border-radius-sm;
 
-  @include text-style(14px, 21px, 600, 0.05em, uppercase);
+  @include text-style(14px, 21px, 600, 0.05em);
   transition: all 0.2s;
   // should change hardcode width
   width: 160px;

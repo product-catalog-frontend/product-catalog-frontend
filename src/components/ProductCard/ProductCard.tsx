@@ -1,9 +1,12 @@
 import type React from 'react';
-import type { Product } from '../../types/Product/Product';
+import type { Product } from '../../types/product';
 import styles from './ProductCard.module.scss';
 import { HeartButton, PrimaryButton } from '../common/Buttons';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
+
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { useCartStore } from '../../store/useCartStore';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   product: Product;
@@ -11,9 +14,11 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice = false }) => {
-  const { image, name, price, screen, capacity, ram, fullPrice } = product;
+  const { image, name, price, screen, selectedCapacity, ram, fullPrice } = product;
 
-  const { favourites, toggleFavourite } = useFavouritesStore();
+  const favourites = useFavouritesStore((state) => state.favourites);
+
+  const toggleFavourite = useFavouritesStore((state) => state.toggleFavourite);
 
   const isFavourite = favourites.some((item) => item.id === product.id);
 
@@ -21,10 +26,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
     toggleFavourite(product);
   };
 
+  const addToCart = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeItem);
+  const cart = useCartStore((state) => state.cart);
+  const isInCart = product ? cart.some((item) => item.id === product.id) : false;
+
+  const handleAddToCart = () => {
+    if (product) {
+      if (!isInCart) {
+        addToCart(product);
+      } else {
+        removeFromCart(product.id);
+      }
+    }
+  };
+
   return (
     <article className={styles.card}>
-      <a
-        href="#!"
+      <Link
+        to={`/${product.category}/${product.itemId}`}
         className={styles.link}
       >
         <img
@@ -33,7 +53,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
           alt={name}
         />
         <p className={`${styles.titleLink} body-text`}>{name}</p>
-      </a>
+      </Link>
       <div className={styles.prices}>
         <h3 className={styles.realPrice}>${price}</h3>
         {showFullPrice && <h3 className={styles.price}>${fullPrice}</h3>}
@@ -45,15 +65,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
         </div>
         <div className={styles.option}>
           <span className={`${styles.label} small-text`}>Capacity</span>
-          <span className={`${styles.value} uppercase`}>{capacity}</span>
+          <span className={`${styles.value} uppercase`}>{selectedCapacity}</span>
         </div>
         <div className={styles.option}>
           <span className={`${styles.label} small-text`}>RAM</span>
           <span className={`${styles.value} uppercase`}>{ram}</span>
         </div>
       </div>
+
       <div className={styles.buttons}>
-        <PrimaryButton />
+        <PrimaryButton
+          onClick={handleAddToCart}
+          selected={isInCart}
+        >
+          {isInCart ? 'Added to cart' : 'Add to cart'}
+        </PrimaryButton>
+
         <HeartButton
           selected={isFavourite}
           onClick={handleFavouriteClick}
