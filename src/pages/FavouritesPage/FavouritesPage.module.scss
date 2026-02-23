@@ -1,14 +1,15 @@
 @use '../../assets/styles/variables.scss' as var;
 
-.pageName {
-  margin-top: 40px;
-}
 
 .favouritesPage {
   padding: 0 var.$spacing-xl;
   margin-top: 24px;
   color: var.$icons-color;
 
+  .title {
+    margin-top: 16px;
+  }
+  
   .emptyState {
     display: flex;
     flex-direction: column;

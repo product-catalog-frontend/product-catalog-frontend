@@ -13,12 +13,13 @@ export const FavouritesPage: React.FC = () => {
 
   return (
     <div className={styles.favouritesPage}>
+      <Breadcrumbs categoryName="Favourites" />
+
       <ArrowButton
         text="Back"
         back
       />
-      <Breadcrumbs categoryName="Favourites" />
-      <h1 className={styles.pageName}>Favourites</h1>
+      <h1 className={styles.title}>Favourites</h1>
 
       {isEmpty ?
         <div className={styles.emptyState}>

@@ -18,6 +18,7 @@ import type { ProductDetails } from '../../types/product';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { colorMap } from '../../utils/colorMap';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const ProductDetailsPage = () => {
   const navigate = useNavigate();
@@ -118,6 +119,11 @@ export const ProductDetailsPage = () => {
 
   return (
     <div className={styles.container}>
+      <Breadcrumbs
+        categoryName={details.category}
+        productName={details.name}
+      />
+
       <ArrowButton
         text="Back"
         back

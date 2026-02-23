@@ -12,6 +12,7 @@ import { Pagination } from '../../components/common/Pagination';
 import styles from './ProductsPage.module.scss';
 import type { Product } from '../../types/product';
 import { ArrowButton } from '../../components/common/Buttons';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 type Params = {
   category?: 'phones' | 'tablets' | 'accessories';
@@ -114,6 +115,8 @@ export const ProductsPage = () => {
 
   return (
     <div className={styles.productsPage}>
+      {category && <Breadcrumbs categoryName={category} />}
+
       <ArrowButton
         text="Back"
         back

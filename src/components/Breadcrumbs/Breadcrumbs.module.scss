@@ -5,7 +5,9 @@
 .breadcrumbs {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  margin-bottom: 40px;
+
+  @include text-style(12px, 12px, 600, 0);
 
   .home {
     text-decoration: none;
@@ -20,7 +22,7 @@
     align-items: center;
 
     &:hover {
-      text-decoration: underline;
+      color: $primary-color;
     }
   }
 
