@@ -176,7 +176,7 @@ export const ProductsPage = () => {
             <div className={styles.pagination}>
               <Pagination
                 pageCount={pageCount}
-                initialPage={page}
+                currentPage={page}
                 visiblePages={4}
                 onPageChange={handlePageChange}
               />
