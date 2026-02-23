@@ -50,7 +50,7 @@ export const Pagination = ({
       {pages.map((page) => (
         <li key={page}>
           <NumberButton
-            number={page}
+            text={page.toString()}
             selected={page === currentPage}
             onClick={() => handlePageChange(page)}
           />

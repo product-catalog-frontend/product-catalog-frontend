@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { useSearchParams, useParams } from 'react-router-dom'; // Додано useParams
+import { useSearchParams, useParams } from 'react-router-dom';
 import { useProductStore } from '../../store/useProductStore';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import {
