@@ -13,7 +13,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import styles from './App.module.scss';
 import { useEffect } from 'react';
 import { useProductStore } from './store/useProductStore';
-
+import 'react-loading-skeleton/dist/skeleton.css';
 export const App = () => {
   const fetchProducts = useProductStore((state) => state.fetchProducts);
 
