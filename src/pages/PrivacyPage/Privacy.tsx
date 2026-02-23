@@ -1,10 +1,15 @@
 import React from 'react';
 import styles from './Privacy.module.scss';
+import { ArrowButton } from '../../components/common/Buttons';
 
 export const Privacy: React.FC = () => {
   return (
     <>
       <main className={styles.privacy}>
+        <ArrowButton
+          text="Back"
+          back
+        />
         <h1>Privacy Policy & License</h1>
 
         <section>

@@ -11,6 +11,7 @@ import {
   NumberButton,
   PrimaryButton,
   RoundButton,
+  ArrowButton,
 } from '../../components/common/Buttons';
 import { HotPricesCarousel } from '../../components/HotPricesCarousel/HotPricesCarousel';
 import type { ProductDetails } from '../../types/product';
@@ -119,6 +120,10 @@ export const ProductDetailsPage = () => {
 
   return (
     <div className={styles.container}>
+      <ArrowButton
+        text="Back"
+        back
+      />
       <h2 className={styles.title}>{name}</h2>
 
       <div className={styles.mainContent}>

@@ -20,7 +20,7 @@ export const CartPage = () => {
       <div className={styles.arrowButtonWrapper}>
         <ArrowButton
           text="Back"
-          onClick={() => window.history.back()}
+          back
         />
       </div>
 
