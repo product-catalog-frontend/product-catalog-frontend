@@ -25,8 +25,6 @@ export const ProductDetailsPage = () => {
   const getProductByItemId = useProductStore((state) => state.getProductByItemId);
   const product = getProductByItemId(productId);
 
-  const products = useProductStore((state) => state.products);
-
   const favourites = useFavouritesStore((state) => state.favourites);
   const toggleFavourite = useFavouritesStore((state) => state.toggleFavourite);
   const isFavourite = product ? favourites.some((item) => item.id === product.id) : false;
@@ -278,7 +276,7 @@ export const ProductDetailsPage = () => {
         </div>
       </div>
 
-      <HotPricesCarousel data={products} />
+      <HotPricesCarousel />
     </div>
   );
 };
