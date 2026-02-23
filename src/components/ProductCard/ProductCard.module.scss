@@ -7,7 +7,8 @@
   padding: 32px;
   border: 1px solid $elements-color;
   display: flex;
-  flex: 1 1 272px;
+   width: 272px;
+  max-width: 100%;
   flex-direction: column;
   color: $icons-color;
   min-height: 547px;
