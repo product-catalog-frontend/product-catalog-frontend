@@ -6,7 +6,7 @@ import buttonStyle from '../BrandNewModelsCarousel/BrandNewModelsCarousel.module
 import styles from './Slider.module.scss';
 import '../../assets/styles/variables.scss';
 import { ProductCard } from '../ProductCard/ProductCard';
-import type { Product } from '../../types/Product/Product';
+import type { Product } from '../../types/product';
 
 interface Props {
   data: Product[];
