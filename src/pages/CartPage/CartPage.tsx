@@ -20,7 +20,7 @@ export const CartPage = () => {
       <div className={styles.arrowButtonWrapper}>
         <ArrowButton
           text="Back"
-          onClick={() => window.history.back()}
+          back
         />
       </div>
 
@@ -35,8 +35,8 @@ export const CartPage = () => {
                 key={item.id}
                 item={item}
                 onRemove={removeItem}
-                onIncrease={(id) => changeQuantity(id, 'plus')}
-                onDecrease={(id) => changeQuantity(id, 'minus')}
+                onIncrease={(id) => changeQuantity(id, 'increase')}
+                onDecrease={(id) => changeQuantity(id, 'decrease')}
               />
             ))}
           </div>

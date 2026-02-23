@@ -14,12 +14,15 @@
 }
 
 .categories {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   margin-top: 24px;
+  gap: 0 16px;
 
   @include mobile {
     flex-direction: column;
+    gap: 32px 0;
   }
 }
 
@@ -27,8 +30,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  align-items: stretch;
 
-  h4 {
+  h3 {
     margin-top: 24px;
   }
 
@@ -38,15 +42,12 @@
 
   .categoryLink {
     aspect-ratio: 1/1;
-    width: 368px;
     position: relative;
     overflow: hidden;
     @include tablet {
-      width: 187px;
       aspect-ratio: 1/1;
     }
     @include mobile {
-      width: 100%;
       aspect-ratio: 1/1;
     }
   }
