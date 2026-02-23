@@ -14,7 +14,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice = false }) => {
-  const { image, name, price, screen, selectedCapacity, ram, fullPrice } = product;
+  const { image, name, price, screen, capacity, ram, fullPrice } = product;
 
   const favourites = useFavouritesStore((state) => state.favourites);
 
@@ -65,7 +65,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
         </div>
         <div className={styles.option}>
           <span className={`${styles.label} small-text`}>Capacity</span>
-          <span className={`${styles.value} uppercase`}>{selectedCapacity}</span>
+          <span className={`${styles.value} uppercase`}>{capacity}</span>
         </div>
         <div className={styles.option}>
           <span className={`${styles.label} small-text`}>RAM</span>
