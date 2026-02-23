@@ -1,6 +1,5 @@
 @use '../../assets/styles/variables.scss' as var;
 
-
 .favouritesPage {
   padding: 0 var.$spacing-xl;
   margin-top: 24px;
@@ -9,7 +8,7 @@
   .title {
     margin-top: 16px;
   }
-  
+
   .emptyState {
     display: flex;
     flex-direction: column;
