@@ -4,6 +4,7 @@ import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 
 import styles from './FavouritesPage.module.scss';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const FavouritesPage: React.FC = () => {
   const favourites = useFavouritesStore((state) => state.favourites);
@@ -11,7 +12,8 @@ export const FavouritesPage: React.FC = () => {
 
   return (
     <div className={styles.favouritesPage}>
-      <h1>My Favourites</h1>
+      <Breadcrumbs categoryName="Favourites" />
+      <h1 className={styles.pageName}>Favourites</h1>
 
       {isEmpty ?
         <div className={styles.emptyState}>

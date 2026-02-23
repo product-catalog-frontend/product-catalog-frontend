@@ -11,6 +11,7 @@ import {
 import { Pagination } from '../../components/common/Pagination';
 import styles from './ProductsPage.module.scss';
 import type { Product } from '../../types/Product/Product';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 interface ProductsPageProps {
   category: 'phones' | 'tablets' | 'accessories';
@@ -108,6 +109,7 @@ export const ProductsPage = ({ category }: ProductsPageProps) => {
 
   return (
     <div className={styles.productsPage}>
+      <Breadcrumbs categoryName={category} />
       <h1 className={styles.title}>{category}</h1>
       <p className={styles.count}>{filteredProducts.length} models</p>
 

@@ -1,0 +1,36 @@
+@use '../../assets/styles/variables.scss' as *;
+@use '../../components/common/typography/typography.scss' as *;
+@use '../../assets/styles/utils/mixins.scss' as *;
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+
+  .home {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .link {
+    color: $secondary-color;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .current {
+    color: $secondary-color;
+    pointer-events: none;
+  }
+
+  .separator {
+    color: $secondary-color;
+    margin: 0 $spacing-sm;
+  }
+}
