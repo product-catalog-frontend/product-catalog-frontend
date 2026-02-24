@@ -18,6 +18,7 @@ export interface ProductDetails {
   camera: string;
   zoom: string;
   cell: string[];
+  isOnSale: boolean;
 }
 
 interface Description {
@@ -38,6 +39,7 @@ export interface Product {
   ram: string;
   year: number;
   image: string;
+  isOnSale: boolean;
 }
 
 export type ProductCategory = 'phones' | 'tablets' | 'accessories';
