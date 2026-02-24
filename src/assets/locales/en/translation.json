@@ -21,5 +21,30 @@
   "home": {
     "catalog": "Product Catalog",
     "welcome": "Welcome to Nice Gadgets store!"
+  },
+  "products": {
+    "all": "All",
+    "models": "models",
+    "sortBy": "Sort by",
+    "itemsOnPage": "Items on page",
+    "noProducts": "No products found in this category.",
+    "category": {
+      "phones": "Mobile phones",
+      "tablets": "Tablets",
+      "accessories": "Accessories"
+    }
+  },
+  "product": {
+    "screen": "Screen",
+    "capacity": "Capacity",
+    "ram": "RAM",
+    "addToCart": "Add to cart",
+    "addedToCart": "Added to cart"
+  },
+  "sort": {
+    "newest": "Newest",
+    "alphabetically": "Alphabetically",
+    "lowToHigh": "Low to High",
+    "highToLow": "High to Low"
   }
 }

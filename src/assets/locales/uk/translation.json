@@ -21,5 +21,30 @@
   "home": {
     "catalog": "Каталог продуктів",
     "welcome": "Ласкаво просимо до Nice Gadgets!"
+  },
+  "products": {
+    "all": "Всі",
+    "models": "моделей",
+    "sortBy": "Сортувати",
+    "itemsOnPage": "На сторінці",
+    "noProducts": "Товари не знайдено.",
+    "category": {
+      "phones": "Мобільні телефони",
+      "tablets": "Планшети",
+      "accessories": "Аксесуари"
+    }
+  },
+  "product": {
+    "screen": "Діагональ екрана",
+    "capacity": "Місткість",
+    "ram": "ОЗП",
+    "addToCart": "Купити",
+    "addedToCart": "В кошику"
+  },
+  "sort": {
+    "newest": "Найновіші",
+    "alphabetically": "За алфавітом",
+    "lowToHigh": "Від дешевих",
+    "highToLow": "Від дорогих"
   }
 }
