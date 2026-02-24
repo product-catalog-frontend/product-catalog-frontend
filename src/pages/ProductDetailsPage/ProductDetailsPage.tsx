@@ -19,6 +19,7 @@ import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { colorMap } from '../../utils/colorMap';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { DetailPageSkeleton } from './DetailPageSkeleton';
 
 export const ProductDetailsPage = () => {
   const navigate = useNavigate();
@@ -71,17 +72,19 @@ export const ProductDetailsPage = () => {
     fetchDetails();
   }, [productId, product?.category]);
 
-  if (!details || !product) {
+  if (!product) {
     return (
       <div className={styles.container}>
-        {!product && !details ?
-          <img
-            src={getCleanImagePath('product-not-found.png')}
-            alt="Not found"
-          />
-        : <div>Loading product details...</div>}
+        <img
+          src={getCleanImagePath('product-not-found.png')}
+          alt="Not found"
+        />
       </div>
     );
+  }
+
+  if (!details) {
+    return <DetailPageSkeleton />;
   }
 
   const {

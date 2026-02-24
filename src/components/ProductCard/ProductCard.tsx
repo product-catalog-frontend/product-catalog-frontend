@@ -7,13 +7,19 @@ import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { useCartStore } from '../../store/useCartStore';
 import { Link } from 'react-router-dom';
+import { ProductCardSkeleton } from './ProductCardSkeleton';
 
 interface ProductCardProps {
   product: Product;
   showFullPrice?: boolean;
+  isLoading?: boolean;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice = false }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  showFullPrice = false,
+  isLoading = false,
+}) => {
   const { image, name, price, screen, capacity, ram, fullPrice } = product;
 
   const favourites = useFavouritesStore((state) => state.favourites);
@@ -40,7 +46,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
       }
     }
   };
-
+  if (isLoading || !product) {
+    return <ProductCardSkeleton />;
+  }
   return (
     <article className={styles.card}>
       <Link
