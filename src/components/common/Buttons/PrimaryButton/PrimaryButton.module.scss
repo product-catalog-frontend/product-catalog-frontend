@@ -3,16 +3,16 @@
 
 .primaryButton {
   border-radius: var.$border-radius-sm;
-
+  margin-right: 8px;
   @include text-style(14px, 21px, 600, 0.05em);
   transition: all 0.2s;
   // should change hardcode width
   width: 160px;
   @include tablet {
-    width: 125px;
+    width: 176px;
   }
   @include mobile {
-    width: 100px;
+    width: 175px;
   }
 
   background: var.$icons-color;

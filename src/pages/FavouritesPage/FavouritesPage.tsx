@@ -29,7 +29,7 @@ export const FavouritesPage: React.FC = () => {
             className={styles.emptyImage}
           />
 
-          <p className={styles.emptyMessage}>Your favourites list is empty.</p>
+          <p className={styles.emptyMessage}>Your favourites list is empty</p>
         </div>
       : <div className={styles.productsList}>
           {favourites.map((product) => (
