@@ -10,10 +10,9 @@ import type { Product } from '../../types/product';
 
 interface Props {
   data: Product[];
-  showFullPrice?: boolean;
 }
 
-export const Slider = ({ data, showFullPrice = false }: Props) => {
+export const Slider = ({ data }: Props) => {
   return (
     <div className={styles['banner__slider']}>
       <Swiper
@@ -40,10 +39,7 @@ export const Slider = ({ data, showFullPrice = false }: Props) => {
       >
         {data.map((product) => (
           <SwiperSlide key={product.id}>
-            <ProductCard
-              product={product}
-              showFullPrice={showFullPrice}
-            />
+            <ProductCard product={product} />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -10,11 +10,10 @@ import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   product: Product;
-  showFullPrice?: boolean;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice = false }) => {
-  const { image, name, price, screen, capacity, ram, fullPrice } = product;
+export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const { image, name, price, screen, capacity, ram, fullPrice, isOnSale } = product;
 
   const favourites = useFavouritesStore((state) => state.favourites);
 
@@ -56,7 +55,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, showFullPrice
       </Link>
       <div className={styles.prices}>
         <h3 className={styles.realPrice}>${price}</h3>
-        {showFullPrice && <h3 className={styles.price}>${fullPrice}</h3>}
+        {isOnSale && <h3 className={styles.price}>${fullPrice}</h3>}
       </div>
       <div className={styles.options}>
         <div className={styles.option}>
