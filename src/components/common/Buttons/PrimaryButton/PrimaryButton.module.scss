@@ -15,7 +15,7 @@
     width: 100px;
   }
 
-  background: var.$icons-color;
+  background: var(--buy-button-bg);
   color: var.$white;
   border: 1px solid transparent;
 

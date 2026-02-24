@@ -11,9 +11,8 @@ import { Contacts } from './pages/ContactsPage/Contacts';
 import { Privacy } from './pages/PrivacyPage/Privacy';
 import { NotFoundPage } from './pages/NotFoundPage';
 import styles from './App.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useProductStore } from './store/useProductStore';
-import { ThemeProvider } from './components/ThemeProvider/ThemeProvider';
 
 export const App = () => {
   const fetchProducts = useProductStore((state) => state.fetchProducts);
@@ -22,58 +21,67 @@ export const App = () => {
     fetchProducts();
   }, [fetchProducts]);
 
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [isDark]);
+
+  const toggleTheme = () => setIsDark(!isDark);
+
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-    >
-      <div className={styles.app}>
-        <Header />
+    <div className={styles.app}>
+      <Header
+        isDark={isDark}
+        onClick={toggleTheme}
+      />
 
-        <main className={styles.main}>
-          <Routes>
-            <Route
-              path="/"
-              element={<HomePage />}
-            />
-            <Route
-              path="/:category"
-              element={<ProductsPage />}
-            />
-            <Route
-              path="/:category/:productId"
-              element={<ProductDetailsPage />}
-            />
-            <Route
-              path="/cart"
-              element={<CartPage />}
-            />
-            <Route
-              path="/favourites"
-              element={<FavouritesPage />}
-            />
-            <Route
-              path="/about"
-              element={<About />}
-            />
-            <Route
-              path="/contacts"
-              element={<Contacts />}
-            />
-            <Route
-              path="/privacy"
-              element={<Privacy />}
-            />
-            <Route
-              path="*"
-              element={<NotFoundPage />}
-            />
-          </Routes>
-        </main>
+      <main className={styles.main}>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage />}
+          />
+          <Route
+            path="/:category"
+            element={<ProductsPage />}
+          />
+          <Route
+            path="/:category/:productId"
+            element={<ProductDetailsPage />}
+          />
+          <Route
+            path="/cart"
+            element={<CartPage />}
+          />
+          <Route
+            path="/favourites"
+            element={<FavouritesPage />}
+          />
+          <Route
+            path="/about"
+            element={<About />}
+          />
+          <Route
+            path="/contacts"
+            element={<Contacts />}
+          />
+          <Route
+            path="/privacy"
+            element={<Privacy />}
+          />
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
+        </Routes>
+      </main>
 
-        <Footer />
-      </div>
-    </ThemeProvider>
+      <Footer isDark={isDark} />
+    </div>
   );
 };

@@ -3,8 +3,7 @@
 @use '../../assets/styles/utils/mixins.scss' as *;
 
 .footer {
-  border-top: 1px solid $elements-color;
-  background-color: $white;
+  border-top: 1px solid var(--border-color);
 }
 
 .container {
@@ -25,7 +24,7 @@
 
   a {
     text-decoration: none;
-    color: $secondary-color;
+    color: var(--secondary-color);
     font-size: 12px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -33,7 +32,7 @@
     transition: color 0.2s ease;
 
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
   }
 }
@@ -56,8 +55,9 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid $elements-color;
-  background: $white;
+  border: 1px solid var(--slider-border-color);
+  background-color: var(--slider-bg);
+  color: var(--text-color);
   cursor: pointer;
 
   transition: all 0.2s ease;

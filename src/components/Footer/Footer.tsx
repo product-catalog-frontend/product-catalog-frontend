@@ -3,7 +3,11 @@ import styles from './Footer.module.scss';
 import { Icon } from '../common/Icon';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 
-export const Footer: React.FC = () => {
+interface Props {
+  isDark: boolean;
+}
+
+export const Footer: React.FC<Props> = ({ isDark }: Props) => {
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -17,10 +21,16 @@ export const Footer: React.FC = () => {
           to="/"
           className={styles.logo}
         >
-          <img
-            src={logo}
-            alt="NiceGadgets"
-          />
+          {isDark ?
+            <img
+              src="img/Logo.svg"
+              alt="NiceGadgets"
+            />
+          : <img
+              src={logo}
+              alt="NiceGadgets"
+            />
+          }
         </Link>
 
         <nav className={`${styles.links} uppercase`}>

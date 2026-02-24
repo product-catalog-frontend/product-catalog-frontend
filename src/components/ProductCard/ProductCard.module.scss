@@ -5,12 +5,11 @@
 .card {
   box-sizing: border-box;
   padding: 32px;
-  border: 1px solid $elements-color;
+  border: 1px solid var(--border-color);
   display: flex;
   width: 272px;
   max-width: 100%;
   flex-direction: column;
-  color: $icons-color;
   min-height: 547px;
   display: flex;
   flex-direction: column;

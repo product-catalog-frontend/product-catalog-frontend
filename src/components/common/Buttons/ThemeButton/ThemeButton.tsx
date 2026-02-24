@@ -2,22 +2,28 @@ import { Moon, Sun } from 'lucide-react';
 import styles from './ThemeButton.module.scss';
 
 interface ThemeButtonProps {
-  isDarkTheme: boolean;
+  isDark: boolean;
   onClick: () => void;
-  disabled?: boolean;
+  className?: string;
 }
 
-export function ThemeButton({ isDarkTheme, onClick, disabled }: ThemeButtonProps) {
+export function ThemeButton({ isDark, onClick, className }: ThemeButtonProps) {
   return (
     <button
       type="button"
       onClick={onClick}
-      disabled={disabled}
-      className={styles.themeButton}
+      className={`${styles.themeButton} ${className || ''}`}
     >
-      {isDarkTheme ?
-        <Sun />
-      : <Moon />}
+      {isDark ?
+        <Sun
+          strokeWidth={2}
+          className={styles.icon}
+        />
+      : <Moon
+          strokeWidth={2}
+          className={styles.icon}
+        />
+      }
     </button>
   );
 }

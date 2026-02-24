@@ -21,10 +21,10 @@
 
 .cartSummary {
   flex: 1;
-  border: 1px solid $elements-color;
+  border: 1px solid var(--slider-border-color);
   padding: $spacing-lg;
   height: fit-content;
-  background-color: $white;
+  background-color: var(--main-bg);
   display: flex;
   flex-direction: column;
   gap: $spacing-md;
@@ -41,7 +41,7 @@
   text-align: center;
   color: $secondary-color;
   padding-bottom: $spacing-sm;
-  border-bottom: 1px solid $elements-color;
+  border-bottom: 1px solid var(--slider-border-color);
 }
 
 .checkoutBtn {

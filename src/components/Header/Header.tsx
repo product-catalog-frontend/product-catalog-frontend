@@ -6,8 +6,14 @@ import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { ThemeButton } from '../common/Buttons/ThemeButton/ThemeButton';
 
-export const Header: React.FC = () => {
+interface Props {
+  isDark: boolean;
+  onClick: () => void;
+}
+
+export const Header: React.FC<Props> = ({ isDark, onClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { favourites } = useFavouritesStore();
   const totalCartItems = useCartStore((state) => state.totalItems());
@@ -21,10 +27,16 @@ export const Header: React.FC = () => {
           to="/"
           className={styles.logoContainer}
         >
-          <img
-            src={logo}
-            alt="NiceGadgets"
-          />
+          {isDark ?
+            <img
+              src="img/Logo.svg"
+              alt="NiceGadgets"
+            />
+          : <img
+              src={logo}
+              alt="NiceGadgets"
+            />
+          }
         </Link>
 
         <nav className={styles.nav}>
@@ -66,6 +78,11 @@ export const Header: React.FC = () => {
         </nav>
 
         <div className={styles.buttons}>
+          <ThemeButton
+            isDark={isDark}
+            onClick={onClick}
+            className={styles.iconButton}
+          />
           <NavLink
             to="/favourites"
             className={({ isActive }) =>

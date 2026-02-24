@@ -5,11 +5,12 @@
   max-width: 752px;
   display: flex;
   align-items: center;
-  border: 1px solid $elements-color;
+  border: 1px solid var(--slider-border-color);
   padding: $spacing-sm;
   gap: $spacing-md;
   position: relative;
-  background-color: $surface-1;
+  background-color: var(--main-bg);
+  color: var(--text-color);
 
   &:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -26,6 +27,7 @@
 .removeIcon {
   width: 16px;
   height: 16px;
+  color: var(--text-color);
 }
 
 .removeIcon:hover {
@@ -52,12 +54,10 @@
   font-weight: $font-semibold;
   font-size: 14px;
   line-height: 21px;
-  color: $primary-color;
 }
 
 .cartItemPrice {
   margin: 5px $spacing-lg 0 0;
-  color: $primary-color;
   font-size: 22px;
   font-weight: $font-extrabold;
 }
@@ -72,13 +72,14 @@
 .quantityBtn {
   width: 28px;
   height: 28px;
-  border: 1px solid $elements-color;
-  background: $surface-1;
+  border: 1px solid var(--slider-border-color);
   cursor: pointer;
   font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--slider-bg);
+  color: var(--text-color);
 
   &:hover {
     background: $hover-bg;
