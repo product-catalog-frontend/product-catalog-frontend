@@ -19,6 +19,7 @@ import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { colorMap } from '../../utils/colorMap';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { useTranslation } from 'react-i18next';
 
 export const ProductDetailsPage = () => {
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ export const ProductDetailsPage = () => {
   const favourites = useFavouritesStore((state) => state.favourites);
   const toggleFavourite = useFavouritesStore((state) => state.toggleFavourite);
   const isFavourite = product ? favourites.some((item) => item.id === product.id) : false;
+
+  const { t } = useTranslation();
 
   const handleFavouriteClick = () => {
     if (product) {
@@ -79,7 +82,7 @@ export const ProductDetailsPage = () => {
             src={getCleanImagePath('product-not-found.png')}
             alt="Not found"
           />
-        : <div>Loading product details...</div>}
+        : <div>{t('productDetails.loading')}</div>}
       </div>
     );
   }
@@ -197,7 +200,7 @@ export const ProductDetailsPage = () => {
                 onClick={handleAddToCart}
                 selected={isInCart}
               >
-                {isInCart ? 'Added to cart' : 'Add to cart'}
+                {isInCart ? t('product.addedToCart') : t('product.addToCart')}
               </PrimaryButton>
               <HeartButton
                 selected={isFavourite}
@@ -208,19 +211,23 @@ export const ProductDetailsPage = () => {
 
           <div className={styles.specsShort}>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Screen</span>
+              <span className={styles.smallTextSecondary}>{t('product.screen')}</span>
               <span className={styles.smallTextPrimary}>{screen}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Resolution</span>
+              <span className={styles.smallTextSecondary}>
+                {t('productDetails.specs.resolution')}
+              </span>
               <span className={styles.smallTextPrimary}>{resolution}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Processor</span>
+              <span className={styles.smallTextSecondary}>
+                {t('productDetails.specs.processor')}
+              </span>
               <span className={styles.smallTextPrimary}>{processor}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>RAM</span>
+              <span className={styles.smallTextSecondary}>{t('product.ram')}</span>
               <span className={styles.smallTextPrimary}>{ram}</span>
             </div>
           </div>
@@ -231,7 +238,7 @@ export const ProductDetailsPage = () => {
 
       <div className={styles.detailsSection}>
         <div className={styles.aboutBlock}>
-          <h3>About</h3>
+          <h3>{t('productDetails.about')}</h3>
           {description.map((desc) => (
             <div
               key={desc.title}
@@ -244,38 +251,44 @@ export const ProductDetailsPage = () => {
         </div>
 
         <div className={styles.techSpecsBlock}>
-          <h3>Tech specs</h3>
+          <h3>{t('productDetails.techSpecs')}</h3>
           <div className={styles.specsList}>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Screen</span>
+              <span className={styles.smallTextSecondary}>{t('product.screen')}</span>
               <span className={styles.smallTextPrimary}>{screen}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Resolution</span>
+              <span className={styles.smallTextSecondary}>
+                {t('productDetails.specs.resolution')}
+              </span>
               <span className={styles.smallTextPrimary}>{resolution}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Processor</span>
+              <span className={styles.smallTextSecondary}>
+                {t('productDetails.specs.processor')}
+              </span>
               <span className={styles.smallTextPrimary}>{processor}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>RAM</span>
+              <span className={styles.smallTextSecondary}>{t('product.ram')}</span>
               <span className={styles.smallTextPrimary}>{ram}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Built in memory</span>
+              <span className={styles.smallTextSecondary}>
+                {t('productDetails.specs.builtInMemory')}
+              </span>
               <span className={styles.smallTextPrimary}>{selectedCapacity}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Camera</span>
+              <span className={styles.smallTextSecondary}>{t('productDetails.specs.camera')}</span>
               <span className={styles.smallTextPrimary}>{camera}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Zoom</span>
+              <span className={styles.smallTextSecondary}>{t('productDetails.specs.zoom')}</span>
               <span className={styles.smallTextPrimary}>{zoom}</span>
             </div>
             <div className={styles.specLine}>
-              <span className={styles.smallTextSecondary}>Cell</span>
+              <span className={styles.smallTextSecondary}>{t('productDetails.specs.cell')}</span>
               <span className={styles.smallTextPrimary}>{cell.join(', ')}</span>
             </div>
           </div>

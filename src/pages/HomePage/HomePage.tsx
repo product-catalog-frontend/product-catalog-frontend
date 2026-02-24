@@ -9,7 +9,7 @@ export const HomePage = () => {
   const { t } = useTranslation();
   return (
     <main className={styles.homeContainer}>
-      <h1 className={styles.visuallyHidden}>Product Catalog</h1>
+      <h1 className={styles.visuallyHidden}>{t('home.catalog')}</h1>
       <h1 className={styles.welcomeTitle}>{t('home.welcome')}</h1>
       <ImageCarousel />
       <BrandNewModelsCarousel />

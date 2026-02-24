@@ -1,8 +1,10 @@
 import { Icon } from '../../components/common/Icon';
 import styles from './About.module.scss';
 import { ArrowButton } from '../../components/common/Buttons';
+import { useTranslation } from 'react-i18next';
 
 export const About: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <>
       <main className={styles.about}>
@@ -10,7 +12,7 @@ export const About: React.FC = () => {
           text="Back"
           back
         />
-        <h1>ABOUT</h1>
+        <h1>{t('about.title')}</h1>
 
         <section className={styles.section}>
           <a
@@ -23,12 +25,12 @@ export const About: React.FC = () => {
               name="gitHub"
               strokeWidth={1.5}
             />
-            Project Repository on GitHub
+            {t('about.repo')}
           </a>
         </section>
 
         <section className={styles.section}>
-          <h2>Our Team</h2>
+          <h2>{t('about.team')}</h2>
 
           <div className={styles.team}>
             <a

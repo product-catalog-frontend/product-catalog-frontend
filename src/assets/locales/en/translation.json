@@ -20,7 +20,10 @@
   },
   "home": {
     "catalog": "Product Catalog",
-    "welcome": "Welcome to Nice Gadgets store!"
+    "welcome": "Welcome to Nice Gadgets store!",
+    "brandNew": "Brand new models",
+    "hotPrices": "Hot prices",
+    "shopByCategory": "Shop by category"
   },
   "products": {
     "all": "All",
@@ -46,5 +49,44 @@
     "alphabetically": "Alphabetically",
     "lowToHigh": "Low to High",
     "highToLow": "High to Low"
+  },
+  "about": {
+    "title": "ABOUT",
+    "repo": "Project Repository on GitHub",
+    "team": "Our Team"
+  },
+  "contacts": {
+    "title": "TEAM CONTACTS",
+    "subtitle": "Get in touch with us for collaboration or any questions"
+  },
+  "notFound": {
+    "title": "Page not found"
+  },
+  "privacy": {
+    "title": "Privacy Policy & License",
+    "copyright": "Copyright & Intellectual Property",
+    "mit": "MIT License"
+  },
+  "productDetails": {
+    "loading": "Loading product details...",
+    "availableColors": "Available colors",
+    "selectCapacity": "Select capacity",
+    "about": "About",
+    "techSpecs": "Tech specs",
+    "specs": {
+      "resolution": "Resolution",
+      "processor": "Processor",
+      "builtInMemory": "Built in memory",
+      "camera": "Camera",
+      "zoom": "Zoom",
+      "cell": "Cell"
+    }
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "total": "Total for {{count}} item",
+    "total_plural": "Total for {{count}} items",
+    "checkout": "Checkout"
   }
 }

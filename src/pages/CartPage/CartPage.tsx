@@ -2,6 +2,7 @@ import styles from './CartPage.module.scss';
 import { PrimaryButton, ArrowButton } from '../../components/common/Buttons';
 import { CartItem } from '../../components/CartItem/CartItem';
 import { useCartStore } from '../../store/useCartStore';
+import { useTranslation } from 'react-i18next';
 
 export const CartPage = () => {
   const cart = useCartStore((state) => state.cart);
@@ -10,6 +11,7 @@ export const CartPage = () => {
   const totalAmount = useCartStore((state) => state.totalAmount());
   const totalItems = useCartStore((state) => state.totalItems());
   const clearCart = useCartStore((state) => state.clearCart);
+  const { t } = useTranslation();
 
   const handleCheckout = () => {
     clearCart();
@@ -24,10 +26,10 @@ export const CartPage = () => {
         />
       </div>
 
-      <h1 className={styles.cartTitle}>Cart</h1>
+      <h1 className={styles.cartTitle}>{t('cart.title')}</h1>
 
       {cart.length === 0 ?
-        <h2 className={styles.cartEmpty}>Your cart is empty</h2>
+        <h2 className={styles.cartEmpty}>{t('cart.empty')}</h2>
       : <div className={styles.cartPage}>
           <div className={styles.cartItems}>
             {cart.map((item) => (
@@ -44,11 +46,9 @@ export const CartPage = () => {
           <div className={styles.cartSummary}>
             <div className={styles.summaryInfo}>
               <p className={styles.totalAmount}>${totalAmount}</p>
-              <p className={styles.totalItems}>
-                Total for {totalItems} item{totalItems !== 1 ? 's' : ''}
-              </p>
+              <p className={styles.totalItems}>{t('cart.total', { count: totalItems })}</p>
             </div>
-            <PrimaryButton onClick={handleCheckout}>Checkout</PrimaryButton>
+            <PrimaryButton onClick={handleCheckout}>{t('cart.checkout')}</PrimaryButton>
           </div>
         </div>
       }
