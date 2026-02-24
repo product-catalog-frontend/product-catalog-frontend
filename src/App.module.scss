@@ -1,7 +1,20 @@
+@use './assets/styles/variables.scss' as *;
+
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.theme-light {
+  background-color: $white;
+  color: $icons-color;
+}
+
+.theme-dark {
+  background-color: $theme-dark-bg;
+  color: $theme-dark-color;
 }
 
 .main {
