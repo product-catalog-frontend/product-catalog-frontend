@@ -17,10 +17,7 @@ export const HotPricesCarousel = () => {
         direction="right"
         className={styles['js-next']}
       />
-      <Slider
-        data={discountProducts}
-        showFullPrice={true}
-      />
+      <Slider data={discountProducts} />
     </div>
   );
 };

@@ -11,6 +11,8 @@ export const getProductDetails = async (
     .eq('id', itemId)
     .single<ProductDetails>();
 
+  console.log(itemId);
+
   if (error) {
     console.error(`Failed to fetch ${itemId} from ${category}:`, error);
     throw new Error(error.message);
