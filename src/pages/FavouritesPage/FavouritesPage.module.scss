@@ -7,6 +7,12 @@
 
   .title {
     margin-top: var.$spacing-md;
+    margin-bottom: var.$spacing-sm;
+  }
+
+  .count {
+    color: var.$secondary-color;
+    margin-bottom: var.$spacing-xl;
   }
 
   .emptyState {
