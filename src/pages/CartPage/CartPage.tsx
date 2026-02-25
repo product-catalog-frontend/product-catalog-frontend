@@ -2,6 +2,7 @@ import styles from './CartPage.module.scss';
 import { PrimaryButton, ArrowButton } from '../../components/common/Buttons';
 import { CartItem } from '../../components/CartItem/CartItem';
 import { useCartStore } from '../../store/useCartStore';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const CartPage = () => {
   const cart = useCartStore((state) => state.cart);
@@ -16,13 +17,13 @@ export const CartPage = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.arrowButtonWrapper}>
-        <ArrowButton
-          text="Back"
-          back
-        />
-      </div>
+    <div className={styles.page}>
+      <Breadcrumbs categoryName="Cart" />
+
+      <ArrowButton
+        text="Back"
+        back
+      />
 
       <h1 className={styles.cartTitle}>Cart</h1>
 
@@ -48,7 +49,9 @@ export const CartPage = () => {
                 Total for {totalItems} item{totalItems !== 1 ? 's' : ''}
               </p>
             </div>
-            <PrimaryButton onClick={handleCheckout}>Checkout</PrimaryButton>
+            <div className={styles.checkout}>
+              <PrimaryButton onClick={handleCheckout}>Checkout</PrimaryButton>
+            </div>
           </div>
         </div>
       }

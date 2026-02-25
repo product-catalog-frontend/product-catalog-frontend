@@ -16,6 +16,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 .link {
   display: flex;
   flex-direction: column;
@@ -58,6 +59,12 @@
 .buttons {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
+  height: 40px;
+
+  .cartButton {
+    width: 160px;
+  }
 }
 
 .prices {

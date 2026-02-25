@@ -2,11 +2,9 @@
 
 .cartItem {
   width: 100%;
-  max-width: 752px;
   display: flex;
   align-items: center;
   border: 1px solid $elements-color;
-  padding: $spacing-sm;
   gap: $spacing-md;
   position: relative;
   background-color: $surface-1;
@@ -16,16 +14,24 @@
   }
 }
 
+.cartItemMain {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 16px;
+  margin: 16px;
+}
+
+.cartItemControls {
+  display: flex;
+  align-items: center;
+  margin: 0 16px 16px 16px;
+}
+
 .cartItemRemove {
-  padding: $spacing-md $spacing-sm;
   background: none;
   border: none;
   cursor: pointer;
-}
-
-.removeIcon {
-  width: 16px;
-  height: 16px;
 }
 
 .removeIcon:hover {
@@ -34,17 +40,7 @@
 }
 
 .cartItemImage {
-  width: 80px;
   height: 80px;
-  border-radius: $border-radius-sm;
-  padding: $spacing-md $spacing-sm;
-}
-
-.cartItemInfo {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .cartItemTitle {
@@ -98,22 +94,12 @@
 
 @media (max-width: $mobile) {
   .cartItem {
-    flex-wrap: wrap;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .cartItemImage {
-    width: 64px;
-    height: 64px;
-  }
-
-  .cartItemQuantity {
-    margin-right: 0;
-  }
-
-  .cartItemPrice {
-    margin: $spacing-sm 0 0 0;
+  .cartItemControls {
     width: 100%;
-    text-align: right;
+    justify-content: space-between;
   }
 }
