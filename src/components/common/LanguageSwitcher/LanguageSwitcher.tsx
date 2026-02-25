@@ -4,7 +4,7 @@ import styles from './LanguageSwitcher.module.scss';
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
-  const toggle = () => {
+  const handleToggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'uk' : 'en';
     i18n.changeLanguage(newLang);
     localStorage.setItem('language', newLang);
@@ -13,7 +13,7 @@ export const LanguageSwitcher = () => {
   return (
     <button
       className={styles.switcher}
-      onClick={toggle}
+      onClick={handleToggleLanguage}
     >
       {i18n.language === 'en' ? 'UA' : 'EN'}
     </button>
