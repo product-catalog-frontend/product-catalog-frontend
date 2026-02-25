@@ -8,6 +8,7 @@ import { useCartStore } from '../../store/useCartStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
+import cn from 'classnames';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +17,13 @@ export const Header: React.FC = () => {
   const { t } = useTranslation();
 
   const logo = getCleanImagePath('/img/logo.svg');
+
+  const navItems = [
+    { to: '/', label: 'home' },
+    { to: '/phones', label: 'phones' },
+    { to: '/tablets', label: 'tablets' },
+    { to: '/accessories', label: 'accessories' },
+  ];
 
   return (
     <>
@@ -31,41 +39,19 @@ export const Header: React.FC = () => {
         </Link>
 
         <nav className={styles.nav}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-            }
-          >
-            {t('nav.home')}
-          </NavLink>
-
-          <NavLink
-            to="/phones"
-            className={({ isActive }) =>
-              `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-            }
-          >
-            {t('nav.phones')}
-          </NavLink>
-
-          <NavLink
-            to="/tablets"
-            className={({ isActive }) =>
-              `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-            }
-          >
-            {t('nav.tablets')}
-          </NavLink>
-
-          <NavLink
-            to="/accessories"
-            className={({ isActive }) =>
-              `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-            }
-          >
-            {t('nav.accessories')}
-          </NavLink>
+          {navItems.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                cn(styles.navLink, 'uppercase', {
+                  [styles.active]: isActive,
+                })
+              }
+            >
+              {t({`nav.${label}`})}
+            </NavLink>
+          ))}
         </nav>
 
         <div className={styles.buttons}>
@@ -76,7 +62,9 @@ export const Header: React.FC = () => {
           <NavLink
             to="/favourites"
             className={({ isActive }) =>
-              `${styles.iconButton} ${isActive ? styles.activeIcon : ''}`
+              cn(styles.iconButton, {
+                [styles.activeIcon]: isActive,
+              })
             }
           >
             <Icon
@@ -90,7 +78,9 @@ export const Header: React.FC = () => {
           <NavLink
             to="/cart"
             className={({ isActive }) =>
-              `${styles.iconButton} ${isActive ? styles.activeIcon : ''}`
+              cn(styles.iconButton, {
+                [styles.activeIcon]: isActive,
+              })
             }
           >
             <Icon

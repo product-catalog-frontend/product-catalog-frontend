@@ -3,6 +3,8 @@ import { PrimaryButton, ArrowButton } from '../../components/common/Buttons';
 import { CartItem } from '../../components/CartItem/CartItem';
 import { useCartStore } from '../../store/useCartStore';
 import { useTranslation } from 'react-i18next';
+import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const CartPage = () => {
   const cart = useCartStore((state) => state.cart);
@@ -18,18 +20,25 @@ export const CartPage = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.arrowButtonWrapper}>
-        <ArrowButton
-          text="Back"
-          back
-        />
-      </div>
+    <div className={styles.page}>
+      <Breadcrumbs categoryName="Cart" />
+
+      <ArrowButton
+        text="Back"
+        back
+      />
 
       <h1 className={styles.cartTitle}>{t('cart.title')}</h1>
 
       {cart.length === 0 ?
-        <h2 className={styles.cartEmpty}>{t('cart.empty')}</h2>
+        <div className={styles.emptyState}>
+          <img
+            src={getCleanImagePath('cart-is-empty.png')}
+            alt="No products"
+            className={styles.emptyImage}
+          />
+          <h2 className={styles.emptyMessage}>{t('cart.empty')}</h2>
+        </div>
       : <div className={styles.cartPage}>
           <div className={styles.cartItems}>
             {cart.map((item) => (
@@ -48,7 +57,9 @@ export const CartPage = () => {
               <p className={styles.totalAmount}>${totalAmount}</p>
               <p className={styles.totalItems}>{t('cart.total', { count: totalItems })}</p>
             </div>
-            <PrimaryButton onClick={handleCheckout}>{t('cart.checkout')}</PrimaryButton>
+            <div className={styles.checkout}>
+              <PrimaryButton onClick={handleCheckout}>{t('cart.checkout')}</PrimaryButton>
+            </div>
           </div>
         </div>
       }
