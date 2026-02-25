@@ -45,7 +45,7 @@ export const BurgerMenu: React.FC<Props> = ({
               })
             }
           >
-            {t({`nav.${label}`})}
+            {t(`nav.${label}`)}
           </NavLink>
         ))}
       </nav>

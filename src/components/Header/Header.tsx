@@ -49,7 +49,7 @@ export const Header: React.FC = () => {
                 })
               }
             >
-              {t({`nav.${label}`})}
+              {t(`nav.${label}`)}
             </NavLink>
           ))}
         </nav>
