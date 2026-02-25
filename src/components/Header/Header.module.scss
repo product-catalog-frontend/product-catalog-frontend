@@ -181,3 +181,14 @@
     display: flex;
   }
 }
+
+.searchInput {
+  margin-right: $spacing-md;
+  padding: $spacing-sm;
+  border: 1px solid $secondary-color;
+  border-radius: 5px;
+  &:focus {
+    border: 2px solid $yellow;
+    outline: none;
+  }
+}

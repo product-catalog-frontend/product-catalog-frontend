@@ -34,23 +34,23 @@ export const ProductsPage = () => {
   const sort = searchParams.get('sort') || 'age';
   const perPage = searchParams.get('perPage') || 'all';
   const page = Number(searchParams.get('page')) || 1;
+  const query = searchParams.get('query')?.toLowerCase() || '';
 
   const [products, setProducts] = useState<Product[]>([]);
-  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    getCatalogProducts({ category, page, perPage, sort }).then(({ products, total }) => {
+    if (!category) return;
+    getCatalogProducts({ category, page: 1, perPage: 'all', sort }).then(({ products }) => {
       setProducts(products);
-      setTotal(total);
-
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  }, [category, page, perPage, sort]);
+  }, [category, sort]);
 
-  const pageCount = perPage === 'all' ? 1 : Math.ceil(total / Number(perPage)) || 1;
+  const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(query));
+
+  const itemsPerPage = perPage === 'all' ? filteredProducts.length : Number(perPage);
+  const pageCount = perPage === 'all' ? 1 : Math.ceil(filteredProducts.length / itemsPerPage) || 1;
+  const paginatedProducts = filteredProducts.slice((page - 1) * itemsPerPage, page * itemsPerPage);
 
   const currentSortLabel = SORT_OPTIONS.find((option) => option.value === sort)?.label || 'Newest';
 
@@ -103,9 +103,10 @@ export const ProductsPage = () => {
         {category === 'tablets' && 'Tablets'}
         {category === 'accessories' && 'Accessories'}
       </h1>
-      <p className={styles.count}>{total} models</p>
 
-      {total !== 0 ?
+      <p className={styles.count}>{filteredProducts.length} models</p>
+
+      {filteredProducts.length > 0 ?
         <>
           <div className={styles.controls}>
             <div className={styles.control}>
@@ -143,7 +144,7 @@ export const ProductsPage = () => {
             </div>
           </div>
 
-          <ProductList products={products} />
+          <ProductList products={paginatedProducts} />
 
           {perPage !== 'all' && pageCount > 1 && (
             <div className={styles.pagination}>
@@ -156,7 +157,10 @@ export const ProductsPage = () => {
             </div>
           )}
         </>
-      : <p className={styles.noProducts}>No products found in this category.</p>}
+      : <p className={styles.noProducts}>
+          There are no {category} matching &quot;{query}&quot;
+        </p>
+      }
     </div>
   );
 };

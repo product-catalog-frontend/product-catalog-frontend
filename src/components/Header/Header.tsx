@@ -1,18 +1,43 @@
 import React, { useState } from 'react';
 import styles from './Header.module.scss';
 import { Icon } from '../common/Icon';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { debounce } from 'lodash';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { favourites } = useFavouritesStore();
   const totalCartItems = useCartStore((state) => state.totalItems());
-
   const logo = getCleanImagePath('/img/logo.svg');
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const [searchValue, setSearchValue] = useState(searchParams.get('query') || '');
+
+  const updateQuery = debounce((value: string) => {
+    const params = new URLSearchParams(location.search);
+    if (value) {
+      params.set('query', value);
+    } else {
+      params.delete('query');
+    }
+    navigate({ pathname: location.pathname, search: params.toString() }, { replace: true });
+  }, 300);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    updateQuery(e.target.value);
+  };
+
+  const showSearch = ['/phones', '/tablets', '/accessories'].some((p) =>
+    location.pathname.startsWith(p),
+  );
 
   return (
     <>
@@ -64,6 +89,16 @@ export const Header: React.FC = () => {
             Accessories
           </NavLink>
         </nav>
+
+        {showSearch && (
+          <input
+            type="text"
+            value={searchValue}
+            onChange={handleSearchChange}
+            placeholder="Search products..."
+            className={styles.searchInput}
+          />
+        )}
 
         <div className={styles.buttons}>
           <NavLink
