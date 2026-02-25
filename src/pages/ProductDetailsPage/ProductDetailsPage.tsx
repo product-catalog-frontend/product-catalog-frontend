@@ -1,6 +1,6 @@
 import styles from './ProductDetailsPage.module.scss';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useProductStore } from '../../store/useProductStore';
 import { getProductDetails } from '../../api/productsDetails';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
@@ -22,7 +22,7 @@ import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const ProductDetailsPage = () => {
   const navigate = useNavigate();
-  const { productId = '' } = useParams();
+  const { category, productId = '' } = useParams();
   const getProductByItemId = useProductStore((state) => state.getProductByItemId);
   const product = getProductByItemId(productId);
 
@@ -71,21 +71,45 @@ export const ProductDetailsPage = () => {
     fetchDetails();
   }, [productId, product?.category]);
 
+  useEffect(() => {
+    if (!product && !details) {
+      const timer = setTimeout(() => {
+        navigate(`/${category}`);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [product, details, category, navigate]);
+
+  if (!product && !details) {
+    return (
+      <div className={styles.notFound}>
+        <img
+          src={getCleanImagePath('product-not-found.png')}
+          alt="Product not found"
+          className={styles.notFoundImage}
+        />
+        <h2 className={styles.notFoundTitle}>Product not found</h2>
+        <p className={styles.notFoundText}>You will be redirected to catalog in 3 seconds...</p>
+        <Link
+          to={`/${category}`}
+          className={styles.notFoundLink}
+        >
+          Go back now
+        </Link>
+      </div>
+    );
+  }
+
   if (!details || !product) {
     return (
       <div className={styles.container}>
-        {!product && !details ?
-          <img
-            src={getCleanImagePath('product-not-found.png')}
-            alt="Not found"
-          />
-        : <div>Loading product details...</div>}
+        <div>Loading...</div>
       </div>
     );
   }
 
   const {
-    category,
     namespaceId,
     name,
     capacityAvailable,
@@ -158,6 +182,8 @@ export const ProductDetailsPage = () => {
         </div>
 
         <div className={styles.infoPanel}>
+          <span className={cn(styles.itemId, styles.itemIdMobile)}>ID: {product.id}</span>
+
           <div className={styles.optionSection}>
             <p className={styles.smallTextSecondary}>Available colors</p>
             <div className={styles.colorOptions}>
@@ -226,7 +252,7 @@ export const ProductDetailsPage = () => {
           </div>
         </div>
 
-        <span className={styles.itemId}>ID: {product.id}</span>
+        <span className={cn(styles.itemId, styles.itemIdDesktop)}>ID: {product.id}</span>
       </div>
 
       <div className={styles.detailsSection}>
