@@ -34,17 +34,12 @@
   background: none;
   border: none;
   cursor: pointer;
-}
-
-.removeIcon {
-  width: 16px;
-  height: 16px;
   color: var(--text-color);
-}
 
-.removeIcon:hover {
-  background-color: var(--hover-bg);
-  border-radius: $border-radius-md;
+  :hover {
+    background-color: var(--hover-bg);
+    border-radius: $border-radius-md;
+  }
 }
 
 .cartItemImage {

@@ -103,8 +103,8 @@
   justify-content: center;
 
   background-color: $error-color;
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
+  color: $white;
+  border: 1px solid $white;
 
   font-size: 9px;
   font-weight: $font-semibold;

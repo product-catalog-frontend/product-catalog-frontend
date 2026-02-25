@@ -3,7 +3,7 @@
 .favouritesPage {
   padding: 0 var.$spacing-xl;
   margin-top: var.$spacing-lg;
-  color: var.$icons-color;
+  color: var(--text-color);
 
   .title {
     margin-top: var.$spacing-md;

@@ -3,6 +3,7 @@
 
 .contacts {
   padding: var.$spacing-xxl var.$spacing-lg;
+  color: var(--text-color);
 
   h1 {
     @include mix.text-style(32px, 40px, var.$font-bold, 1px, uppercase);
@@ -72,7 +73,7 @@
   align-items: center;
   justify-content: center;
   gap: var.$spacing-sm;
-  color: var.$black;
+  color: var(--text-color);
   transition: all var.$transition-default;
 
   &:hover {
