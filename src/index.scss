@@ -13,6 +13,9 @@
   --pagination-active-bg: #{$primary-color};
   --buy-button-bg: #{$primary-color};
   --hover-bg: #{$hover-bg};
+  --card-button-bg: #{$white};
+  --card-button-color: #{$success-color};
+  --card-button-border: #{$elements-color};
 }
 
 :root[data-theme='dark'] {
@@ -29,6 +32,9 @@
   --pagination-active-bg: #{$theme-dark-color};
   --buy-button-bg: #{$theme-dark-button};
   --hover-bg: #{$theme-dark-hover-bg};
+  --card-button-bg: #{$theme-dark-border};
+  --card-button-color: #{$theme-dark-color};
+  --card-button-border: #{$theme-dark-border};
 }
 
 body {
