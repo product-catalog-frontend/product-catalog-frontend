@@ -5,7 +5,7 @@
 .header {
   display: flex;
   align-items: center;
-  height: 64px;
+  height: $spacing-big;
   width: 100%;
   background-color: $white;
   border-bottom: 1px solid $elements-color;
@@ -22,7 +22,7 @@
 
 .nav {
   display: flex;
-  gap: 64px;
+  gap: $spacing-big;
   margin-right: $spacing-lg;
   margin-left: $spacing-lg;
   flex-grow: 1;
@@ -60,8 +60,8 @@
 }
 
 .iconButton {
-  width: 64px;
-  height: 64px;
+  width: $spacing-big;
+  height: $spacing-big;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,8 +95,8 @@
   top: 17px;
   right: 17px;
 
-  min-width: 13px;
-  height: 13px;
+  min-width: 14px;
+  height: 14px;
   padding: 0px;
 
   display: flex;
@@ -109,7 +109,6 @@
 
   font-size: 9px;
   font-weight: $font-semibold;
-
   border-radius: 50%;
 }
 

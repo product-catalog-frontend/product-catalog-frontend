@@ -2,11 +2,11 @@
 
 .favouritesPage {
   padding: 0 var.$spacing-xl;
-  margin-top: 24px;
+  margin-top: var.$spacing-lg;
   color: var.$icons-color;
 
   .title {
-    margin-top: 16px;
+    margin-top: var.$spacing-md;
   }
 
   .emptyState {

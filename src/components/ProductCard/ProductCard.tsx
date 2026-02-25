@@ -73,17 +73,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       <div className={styles.buttons}>
-        <PrimaryButton
-          onClick={handleAddToCart}
-          selected={isInCart}
-        >
-          {isInCart ? 'Added to cart' : 'Add to cart'}
-        </PrimaryButton>
+        <div className={styles.cartButton}>
+          <PrimaryButton
+            onClick={handleAddToCart}
+            selected={isInCart}
+          >
+            {isInCart ? 'Added to cart' : 'Add to cart'}
+          </PrimaryButton>
+        </div>
 
-        <HeartButton
-          selected={isFavourite}
-          onClick={handleFavouriteClick}
-        />
+        <div>
+          <HeartButton
+            selected={isFavourite}
+            onClick={handleFavouriteClick}
+          />
+        </div>
       </div>
     </article>
   );
