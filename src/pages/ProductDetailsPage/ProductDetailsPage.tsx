@@ -14,13 +14,14 @@ import {
   ArrowButton,
 } from '../../components/common/Buttons';
 import { HotPricesCarousel } from '../../components/HotPricesCarousel/HotPricesCarousel';
-import type { ProductDetails } from '../../types/product';
+import type { ProductCategory, ProductDetails } from '../../types/product';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { colorMap } from '../../utils/colorMap';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const ProductDetailsPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { category, productId = '' } = useParams();
   const getProductByItemId = useProductStore((state) => state.getProductByItemId);
@@ -57,31 +58,36 @@ export const ProductDetailsPage = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       setDetails(null);
+      setIsLoading(true);
 
-      if (productId && product?.category) {
+      const categoryToFetch = (product?.category ?? category) as ProductCategory;
+
+      if (productId && categoryToFetch) {
         try {
-          const data = await getProductDetails(productId, product.category);
+          const data = await getProductDetails(productId, categoryToFetch);
           setDetails(data);
           setSelectedImage(data.images[0]);
         } catch (error) {
           console.error('Failed to load details', error);
         }
       }
+
+      setIsLoading(false);
     };
     fetchDetails();
-  }, [productId, product?.category]);
+  }, [productId, product?.category, category]);
 
   useEffect(() => {
-    if (!product && !details) {
+    if (!isLoading && !product && !details) {
       const timer = setTimeout(() => {
         navigate(`/${category}`);
       }, 3000);
 
       return () => clearTimeout(timer);
     }
-  }, [product, details, category, navigate]);
+  }, [isLoading, product, details, category, navigate]);
 
-  if (!product && !details) {
+  if (!isLoading && !product && !details) {
     return (
       <div className={styles.notFound}>
         <img
@@ -101,7 +107,7 @@ export const ProductDetailsPage = () => {
     );
   }
 
-  if (!details || !product) {
+  if (isLoading || !details || !product) {
     return (
       <div className={styles.container}>
         <div>Loading...</div>
@@ -294,11 +300,15 @@ export const ProductDetailsPage = () => {
             </div>
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>Camera</span>
-              <span className={styles.smallTextPrimary}>{camera}</span>
+              <span className={styles.smallTextPrimary}>
+                {camera && camera !== 'undefined' ? camera : 'Not applicable'}
+              </span>
             </div>
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>Zoom</span>
-              <span className={styles.smallTextPrimary}>{zoom}</span>
+              <span className={styles.smallTextPrimary}>
+                {zoom && zoom !== 'undefined' ? zoom : 'Not applicable'}
+              </span>
             </div>
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>Cell</span>
