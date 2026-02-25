@@ -2,8 +2,8 @@
 
 .page {
   padding: 0 $spacing-xl;
-  margin-top: 24px;
-  margin-bottom: 64px;
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-big;
 
 
   .cartPage {
@@ -53,7 +53,7 @@
   .checkout {
     display: flex;
     justify-content: center;
-    height: 48px;
+    height: $spacing-xxl;
     width: 100%;
   }
 
@@ -99,7 +99,7 @@
 @media (max-width: $mobile) {
   .page {
     padding: 0 $spacing-md;
-    margin-top: 24px;
+    margin-top: $spacing-lg;
     margin-bottom: 56px;
 
     .cartPage {
