@@ -22,7 +22,7 @@
   h2 {
     grid-area: h2;
     margin: 0;
-    color: $icons-color;
+    color: var(--text-color);
   }
 
   .js-prev,
@@ -32,8 +32,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid $slider-border-color;
+    border: 1px solid var(--slider-border-color);
     cursor: pointer;
+    background-color: var(--slider-bg);
+    color: var(--text-color);
   }
 
   .js-prev {

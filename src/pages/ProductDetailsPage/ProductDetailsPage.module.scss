@@ -35,13 +35,9 @@ $gut: 16px;
 
 .mainContent {
   display: grid;
-  grid-template-columns: #{gw-d(7)} #{gw-d(5)};
+  grid-template-columns: 1fr 1fr;
   column-gap: $gut;
   align-items: start;
-
-  @media (max-width: ($desktop - 1px)) {
-    grid-template-columns: #{gw-t(7)} 1fr;
-  }
 
   @media (max-width: ($mobile - 1px)) {
     grid-template-columns: 1fr;
@@ -214,7 +210,7 @@ $gut: 16px;
 
 .detailsSection {
   display: grid;
-  grid-template-columns: #{gw-d(7)} #{gw-d(5)};
+  grid-template-columns: 1fr 1fr;
   column-gap: $gut;
   padding-top: 80px;
 

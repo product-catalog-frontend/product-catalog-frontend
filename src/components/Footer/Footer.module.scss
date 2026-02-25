@@ -4,7 +4,7 @@
 
 .footer {
   border-top: 1px solid var(--border-color);
-  background-color: $white;
+  background-color: var(--main-bg);
   margin-top: 50px;
 }
 
@@ -24,7 +24,7 @@
   gap: 106px;
 
   a {
-    position: relative; // нужно для полоски
+    position: relative;
     text-decoration: none;
     color: var(--secondary-color);
     font-size: 12px;
@@ -40,7 +40,7 @@
 }
 
 .active {
-  color: $primary-color;
+  color: var(--text-color);
 
   &::after {
     content: '';
@@ -49,7 +49,7 @@
     bottom: -10px;
     width: 100%;
     height: 2px;
-    background-color: $yellow;
+    background-color: var(--text-color);
   }
 }
 

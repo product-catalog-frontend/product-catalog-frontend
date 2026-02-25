@@ -14,7 +14,7 @@
   width: 100%;
   max-width: 272px;
   min-height: 506px;
-  color: var(--primary-text-color, $icons-color);
+  color: var(--primary-text-color);
   transition: transform $transition-default;
 
   &:hover {
@@ -72,6 +72,7 @@
 }
 
 .option {
+  margin-top: 8px;
   display: flex;
   justify-content: space-between;
 
@@ -80,7 +81,7 @@
   }
 
   .value {
-    color: var(--primary-text-color, $icons-color);
+    color: var(--primary-text-color);
   }
 }
 
