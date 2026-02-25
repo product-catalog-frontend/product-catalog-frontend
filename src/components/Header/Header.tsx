@@ -6,6 +6,7 @@ import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import cn from 'classnames';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +14,13 @@ export const Header: React.FC = () => {
   const totalCartItems = useCartStore((state) => state.totalItems());
 
   const logo = getCleanImagePath('/img/logo.svg');
+
+  const navItems = [
+    { to: '/', label: 'Home' },
+    { to: '/phones', label: 'Phones' },
+    { to: '/tablets', label: 'Tablets' },
+    { to: '/accessories', label: 'Accessories' },
+  ];
 
   return (
     <>
@@ -28,48 +36,28 @@ export const Header: React.FC = () => {
         </Link>
 
         <nav className={styles.nav}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-            }
-          >
-            Home
-          </NavLink>
-
-          <NavLink
-            to="/phones"
-            className={({ isActive }) =>
-              `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-            }
-          >
-            Phones
-          </NavLink>
-
-          <NavLink
-            to="/tablets"
-            className={({ isActive }) =>
-              `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-            }
-          >
-            Tablets
-          </NavLink>
-
-          <NavLink
-            to="/accessories"
-            className={({ isActive }) =>
-              `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-            }
-          >
-            Accessories
-          </NavLink>
+          {navItems.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                cn(styles.navLink, 'uppercase', {
+                  [styles.active]: isActive,
+                })
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
         </nav>
 
         <div className={styles.buttons}>
           <NavLink
             to="/favourites"
             className={({ isActive }) =>
-              `${styles.iconButton} ${isActive ? styles.activeIcon : ''}`
+              cn(styles.iconButton, {
+                [styles.activeIcon]: isActive,
+              })
             }
           >
             <Icon
@@ -83,7 +71,9 @@ export const Header: React.FC = () => {
           <NavLink
             to="/cart"
             className={({ isActive }) =>
-              `${styles.iconButton} ${isActive ? styles.activeIcon : ''}`
+              cn(styles.iconButton, {
+                [styles.activeIcon]: isActive,
+              })
             }
           >
             <Icon

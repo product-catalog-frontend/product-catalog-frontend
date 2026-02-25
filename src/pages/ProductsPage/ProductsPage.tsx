@@ -1,6 +1,5 @@
-import { useEffect, useMemo } from 'react';
-import { useSearchParams, useParams } from 'react-router-dom';
-import { useProductStore } from '../../store/useProductStore';
+import { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom';
 import {
   Dropdown,
   DropdownTrigger,
@@ -9,12 +8,14 @@ import {
 } from '../../components/common/DropdownMenu/DropdownMenu';
 import { Pagination } from '../../components/common/Pagination';
 import styles from './ProductsPage.module.scss';
-import type { Product } from '../../types/product';
 import { ArrowButton } from '../../components/common/Buttons';
+import { NotFoundPage } from '../NotFoundPage/NotFoundPage';
 import { ProductList } from '../ProductList/ProductList';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { getCatalogProducts } from '../../api/products';
+import type { Product } from '../../types/product';
 
-type Params = {
+type CategoryParam = {
   category?: 'phones' | 'tablets' | 'accessories';
 };
 
@@ -27,58 +28,29 @@ const SORT_OPTIONS = [
 
 const ITEMS_OPTIONS = ['4', '8', '16', 'all'];
 
-const sortProducts = (products: Product[], sort: string): Product[] => {
-  switch (sort) {
-    case 'age':
-      return [...products].sort((a, b) => b.year - a.year);
-    case 'title':
-      return [...products].sort((a, b) => a.name.localeCompare(b.name));
-    case 'priceAsc':
-      return [...products].sort((a, b) => a.price - b.price);
-    case 'priceDesc':
-      return [...products].sort((a, b) => b.price - a.price);
-    default:
-      return products;
-  }
-};
-
 export const ProductsPage = () => {
-  const { category } = useParams<Params>();
+  const { category } = useParams<CategoryParam>();
   const [searchParams, setSearchParams] = useSearchParams();
-
   const sort = searchParams.get('sort') || 'age';
   const perPage = searchParams.get('perPage') || 'all';
   const page = Number(searchParams.get('page')) || 1;
 
-  const products = useProductStore((state) => state.products);
-  const fetchProducts = useProductStore((state) => state.fetchProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    getCatalogProducts({ category, page, perPage, sort }).then(({ products, total }) => {
+      setProducts(products);
+      setTotal(total);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, []);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    });
+  }, [category, page, perPage, sort]);
 
-  const filteredProducts = useMemo(
-    () => products.filter((product) => product.category === category),
-    [products, category],
-  );
-
-  const sortedProducts = useMemo(
-    () => sortProducts(filteredProducts, sort),
-    [filteredProducts, sort],
-  );
-
-  const pageCount = perPage === 'all' ? 1 : Math.ceil(filteredProducts.length / Number(perPage));
-
-  const visibleProducts = useMemo(() => {
-    if (perPage === 'all') return sortedProducts;
-    const perPageNum = Number(perPage);
-    const start = (page - 1) * perPageNum;
-    return sortedProducts.slice(start, start + perPageNum);
-  }, [sortedProducts, perPage, page]);
+  const pageCount = perPage === 'all' ? 1 : Math.ceil(total / Number(perPage)) || 1;
 
   const currentSortLabel = SORT_OPTIONS.find((option) => option.value === sort)?.label || 'Newest';
 
@@ -113,6 +85,10 @@ export const ProductsPage = () => {
     });
   };
 
+  if (!['phones', 'tablets', 'accessories'].includes(category as string)) {
+    return <NotFoundPage />;
+  }
+
   return (
     <div className={styles.productsPage}>
       {category && <Breadcrumbs categoryName={category} />}
@@ -127,9 +103,9 @@ export const ProductsPage = () => {
         {category === 'tablets' && 'Tablets'}
         {category === 'accessories' && 'Accessories'}
       </h1>
-      <p className={styles.count}>{filteredProducts.length} models</p>
+      <p className={styles.count}>{total} models</p>
 
-      {filteredProducts.length > 0 ?
+      {total !== 0 ?
         <>
           <div className={styles.controls}>
             <div className={styles.control}>
@@ -167,7 +143,7 @@ export const ProductsPage = () => {
             </div>
           </div>
 
-          <ProductList products={visibleProducts} />
+          <ProductList products={products} />
 
           {perPage !== 'all' && pageCount > 1 && (
             <div className={styles.pagination}>

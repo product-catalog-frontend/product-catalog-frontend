@@ -1,6 +1,6 @@
 import styles from './ProductDetailsPage.module.scss';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useProductStore } from '../../store/useProductStore';
 import { getProductDetails } from '../../api/productsDetails';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
@@ -13,16 +13,17 @@ import {
   RoundButton,
   ArrowButton,
 } from '../../components/common/Buttons';
-import { HotPricesCarousel } from '../../components/HotPricesCarousel/HotPricesCarousel';
-import type { ProductDetails } from '../../types/product';
+import type { ProductCategory, ProductDetails } from '../../types/product';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { colorMap } from '../../utils/colorMap';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { MayLikeCarousel } from '../../components/MayLikeCarousel/MayLikeCarousel';
 
 export const ProductDetailsPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const { productId = '' } = useParams();
+  const { category, productId = '' } = useParams();
   const getProductByItemId = useProductStore((state) => state.getProductByItemId);
   const product = getProductByItemId(productId);
 
@@ -57,35 +58,64 @@ export const ProductDetailsPage = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       setDetails(null);
+      setIsLoading(true);
 
-      if (productId && product?.category) {
+      const categoryToFetch = (product?.category ?? category) as ProductCategory;
+
+      if (productId && categoryToFetch) {
         try {
-          const data = await getProductDetails(productId, product.category);
+          const data = await getProductDetails(productId, categoryToFetch);
           setDetails(data);
           setSelectedImage(data.images[0]);
         } catch (error) {
           console.error('Failed to load details', error);
         }
       }
+
+      setIsLoading(false);
     };
     fetchDetails();
-  }, [productId, product?.category]);
+  }, [productId, product?.category, category]);
 
-  if (!details || !product) {
+  useEffect(() => {
+    if (!isLoading && !product && !details) {
+      const timer = setTimeout(() => {
+        navigate(`/${category}`);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading, product, details, category, navigate]);
+
+  if (!isLoading && !product && !details) {
+    return (
+      <div className={styles.notFound}>
+        <img
+          src={getCleanImagePath('product-not-found.png')}
+          alt="Product not found"
+          className={styles.notFoundImage}
+        />
+        <h2 className={styles.notFoundTitle}>Product not found</h2>
+        <p className={styles.notFoundText}>You will be redirected to catalog in 3 seconds...</p>
+        <Link
+          to={`/${category}`}
+          className={styles.notFoundLink}
+        >
+          Go back now
+        </Link>
+      </div>
+    );
+  }
+
+  if (isLoading || !details || !product) {
     return (
       <div className={styles.container}>
-        {!product && !details ?
-          <img
-            src={getCleanImagePath('product-not-found.png')}
-            alt="Not found"
-          />
-        : <div>Loading product details...</div>}
+        <div>Loading...</div>
       </div>
     );
   }
 
   const {
-    category,
     namespaceId,
     name,
     capacityAvailable,
@@ -158,6 +188,8 @@ export const ProductDetailsPage = () => {
         </div>
 
         <div className={styles.infoPanel}>
+          <span className={cn(styles.itemId, styles.itemIdMobile)}>ID: {product.id}</span>
+
           <div className={styles.optionSection}>
             <p className={styles.smallTextSecondary}>Available colors</p>
             <div className={styles.colorOptions}>
@@ -226,7 +258,7 @@ export const ProductDetailsPage = () => {
           </div>
         </div>
 
-        <span className={styles.itemId}>ID: {product.id}</span>
+        <span className={cn(styles.itemId, styles.itemIdDesktop)}>ID: {product.id}</span>
       </div>
 
       <div className={styles.detailsSection}>
@@ -268,11 +300,15 @@ export const ProductDetailsPage = () => {
             </div>
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>Camera</span>
-              <span className={styles.smallTextPrimary}>{camera}</span>
+              <span className={styles.smallTextPrimary}>
+                {camera && camera !== 'undefined' ? camera : 'Not applicable'}
+              </span>
             </div>
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>Zoom</span>
-              <span className={styles.smallTextPrimary}>{zoom}</span>
+              <span className={styles.smallTextPrimary}>
+                {zoom && zoom !== 'undefined' ? zoom : 'Not applicable'}
+              </span>
             </div>
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>Cell</span>
@@ -282,7 +318,7 @@ export const ProductDetailsPage = () => {
         </div>
       </div>
 
-      <HotPricesCarousel />
+      <MayLikeCarousel />
     </div>
   );
 };

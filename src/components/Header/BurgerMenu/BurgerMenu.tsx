@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
 import { Icon } from '../../common/Icon';
+import cn from 'classnames';
 
 type Props = {
   isOpen: boolean;
@@ -16,73 +17,69 @@ export const BurgerMenu: React.FC<Props> = ({
   favouritesCount = 0,
   cartCount = 0,
 }) => {
+  const navItems = [
+    { to: '/', label: 'Home' },
+    { to: '/phones', label: 'Phones' },
+    { to: '/tablets', label: 'Tablets' },
+    { to: '/accessories', label: 'Accessories' },
+  ];
+
   return (
-    <div className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
+    <div
+      className={cn(styles.menu, {
+        [styles.open]: isOpen,
+      })}
+    >
       <nav className={styles.nav}>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-          }
-          onClick={onClose}
-        >
-          Home
-        </NavLink>
-
-        <NavLink
-          to="/phones"
-          className={({ isActive }) =>
-            `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-          }
-          onClick={onClose}
-        >
-          Phones
-        </NavLink>
-
-        <NavLink
-          to="/tablets"
-          className={({ isActive }) =>
-            `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-          }
-          onClick={onClose}
-        >
-          Tablets
-        </NavLink>
-
-        <NavLink
-          to="/accessories"
-          className={({ isActive }) =>
-            `${styles.navLink} uppercase ${isActive ? styles.active : ''}`
-          }
-          onClick={onClose}
-        >
-          Accessories
-        </NavLink>
+        {navItems.map(({ to, label }) => (
+          <NavLink
+            key={to}
+            to={to}
+            onClick={onClose}
+            className={({ isActive }) =>
+              cn(styles.navLink, 'uppercase', {
+                [styles.active]: isActive,
+              })
+            }
+          >
+            {label}
+          </NavLink>
+        ))}
       </nav>
 
       <div className={styles.bottom}>
         <NavLink
           to="/favorites"
-          className={({ isActive }) =>
-            `${styles.bottomButton} ${isActive ? styles.activeIcon : ''}`
-          }
           onClick={onClose}
+          className={({ isActive }) =>
+            cn(styles.bottomButton, {
+              [styles.activeIcon]: isActive,
+            })
+          }
         >
           <div className={styles.iconWrapper}>
-            <Icon name="heart" />
+            <Icon
+              name="heart"
+              strokeWidth={2}
+            />
             {favouritesCount > 0 && <span className={styles.badge}>{favouritesCount}</span>}
           </div>
         </NavLink>
 
         <NavLink
           to="/cart"
-          className={({ isActive }) =>
-            `${styles.bottomButton} ${isActive ? styles.activeIcon : ''}`
-          }
           onClick={onClose}
+          className={({ isActive }) =>
+            cn(styles.bottomButton, {
+              [styles.activeIcon]: isActive,
+            })
+          }
         >
           <div className={styles.iconWrapper}>
-            <Icon name="bag" />
+            <Icon
+              name="bag"
+              strokeWidth={2}
+            />
             {cartCount > 0 && <span className={styles.badge}>{cartCount}</span>}
           </div>
         </NavLink>
