@@ -1,6 +1,7 @@
 import { ChevronLeft } from 'lucide-react';
 import styles from './ArrowButton.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface ArrowButtonProps {
   text?: string;
@@ -18,6 +19,7 @@ export function ArrowButton({
   back,
 }: ArrowButtonProps) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleClick = () => {
     if (back) {
@@ -40,7 +42,7 @@ export function ArrowButton({
       className={styles.arrowButton}
     >
       <ChevronLeft className={styles.arrowIcon} />
-      {text}
+      {t('common.back')}
     </button>
   );
 }

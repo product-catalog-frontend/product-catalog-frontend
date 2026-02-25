@@ -2,12 +2,14 @@ import { Link, NavLink } from 'react-router-dom';
 import styles from './Footer.module.scss';
 import { Icon } from '../common/Icon';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   isDark: boolean;
 }
 
 export const Footer: React.FC<Props> = ({ isDark }: Props) => {
+  const { t } = useTranslation();
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -34,13 +36,30 @@ export const Footer: React.FC<Props> = ({ isDark }: Props) => {
         </Link>
 
         <nav className={`${styles.links} uppercase`}>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/contacts">Contacts</NavLink>
-          <NavLink to="/privacy">Privacy</NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => `${isActive ? styles.active : ''}`}
+          >
+            {t('footer.about')}
+          </NavLink>
+
+          <NavLink
+            to="/contacts"
+            className={({ isActive }) => `${isActive ? styles.active : ''}`}
+          >
+            {t('footer.contacts')}
+          </NavLink>
+
+          <NavLink
+            to="/privacy"
+            className={({ isActive }) => `${isActive ? styles.active : ''}`}
+          >
+            {t('footer.privacy')}
+          </NavLink>
         </nav>
 
         <div className={styles.backToTop}>
-          <span className={`small-text`}>Back to top</span>
+          <span className={`small-text`}>{t('footer.backToTop')}</span>
           <button
             onClick={handleBackToTop}
             className={styles.topButton}

@@ -18,7 +18,7 @@
 }
 
 .open {
-  position: absolute;
+  position: sticky;
   left: 0;
 }
 
@@ -59,7 +59,7 @@
 .bottom {
   margin-top: auto;
   display: flex;
-  height: 64px;
+  height: $spacing-big;
   border-top: 1px solid var(--border-color);
 }
 
@@ -109,7 +109,9 @@
   justify-content: center;
 
   background-color: $error-color;
+  border: 1px solid var(--text-color);
   color: var(--text-color);
   font-size: 9px;
+  font-weight: $font-semibold;
   border-radius: 50%;
 }

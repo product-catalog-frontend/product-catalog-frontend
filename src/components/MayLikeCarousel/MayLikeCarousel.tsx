@@ -1,16 +1,14 @@
-import styles from './HotPricesCarousel.module.scss';
+import styles from './MayLikeCarousel.module.scss';
 import '../../assets/styles/variables.scss';
 import { ChevronButton } from '../common/Buttons';
 import { Slider } from '../Slider/Slider';
 import { useProductStore } from '../../store/useProductStore';
-import { useTranslation } from 'react-i18next';
 
-export const HotPricesCarousel = () => {
-  const discountProducts = useProductStore((state) => state.discountProducts);
-  const { t } = useTranslation();
+export const MayLikeCarousel = () => {
+  const mayLikeProducts = useProductStore((state) => state.mayLikeProducts);
   return (
     <div className={styles.banner}>
-      <h2>{t('home.hotPrices')}</h2>
+      <h2>You may also like</h2>
       <ChevronButton
         direction="left"
         className={styles['js-prev']}
@@ -19,7 +17,7 @@ export const HotPricesCarousel = () => {
         direction="right"
         className={styles['js-next']}
       />
-      <Slider data={discountProducts} />
+      <Slider data={mayLikeProducts} />
     </div>
   );
 };

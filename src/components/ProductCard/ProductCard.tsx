@@ -3,6 +3,7 @@ import type { Product } from '../../types/product';
 import styles from './ProductCard.module.scss';
 import { HeartButton, PrimaryButton } from '../common/Buttons';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
+import { useTranslation } from 'react-i18next';
 
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { useCartStore } from '../../store/useCartStore';
@@ -20,6 +21,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const toggleFavourite = useFavouritesStore((state) => state.toggleFavourite);
 
   const isFavourite = favourites.some((item) => item.id === product.id);
+
+  const { t } = useTranslation();
 
   const handleFavouriteClick = () => {
     toggleFavourite(product);
@@ -59,31 +62,35 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
       <div className={styles.options}>
         <div className={styles.option}>
-          <span className={`${styles.label} small-text`}>Screen</span>
+          <span className={`${styles.label} small-text`}>{t('product.screen')}</span>
           <span className={`${styles.value} uppercase`}>{screen}</span>
         </div>
         <div className={styles.option}>
-          <span className={`${styles.label} small-text`}>Capacity</span>
+          <span className={`${styles.label} small-text`}>{t('product.capacity')}</span>
           <span className={`${styles.value} uppercase`}>{capacity}</span>
         </div>
         <div className={styles.option}>
-          <span className={`${styles.label} small-text`}>RAM</span>
+          <span className={`${styles.label} small-text`}>{t('product.ram')}</span>
           <span className={`${styles.value} uppercase`}>{ram}</span>
         </div>
       </div>
 
       <div className={styles.buttons}>
-        <PrimaryButton
-          onClick={handleAddToCart}
-          selected={isInCart}
-        >
-          {isInCart ? 'Added to cart' : 'Add to cart'}
-        </PrimaryButton>
+        <div className={styles.cartButton}>
+          <PrimaryButton
+            onClick={handleAddToCart}
+            selected={isInCart}
+          >
+            {isInCart ? t('product.addedToCart') : t('product.addToCart')}
+          </PrimaryButton>
+        </div>
 
-        <HeartButton
-          selected={isFavourite}
-          onClick={handleFavouriteClick}
-        />
+        <div>
+          <HeartButton
+            selected={isFavourite}
+            onClick={handleFavouriteClick}
+          />
+        </div>
       </div>
     </article>
   );

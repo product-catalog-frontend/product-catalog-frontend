@@ -1,74 +1,112 @@
 @use '../../assets/styles/variables.scss' as *;
 @use '../../components/common/typography/typography.scss' as *;
 
-$col: 32px;
+$col-desktop: 32px;
+$col-tablet: 35px;
+$col-mobile: 60px;
 $gut: 16px;
 
-@function grid-width($n) {
-  @return ($n * $col) + (($n - 1) * $gut);
+@function gw-d($n) {
+  @return ($n * $col-desktop) + (($n - 1) * $gut);
+}
+
+@function gw-t($n) {
+  @return ($n * $col-tablet) + (($n - 1) * $gut);
 }
 
 .container {
   max-width: 1136px;
   margin: 0 auto;
   padding: 24px 0;
+
+  @media (max-width: ($desktop - 1px)) {
+    padding: 24px;
+  }
+
+  @media (max-width: ($mobile - 1px)) {
+    padding: 24px 16px;
+  }
 }
 
 .title {
-  width: 100%;
-  margin: 16px 0 40px 0;
+  margin: 16px 0 40px;
   text-align: left;
 }
 
 .mainContent {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 0;
+  display: grid;
+  grid-template-columns: #{gw-d(12)} #{gw-d(7)} #{gw-d(4)};
+  column-gap: $gut;
+  align-items: start;
+
+  @media (max-width: ($desktop - 1px)) {
+    grid-template-columns: #{gw-t(7)} 1fr;
+  }
+
+  @media (max-width: ($mobile - 1px)) {
+    grid-template-columns: 1fr;
+    row-gap: $spacing-xl;
+  }
 }
 
 .gallery {
   display: flex;
   gap: $gut;
-  width: grid-width(12) + $gut;
+
+  @media (max-width: ($mobile - 1px)) {
+    flex-direction: column-reverse;
+  }
 }
 
 .thumbnails {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: grid-width(2);
+  gap: $spacing-md;
 
-  .thumbnail {
-    width: 80px;
-    height: 80px;
-    border: 1px solid $elements-color;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    flex-shrink: 0;
+  @media (max-width: ($mobile - 1px)) {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
 
-    img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border: 1px solid $elements-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  flex-shrink: 0;
 
-    &Active {
-      border-color: $primary-color;
-    }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  &.thumbnailActive {
+    border-color: $primary-color;
   }
 }
 
 .mainImage {
-  width: grid-width(10);
-  height: 464px;
+  flex: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  max-height: 464px;
   overflow: hidden;
-  flex-shrink: 0;
+
+  @media (max-width: ($desktop - 1px)) {
+    max-height: 360px;
+  }
+
+  @media (max-width: ($mobile - 1px)) {
+    max-height: 288px;
+  }
 
   img {
     max-width: 100%;
@@ -78,9 +116,8 @@ $gut: 16px;
 }
 
 .infoPanel {
-  margin-left: grid-width(1) + $gut;
-  width: grid-width(7);
-  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .itemId {
@@ -89,21 +126,33 @@ $gut: 16px;
   width: grid-width(4);
   margin-left: $gut;
   text-align: right;
-  padding-top: $spacing-xs;
-  flex-shrink: 0;
 }
 
-.optionSection {
-  margin-bottom: 24px;
+.itemIdDesktop {
+  padding-top: $spacing-xs;
 
-  &::after {
-    content: '';
+  @media (max-width: ($desktop - 1px)) {
+    display: none;
+  }
+}
+
+.itemIdMobile {
+  display: none;
+  margin-bottom: $spacing-lg;
+
+  @media (max-width: ($desktop - 1px)) {
     display: block;
     width: 100%;
     height: 1px;
     background-color: var(--border-color);
     margin-top: 24px;
   }
+}
+
+.optionSection {
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid $elements-color;
 }
 
 .smallTextSecondary {
@@ -116,17 +165,18 @@ $gut: 16px;
 .capacityOptions {
   display: flex;
   gap: $spacing-sm;
+  flex-wrap: wrap;
 }
 
 .purchaseSection {
-  margin-top: 32px;
+  margin-top: $spacing-xl;
 }
 
 .priceContainer {
   display: flex;
   align-items: center;
   gap: $spacing-sm;
-  margin-bottom: 16px;
+  margin-bottom: $spacing-md;
 
   .price {
     margin: 0;
@@ -142,14 +192,16 @@ $gut: 16px;
 
 .actions {
   display: flex;
+  height: 40px;
   gap: $spacing-sm;
-  margin-bottom: 32px;
+  margin-bottom: $spacing-xl;
+  flex-wrap: wrap;
 }
 
 .specsShort {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: $spacing-sm;
 }
 
 .specLine {
@@ -164,35 +216,44 @@ $gut: 16px;
 }
 
 .detailsSection {
-  display: flex;
-  padding: 80px 0 0;
+  display: grid;
+  grid-template-columns: #{gw-d(12)} #{gw-d(11)};
+  column-gap: $gut;
+  padding-top: 80px;
+
+  @media (max-width: ($desktop - 1px)) {
+    grid-template-columns: 1fr;
+    row-gap: $spacing-xxl;
+  }
+}
+
+@mixin section-header {
+  margin-bottom: $spacing-md;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: $elements-color;
+    margin-top: $spacing-md;
+  }
 }
 
 .aboutBlock {
-  width: grid-width(12);
-
   h3 {
-    margin-bottom: 16px;
-    &::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 1px;
-      background-color: $elements-color;
-      margin-top: 16px;
-    }
+    @include section-header;
   }
 }
 
 .descriptionItem {
-  margin-bottom: 32px;
+  margin-bottom: $spacing-xl;
 
   &:last-child {
     margin-bottom: 0;
   }
 
   h4 {
-    margin-bottom: 16px;
+    margin-bottom: $spacing-md;
   }
 
   p {
@@ -202,25 +263,48 @@ $gut: 16px;
 }
 
 .techSpecsBlock {
-  margin-left: grid-width(1) + $gut;
-  width: grid-width(11);
-
   h3 {
-    margin-bottom: 16px;
-    &::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 1px;
-      background-color: $elements-color;
-      margin-top: 16px;
-    }
+    @include section-header;
   }
+}
 
-  .specsList {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 24px;
+.specsList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+}
+
+.notFound {
+  max-width: 1136px;
+  margin: 0 auto;
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.notFoundImage {
+  width: 200px;
+  object-fit: contain;
+}
+
+.notFoundTitle {
+  margin: 0;
+}
+
+.notFoundText {
+  @extend .body-text;
+  color: $secondary-color;
+}
+
+.notFoundLink {
+  @extend .small-text;
+  color: $primary-color;
+  text-decoration: underline;
+
+  &:hover {
+    color: $secondary-color;
   }
 }

@@ -47,6 +47,17 @@ export const getDiscountProducts = async (): Promise<Product[]> => {
   return data || [];
 };
 
+export const getMayLikeProducts = async (): Promise<Product[]> => {
+  const { data, error } = await supabase.rpc('get_random_products', { lim: 10 });
+
+  if (error) {
+    console.error('Error fetching May Like Products:', error);
+    throw new Error(error.message);
+  }
+
+  return data || [];
+};
+
 export const getCatalogProducts = async ({
   category,
   page,
