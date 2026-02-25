@@ -35,7 +35,7 @@ $gut: 16px;
 
 .mainContent {
   display: grid;
-  grid-template-columns: #{gw-d(12)} #{gw-d(7)} #{gw-d(4)};
+  grid-template-columns: #{gw-d(7)} #{gw-d(5)};
   column-gap: $gut;
   align-items: start;
 
@@ -123,14 +123,12 @@ $gut: 16px;
 .itemId {
   @extend .small-text;
   color: var(--secondary-color);
-  width: grid-width(4);
-  margin-left: $gut;
+  width: 100%;
   text-align: right;
+  margin-bottom: $spacing-xs;
 }
 
 .itemIdDesktop {
-  padding-top: $spacing-xs;
-
   @media (max-width: ($desktop - 1px)) {
     display: none;
   }
@@ -138,14 +136,13 @@ $gut: 16px;
 
 .itemIdMobile {
   display: none;
-  margin-bottom: $spacing-lg;
 
   @media (max-width: ($desktop - 1px)) {
     display: block;
     width: 100%;
     height: 1px;
     background-color: var(--border-color);
-    margin-top: 24px;
+    margin: 24px 0 $spacing-lg;
   }
 }
 
@@ -217,7 +214,7 @@ $gut: 16px;
 
 .detailsSection {
   display: grid;
-  grid-template-columns: #{gw-d(12)} #{gw-d(11)};
+  grid-template-columns: #{gw-d(7)} #{gw-d(5)};
   column-gap: $gut;
   padding-top: 80px;
 

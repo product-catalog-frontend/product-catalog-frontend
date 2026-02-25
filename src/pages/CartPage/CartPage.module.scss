@@ -1,22 +1,56 @@
 @use '../../assets/styles/variables.scss' as *;
 
 .page {
-  position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 0 $spacing-xl;
   margin-top: $spacing-lg;
   margin-bottom: $spacing-big;
-  min-height: 400px;
 
-  .cartPage {
-    display: flex;
-    gap: $spacing-xl;
-    padding: $spacing-lg 0; 
-  }
+  min-height: calc(100vh - 200px);
 
   .cartTitle {
     margin-top: $spacing-md;
     margin-bottom: $spacing-sm;
-    margin-left: $spacing-md; 
+    margin-left: $spacing-md;
+
+    @media (max-width: $tablet) {
+      margin-left: 0;
+    }
+  }
+
+  .cartPage {
+    display: flex;
+    gap: $spacing-xl;
+    padding: $spacing-lg 0;
+
+    @media (max-width: $tablet) {
+      flex-direction: column;
+    }
+  }
+
+  .emptyState {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    padding: $spacing-xxl 0;
+
+    .emptyImage {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+
+    .emptyMessage {
+      margin-top: $spacing-md;
+      font-size: 15px;
+      font-weight: 600;
+      color: $secondary-color;
+    }
   }
 
   .cartItems {
@@ -30,52 +64,27 @@
 
   .cartSummary {
     flex: 1;
-    border: 1px solid var(--slider-border-color, $elements-color);
-    padding: $spacing-lg;
     height: fit-content;
-    background-color: var(--main-bg, $white);
+    padding: $spacing-lg;
     display: flex;
     flex-direction: column;
     gap: $spacing-md;
+    background-color: var(--main-bg, $white);
+    border: 1px solid var(--slider-border-color, $elements-color);
   }
 
   .totalAmount {
-    text-align: center;
-    font-weight: $font-bold;
     font-size: 32px;
     line-height: 41px;
+    font-weight: $font-bold;
+    text-align: center;
     color: var(--primary-text-color, inherit);
   }
 
-  .emptyState {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-
-    .emptyImage {
-      width: 200px;
-      height: 200px;
-      object-fit: contain;
-    }
-
-    .emptyMessage {
-      color: $secondary-color;
-      font-size: 15px;
-      font-weight: 600;
-      margin-top: $spacing-md;
-    }
-  }
-
   .totalItems {
+    padding-bottom: $spacing-sm;
     text-align: center;
     color: $secondary-color;
-    padding-bottom: $spacing-sm;
     border-bottom: 1px solid var(--slider-border-color, $elements-color);
   }
 
@@ -84,28 +93,26 @@
     justify-content: center;
     width: 100%;
     margin-top: $spacing-md;
-  }
 
-  .checkoutBtn {
-    padding: $spacing-md;
-    width: 100%;
-    background-color: $primary-color;
-    color: $white;
-    border: none;
-    border-radius: $border-radius-md;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: $font-semibold;
-    transition: $transition-default;
+    &Btn {
+      width: 100%;
+      padding: $spacing-md;
+      font-size: 16px;
+      font-weight: $font-semibold;
+      color: $white;
+      background-color: $primary-color;
+      border: none;
+      border-radius: $border-radius-md;
+      cursor: pointer;
+      transition: $transition-default;
 
-    &:hover {
-      opacity: 0.85;
+      &:hover {
+        opacity: 0.85;
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
     }
-  }
-}
-
-@media (max-width: $tablet) {
-  .page .cartPage {
-    flex-direction: column;
   }
 }
