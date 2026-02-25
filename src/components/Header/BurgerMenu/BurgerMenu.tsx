@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
 import { Icon } from '../../common/Icon';
+import { ThemeButton } from '../../common/Buttons/ThemeButton/ThemeButton';
 
 type Props = {
   isOpen: boolean;
@@ -61,6 +62,7 @@ export const BurgerMenu: React.FC<Props> = ({
       </nav>
 
       <div className={styles.bottom}>
+        <ThemeButton className={styles.bottomButton} />
         <NavLink
           to="/favorites"
           className={({ isActive }) =>

@@ -31,7 +31,7 @@
 }
 
 .removeIcon:hover {
-  background-color: $hover-bg;
+  background-color: var(--hover-bg);
   border-radius: $border-radius-md;
 }
 
@@ -82,7 +82,7 @@
   color: var(--text-color);
 
   &:hover {
-    background: $hover-bg;
+    background: var(--hover-bg);
   }
 }
 

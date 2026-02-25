@@ -1,17 +1,18 @@
 import { Moon, Sun } from 'lucide-react';
 import styles from './ThemeButton.module.scss';
+import { useThemeStore } from '../../../../store/useThemeStore';
 
 interface ThemeButtonProps {
-  isDark: boolean;
-  onClick: () => void;
   className?: string;
 }
 
-export function ThemeButton({ isDark, onClick, className }: ThemeButtonProps) {
+export function ThemeButton({ className }: ThemeButtonProps) {
+  const { isDark, toggleTheme } = useThemeStore();
+
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={toggleTheme}
       className={`${styles.themeButton} ${className || ''}`}
     >
       {isDark ?

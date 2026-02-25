@@ -7,16 +7,14 @@ import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { ThemeButton } from '../common/Buttons/ThemeButton/ThemeButton';
+import { useThemeStore } from '../../store/useThemeStore';
 
-interface Props {
-  isDark: boolean;
-  onClick: () => void;
-}
-
-export const Header: React.FC<Props> = ({ isDark, onClick }) => {
+export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { favourites } = useFavouritesStore();
   const totalCartItems = useCartStore((state) => state.totalItems());
+
+  const isDark = useThemeStore((state) => state.isDark);
 
   const logo = getCleanImagePath('/img/logo.svg');
 
@@ -27,16 +25,10 @@ export const Header: React.FC<Props> = ({ isDark, onClick }) => {
           to="/"
           className={styles.logoContainer}
         >
-          {isDark ?
-            <img
-              src="img/Logo.svg"
-              alt="NiceGadgets"
-            />
-          : <img
-              src={logo}
-              alt="NiceGadgets"
-            />
-          }
+          <img
+            src={isDark ? 'img/Logo.svg' : logo}
+            alt="NiceGadgets"
+          />
         </Link>
 
         <nav className={styles.nav}>
@@ -78,11 +70,7 @@ export const Header: React.FC<Props> = ({ isDark, onClick }) => {
         </nav>
 
         <div className={styles.buttons}>
-          <ThemeButton
-            isDark={isDark}
-            onClick={onClick}
-            className={styles.iconButton}
-          />
+          <ThemeButton className={styles.iconButton} />
           <NavLink
             to="/favourites"
             className={({ isActive }) =>

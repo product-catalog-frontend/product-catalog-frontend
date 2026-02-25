@@ -11,8 +11,9 @@ import { Contacts } from './pages/ContactsPage/Contacts';
 import { Privacy } from './pages/PrivacyPage/Privacy';
 import { NotFoundPage } from './pages/NotFoundPage';
 import styles from './App.module.scss';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useProductStore } from './store/useProductStore';
+import { useThemeStore } from './store/useThemeStore';
 
 export const App = () => {
   const fetchProducts = useProductStore((state) => state.fetchProducts);
@@ -21,7 +22,7 @@ export const App = () => {
     fetchProducts();
   }, [fetchProducts]);
 
-  const [isDark, setIsDark] = useState(false);
+  const isDark = useThemeStore((state) => state.isDark);
 
   useEffect(() => {
     if (isDark) {
@@ -31,14 +32,9 @@ export const App = () => {
     }
   }, [isDark]);
 
-  const toggleTheme = () => setIsDark(!isDark);
-
   return (
     <div className={styles.app}>
-      <Header
-        isDark={isDark}
-        onClick={toggleTheme}
-      />
+      <Header />
 
       <main className={styles.main}>
         <Routes>

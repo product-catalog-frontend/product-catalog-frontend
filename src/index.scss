@@ -12,6 +12,7 @@
   --pagination-bg: #{$elements-color};
   --pagination-active-bg: #{$primary-color};
   --buy-button-bg: #{$primary-color};
+  --hover-bg: #{$hover-bg};
 }
 
 :root[data-theme='dark'] {
@@ -27,6 +28,7 @@
   --pagination-bg: #{$theme-dark-pagination};
   --pagination-active-bg: #{$theme-dark-color};
   --buy-button-bg: #{$theme-dark-button};
+  --hover-bg: #{$theme-dark-hover-bg};
 }
 
 body {
