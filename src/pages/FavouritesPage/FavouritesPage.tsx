@@ -22,6 +22,9 @@ export const FavouritesPage: React.FC = () => {
         back
       />
       <h1 className={styles.title}>{t('favourites.title')}</h1>
+      <p className={styles.count}>
+        {favourites.length} {t('favourites.items')}
+      </p>
 
       {isEmpty ?
         <div className={styles.emptyState}>

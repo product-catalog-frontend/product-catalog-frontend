@@ -10,6 +10,7 @@
   },
   "favourites": {
     "title": "Favourites",
+    "items": "items",
     "empty": "Your favourites list is empty."
   },
   "footer": {
