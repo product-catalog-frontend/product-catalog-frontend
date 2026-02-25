@@ -2,8 +2,11 @@ import { Link, NavLink } from 'react-router-dom';
 import styles from './Footer.module.scss';
 import { Icon } from '../common/Icon';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { useTranslation } from 'react-i18next';
 
 export const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -28,26 +31,26 @@ export const Footer: React.FC = () => {
             to="/about"
             className={({ isActive }) => `${isActive ? styles.active : ''}`}
           >
-            About
+            {t('footer.about')}
           </NavLink>
 
           <NavLink
             to="/contacts"
             className={({ isActive }) => `${isActive ? styles.active : ''}`}
           >
-            Contacts
+            {t('footer.contacts')}
           </NavLink>
 
           <NavLink
             to="/privacy"
             className={({ isActive }) => `${isActive ? styles.active : ''}`}
           >
-            Privacy
+            {t('footer.privacy')}
           </NavLink>
         </nav>
 
         <div className={styles.backToTop}>
-          <span className={`small-text`}>Back to top</span>
+          <span className={`small-text`}>{t('footer.backToTop')}</span>
           <button
             onClick={handleBackToTop}
             className={styles.topButton}

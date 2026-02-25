@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
 import { Icon } from '../../common/Icon';
+import { LanguageSwitcher } from '../../common/LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 
 type Props = {
@@ -17,11 +19,12 @@ export const BurgerMenu: React.FC<Props> = ({
   favouritesCount = 0,
   cartCount = 0,
 }) => {
+  const { t } = useTranslation();
   const navItems = [
-    { to: '/', label: 'Home' },
-    { to: '/phones', label: 'Phones' },
-    { to: '/tablets', label: 'Tablets' },
-    { to: '/accessories', label: 'Accessories' },
+    { to: '/', label: 'home' },
+    { to: '/phones', label: 'phones' },
+    { to: '/tablets', label: 'tablets' },
+    { to: '/accessories', label: 'accessories' },
   ];
 
   return (
@@ -42,12 +45,16 @@ export const BurgerMenu: React.FC<Props> = ({
               })
             }
           >
-            {label}
+            {t(`nav.${label}`)}
           </NavLink>
         ))}
       </nav>
 
       <div className={styles.bottom}>
+        <div className={styles.bottomButton}>
+          <LanguageSwitcher />
+        </div>
+
         <NavLink
           to="/favorites"
           onClick={onClose}

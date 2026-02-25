@@ -6,20 +6,23 @@ import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import cn from 'classnames';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { favourites } = useFavouritesStore();
   const totalCartItems = useCartStore((state) => state.totalItems());
+  const { t } = useTranslation();
 
   const logo = getCleanImagePath('/img/logo.svg');
 
   const navItems = [
-    { to: '/', label: 'Home' },
-    { to: '/phones', label: 'Phones' },
-    { to: '/tablets', label: 'Tablets' },
-    { to: '/accessories', label: 'Accessories' },
+    { to: '/', label: 'home' },
+    { to: '/phones', label: 'phones' },
+    { to: '/tablets', label: 'tablets' },
+    { to: '/accessories', label: 'accessories' },
   ];
 
   return (
@@ -46,12 +49,16 @@ export const Header: React.FC = () => {
                 })
               }
             >
-              {label}
+              {t(`nav.${label}`)}
             </NavLink>
           ))}
         </nav>
 
         <div className={styles.buttons}>
+          <div className={styles.iconButton}>
+            <LanguageSwitcher />
+          </div>
+
           <NavLink
             to="/favourites"
             className={({ isActive }) =>

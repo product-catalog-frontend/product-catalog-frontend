@@ -2,9 +2,11 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import styles from './NotFoundPage.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const NotFoundPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,7 +23,7 @@ export const NotFoundPage = () => {
         alt="Not found page"
         className={styles.image}
       />
-      <h1 className={styles.title}>Page not found</h1>
+      <h1 className={styles.title}>{t('notFound.title')}</h1>
     </main>
   );
 };

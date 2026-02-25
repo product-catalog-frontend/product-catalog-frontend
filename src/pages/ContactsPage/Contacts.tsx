@@ -1,17 +1,19 @@
 import styles from './Contacts.module.scss';
 import { Icon } from '../../components/common/Icon';
 import { ArrowButton } from '../../components/common/Buttons';
+import { useTranslation } from 'react-i18next';
 
 export const Contacts: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <main className={styles.contacts}>
       <ArrowButton
         text="Back"
         back
       />
-      <h1>TEAM CONTACTS</h1>
+      <h1>{t('contacts.title')}</h1>
 
-      <p className={styles.subtitle}>Get in touch with us for collaboration or any questions</p>
+      <p className={styles.subtitle}>{t('contacts.subtitle')}</p>
       <section className={styles.team}>
         <div className={styles.card}>
           <img
