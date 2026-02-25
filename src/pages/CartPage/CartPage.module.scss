@@ -1,9 +1,11 @@
 @use '../../assets/styles/variables.scss' as *;
 
 .page {
+  position: relative;
   padding: 0 $spacing-xl;
   margin-top: $spacing-lg;
   margin-bottom: $spacing-big;
+  min-height: 400px;
 
   .cartPage {
     display: flex;
@@ -41,6 +43,31 @@
     line-height: 41px;
   }
 
+  .emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+
+    .emptyImage {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+
+    .emptyMessage {
+      color: $secondary-color;
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: $spacing-md;
+    }
+  }
+
   .totalItems {
     text-align: center;
     color: $secondary-color;
@@ -51,13 +78,13 @@
   .checkout {
     display: flex;
     justify-content: center;
-    height: $spacing-xxl;
     width: 100%;
+    margin-top: $spacing-md;
   }
 
   .checkoutBtn {
-    margin-top: $spacing-md;
     padding: $spacing-md;
+    width: 100%;
     background-color: $primary-color;
     color: $white;
     border: none;
@@ -71,50 +98,10 @@
       opacity: 0.85;
     }
   }
-
-  .cartEmpty {
-    font-size: 20px;
-    text-align: center;
-    padding: $spacing-xxl;
-    color: $secondary-color;
-  }
 }
 
 @media (max-width: $tablet) {
-  .cartPage {
+  .page .cartPage {
     flex-direction: column;
-  }
-
-  .cartItems {
-    flex: 1;
-  }
-
-  .cartSummary {
-    flex: 1;
-  }
-}
-
-@media (max-width: $mobile) {
-  .page {
-    padding: 0 $spacing-md;
-    margin-top: $spacing-lg;
-    margin-bottom: 56px;
-
-    .cartPage {
-      padding: $spacing-md;
-      gap: $spacing-lg;
-    }
-
-    .cartTitle {
-      margin-left: $spacing-sm;
-    }
-
-    .cartItems {
-      margin-bottom: $spacing-xl;
-    }
-
-    .cartSummary {
-      margin-top: $spacing-lg;
-    }
   }
 }

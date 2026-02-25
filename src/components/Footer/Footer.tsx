@@ -24,9 +24,26 @@ export const Footer: React.FC = () => {
         </Link>
 
         <nav className={`${styles.links} uppercase`}>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/contacts">Contacts</NavLink>
-          <NavLink to="/privacy">Privacy</NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => `${isActive ? styles.active : ''}`}
+          >
+            About
+          </NavLink>
+
+          <NavLink
+            to="/contacts"
+            className={({ isActive }) => `${isActive ? styles.active : ''}`}
+          >
+            Contacts
+          </NavLink>
+
+          <NavLink
+            to="/privacy"
+            className={({ isActive }) => `${isActive ? styles.active : ''}`}
+          >
+            Privacy
+          </NavLink>
         </nav>
 
         <div className={styles.backToTop}>
