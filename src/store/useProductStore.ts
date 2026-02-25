@@ -1,11 +1,17 @@
 import { create } from 'zustand';
-import { getBrandNewProducts, getDiscountProducts, getProducts } from '../api/products';
+import {
+  getBrandNewProducts,
+  getDiscountProducts,
+  getProducts,
+  getMayLikeProducts,
+} from '../api/products';
 import type { Product } from '../types/product';
 
 interface ProductStore {
   products: Product[];
   discountProducts: Product[];
   brandNewProducts: Product[];
+  mayLikeProducts: Product[];
   mobilesCounter: number;
   tabletsCounter: number;
   accessoriesCounter: number;
@@ -19,6 +25,7 @@ export const useProductStore = create<ProductStore>((set, get) => ({
   products: [],
   discountProducts: [],
   brandNewProducts: [],
+  mayLikeProducts: [],
   mobilesCounter: 0,
   tabletsCounter: 0,
   accessoriesCounter: 0,
@@ -31,10 +38,11 @@ export const useProductStore = create<ProductStore>((set, get) => ({
     set({ isLoading: true, error: null });
 
     try {
-      const [products, discountProducts, brandNewProducts] = await Promise.all([
+      const [products, discountProducts, brandNewProducts, mayLikeProducts] = await Promise.all([
         getProducts(),
         getDiscountProducts(),
         getBrandNewProducts(),
+        getMayLikeProducts(),
       ]);
 
       const counters = products.reduce(
@@ -51,6 +59,7 @@ export const useProductStore = create<ProductStore>((set, get) => ({
         products,
         discountProducts,
         brandNewProducts,
+        mayLikeProducts,
         mobilesCounter: counters.mobiles,
         tabletsCounter: counters.tablets,
         accessoriesCounter: counters.accessories,

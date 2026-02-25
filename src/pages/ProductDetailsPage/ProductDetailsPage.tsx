@@ -13,12 +13,12 @@ import {
   RoundButton,
   ArrowButton,
 } from '../../components/common/Buttons';
-import { HotPricesCarousel } from '../../components/HotPricesCarousel/HotPricesCarousel';
 import type { ProductCategory, ProductDetails } from '../../types/product';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { colorMap } from '../../utils/colorMap';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { MayLikeCarousel } from '../../components/MayLikeCarousel/MayLikeCarousel';
 
 export const ProductDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -318,7 +318,7 @@ export const ProductDetailsPage = () => {
         </div>
       </div>
 
-      <HotPricesCarousel />
+      <MayLikeCarousel />
     </div>
   );
 };
