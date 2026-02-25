@@ -39,7 +39,6 @@ $gut: 16px;
   column-gap: $gut;
   align-items: start;
 
-
   @media (max-width: ($mobile - 1px)) {
     grid-template-columns: 1fr;
     row-gap: $spacing-xl;
