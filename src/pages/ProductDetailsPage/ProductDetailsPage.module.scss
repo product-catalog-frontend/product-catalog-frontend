@@ -35,7 +35,7 @@ $gut: 16px;
 
 .mainContent {
   display: grid;
-  grid-template-columns: #{gw-d(12)} #{gw-d(7)} #{gw-d(4)};
+  grid-template-columns: #{gw-d(7)} #{gw-d(5)};
   column-gap: $gut;
   align-items: start;
 
@@ -122,13 +122,13 @@ $gut: 16px;
 
 .itemId {
   @extend .small-text;
-  color: $secondary-color;
+  color: var(--secondary-color);
+  width: 100%;
   text-align: right;
+  margin-bottom: $spacing-xs;
 }
 
 .itemIdDesktop {
-  padding-top: $spacing-xs;
-
   @media (max-width: ($desktop - 1px)) {
     display: none;
   }
@@ -136,10 +136,13 @@ $gut: 16px;
 
 .itemIdMobile {
   display: none;
-  margin-bottom: $spacing-lg;
 
   @media (max-width: ($desktop - 1px)) {
     display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 24px 0 $spacing-lg;
   }
 }
 
@@ -151,7 +154,7 @@ $gut: 16px;
 
 .smallTextSecondary {
   @extend .small-text;
-  color: $secondary-color;
+  color: var(--secondary-color);
   margin-bottom: $spacing-sm;
 }
 
@@ -171,17 +174,17 @@ $gut: 16px;
   align-items: center;
   gap: $spacing-sm;
   margin-bottom: $spacing-md;
-}
 
-.price {
-  margin: 0;
-}
+  .price {
+    margin: 0;
+  }
 
-.oldPrice {
-  @extend h2;
-  font-weight: $font-regular;
-  color: $secondary-color;
-  text-decoration: line-through;
+  .oldPrice {
+    @extend h2;
+    font-weight: $font-regular;
+    color: var(--secondary-color);
+    text-decoration: line-through;
+  }
 }
 
 .actions {
@@ -202,16 +205,16 @@ $gut: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.smallTextPrimary {
-  @extend .small-text;
-  color: $primary-color;
+  .smallTextPrimary {
+    @extend .small-text;
+    color: var(--primary-color);
+  }
 }
 
 .detailsSection {
   display: grid;
-  grid-template-columns: #{gw-d(12)} #{gw-d(11)};
+  grid-template-columns: #{gw-d(7)} #{gw-d(5)};
   column-gap: $gut;
   padding-top: 80px;
 

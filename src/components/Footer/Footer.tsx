@@ -4,9 +4,12 @@ import { Icon } from '../common/Icon';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { useTranslation } from 'react-i18next';
 
-export const Footer: React.FC = () => {
-  const { t } = useTranslation();
+interface Props {
+  isDark: boolean;
+}
 
+export const Footer: React.FC<Props> = ({ isDark }: Props) => {
+  const { t } = useTranslation();
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -20,10 +23,16 @@ export const Footer: React.FC = () => {
           to="/"
           className={styles.logo}
         >
-          <img
-            src={logo}
-            alt="NiceGadgets"
-          />
+          {isDark ?
+            <img
+              src="img/Logo.svg"
+              alt="NiceGadgets"
+            />
+          : <img
+              src={logo}
+              alt="NiceGadgets"
+            />
+          }
         </Link>
 
         <nav className={`${styles.links} uppercase`}>

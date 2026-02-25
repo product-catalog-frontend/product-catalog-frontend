@@ -26,8 +26,10 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    border: 1px solid $slider-border-color;
+    border: 1px solid var(--slider-border-color);
     cursor: pointer;
+    background-color: var(--slider-bg);
+    color: var(--text-color);
 
     @include mobile {
       display: none;
@@ -78,13 +80,13 @@
       width: 16px;
       height: 4px;
       border-radius: 0;
-      background: $elements-color;
+      background: var(--pagination-bg);
       opacity: 1;
       cursor: pointer;
     }
 
     :global(.swiper-pagination-bullet-active) {
-      background: $icons-color;
+      background: var(--pagination-active-bg);
       width: 28px;
     }
   }

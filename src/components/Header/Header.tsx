@@ -6,6 +6,8 @@ import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import { useFavouritesStore } from '../../store/useFavouritesStore';
 import { useCartStore } from '../../store/useCartStore';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
+import { ThemeButton } from '../common/Buttons/ThemeButton/ThemeButton';
+import { useThemeStore } from '../../store/useThemeStore';
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '../common/LanguageSwitcher';
 import cn from 'classnames';
@@ -15,6 +17,8 @@ export const Header: React.FC = () => {
   const { favourites } = useFavouritesStore();
   const totalCartItems = useCartStore((state) => state.totalItems());
   const { t } = useTranslation();
+
+  const isDark = useThemeStore((state) => state.isDark);
 
   const logo = getCleanImagePath('/img/logo.svg');
 
@@ -33,7 +37,7 @@ export const Header: React.FC = () => {
           className={styles.logoContainer}
         >
           <img
-            src={logo}
+            src={isDark ? 'img/Logo.svg' : logo}
             alt="NiceGadgets"
           />
         </Link>
@@ -56,6 +60,7 @@ export const Header: React.FC = () => {
 
         <div className={styles.buttons}>
           <div className={styles.iconButton}>
+            <ThemeButton />
             <LanguageSwitcher />
           </div>
 

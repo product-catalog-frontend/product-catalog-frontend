@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './BurgerMenu.module.scss';
 import { Icon } from '../../common/Icon';
+import { ThemeButton } from '../../common/Buttons/ThemeButton/ThemeButton';
 import { LanguageSwitcher } from '../../common/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
@@ -52,6 +53,7 @@ export const BurgerMenu: React.FC<Props> = ({
 
       <div className={styles.bottom}>
         <div className={styles.bottomButton}>
+          <ThemeButton />
           <LanguageSwitcher />
         </div>
 

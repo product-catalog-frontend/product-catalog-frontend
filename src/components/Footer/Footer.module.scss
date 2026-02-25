@@ -3,7 +3,7 @@
 @use '../../assets/styles/utils/mixins.scss' as *;
 
 .footer {
-  border-top: 1px solid $elements-color;
+  border-top: 1px solid var(--border-color);
   background-color: $white;
   margin-top: 50px;
 }
@@ -26,7 +26,7 @@
   a {
     position: relative; // нужно для полоски
     text-decoration: none;
-    color: $secondary-color;
+    color: var(--secondary-color);
     font-size: 12px;
     text-transform: uppercase;
     padding-bottom: 8px;
@@ -34,7 +34,7 @@
     transition: color 0.2s ease;
 
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
   }
 }
@@ -71,8 +71,9 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid $elements-color;
-  background: $white;
+  border: 1px solid var(--slider-border-color);
+  background-color: var(--slider-bg);
+  color: var(--text-color);
   cursor: pointer;
 
   transition: all 0.2s ease;

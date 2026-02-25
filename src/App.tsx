@@ -13,6 +13,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import styles from './App.module.scss';
 import { useEffect } from 'react';
 import { useProductStore } from './store/useProductStore';
+import { useThemeStore } from './store/useThemeStore';
 
 export const App = () => {
   const fetchProducts = useProductStore((state) => state.fetchProducts);
@@ -20,6 +21,16 @@ export const App = () => {
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
+
+  const isDark = useThemeStore((state) => state.isDark);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [isDark]);
 
   return (
     <div className={styles.app}>
@@ -66,7 +77,7 @@ export const App = () => {
         </Routes>
       </main>
 
-      <Footer />
+      <Footer isDark={isDark} />
     </div>
   );
 };

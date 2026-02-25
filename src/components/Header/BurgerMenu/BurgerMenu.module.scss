@@ -9,7 +9,7 @@
   height: calc(100vh - 49px);
   width: 100%;
 
-  background: $white;
+  background-color: var(--main-bg);
   display: flex;
   flex-direction: column;
 
@@ -33,17 +33,17 @@
 .navLink {
   position: relative;
   text-decoration: none;
-  color: $secondary-color;
+  color: var(--secondary-color);
 
   transition: color 0.2s ease;
 
   &:hover {
-    color: $primary-color;
+    color: var(--primary-color);
   }
 }
 
 .active {
-  color: $primary-color;
+  color: var(--primary-color);
 
   &::after {
     content: '';
@@ -60,7 +60,7 @@
   margin-top: auto;
   display: flex;
   height: $spacing-big;
-  border-top: 1px solid $elements-color;
+  border-top: 1px solid var(--border-color);
 }
 
 .bottomButton {
@@ -68,7 +68,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 1px solid $elements-color;
+  border-right: 1px solid var(--border-color);
   position: relative;
   bottom: 0;
 }
@@ -92,7 +92,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background-color: $primary-color;
+    background-color: var(--primary-color);
   }
 }
 
@@ -109,8 +109,8 @@
   justify-content: center;
 
   background-color: $error-color;
-  border: 1px solid $white;
-  color: $white;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
   font-size: 9px;
   font-weight: $font-semibold;
   border-radius: 50%;

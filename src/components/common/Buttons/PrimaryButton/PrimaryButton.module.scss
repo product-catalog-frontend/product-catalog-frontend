@@ -10,7 +10,7 @@
   height: 100%;
   width: 100%;
 
-  background: var.$icons-color;
+  background: var(--buy-button-bg);
   color: var.$white;
   border: 1px solid transparent;
 
@@ -25,7 +25,7 @@
 }
 
 .selected {
-  background: var.$white;
-  color: var.$success-color;
-  border: 1px solid var.$elements-color;
+  background: var(--card-button-bg);
+  color: var(--card-button-color);
+  border: 1px solid var(--card-button-border);
 }
