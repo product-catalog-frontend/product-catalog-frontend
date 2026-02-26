@@ -37,17 +37,43 @@ export const ProductsPage = () => {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getCatalogProducts({ category, page, perPage, sort }).then(({ products, total }) => {
-      setProducts(products);
-      setTotal(total);
+    let isMounted = true;
 
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+    const loadProducts = async () => {
+      setIsLoading(true);
+
+      try {
+        const { products, total } = await getCatalogProducts({
+          category,
+          page,
+          perPage,
+          sort,
+        });
+
+        if (isMounted) {
+          setProducts(products);
+          setTotal(total);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadProducts();
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
     });
+
+    return () => {
+      isMounted = false;
+    };
   }, [category, page, perPage, sort]);
 
   const pageCount = perPage === 'all' ? 1 : Math.ceil(total / Number(perPage)) || 1;
@@ -143,7 +169,10 @@ export const ProductsPage = () => {
             </div>
           </div>
 
-          <ProductList products={products} />
+          <ProductList
+            isLoading={isLoading}
+            products={products}
+          />
 
           {perPage !== 'all' && pageCount > 1 && (
             <div className={styles.pagination}>

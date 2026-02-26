@@ -1,6 +1,9 @@
 import Skeleton from 'react-loading-skeleton';
 import styles from './DetailPageSkeleton.module.scss';
-
+const THUMBNAILS_COUNT = 4;
+const OPTIONS_COUNT = 3;
+const DETAILS_COUNT = 2;
+const TITLE_COUNT = 8;
 export const DetailPageSkeleton = () => {
   return (
     <div className={styles.container}>
@@ -11,7 +14,7 @@ export const DetailPageSkeleton = () => {
       <div className={styles.mainContent}>
         <div className={styles.gallery}>
           <div className={styles.thumbnails}>
-            {Array.from({ length: 4 }).map((_, i) => (
+            {Array.from({ length: THUMBNAILS_COUNT }).map((_, i) => (
               <Skeleton
                 key={i}
                 className={styles.thumbnail}
@@ -26,7 +29,7 @@ export const DetailPageSkeleton = () => {
         <div className={styles.infoPanel}>
           <Skeleton className={styles.optionTitle} />
           <div className={styles.colorOptions}>
-            {Array.from({ length: 4 }).map((_, i) => (
+            {Array.from({ length: THUMBNAILS_COUNT }).map((_, i) => (
               <Skeleton
                 key={i}
                 className={styles.colorCircle}
@@ -36,7 +39,7 @@ export const DetailPageSkeleton = () => {
 
           <Skeleton className={styles.optionTitle} />
           <div className={styles.capacityOptions}>
-            {Array.from({ length: 3 }).map((_, i) => (
+            {Array.from({ length: OPTIONS_COUNT }).map((_, i) => (
               <Skeleton
                 key={i}
                 className={styles.capacityButton}
@@ -53,7 +56,7 @@ export const DetailPageSkeleton = () => {
           </div>
 
           <div className={styles.specsShort}>
-            {Array.from({ length: 4 }).map((_, i) => (
+            {Array.from({ length: THUMBNAILS_COUNT }).map((_, i) => (
               <Skeleton
                 key={i}
                 className={styles.specLine}
@@ -67,7 +70,7 @@ export const DetailPageSkeleton = () => {
 
       <div className={styles.detailsSection}>
         <Skeleton className={styles.sectionTitle} />
-        {Array.from({ length: 2 }).map((_, i) => (
+        {Array.from({ length: DETAILS_COUNT }).map((_, i) => (
           <div
             key={i}
             className={styles.descriptionItem}
@@ -78,7 +81,7 @@ export const DetailPageSkeleton = () => {
         ))}
 
         <Skeleton className={styles.sectionTitle} />
-        {Array.from({ length: 8 }).map((_, i) => (
+        {Array.from({ length: TITLE_COUNT }).map((_, i) => (
           <Skeleton
             key={i}
             className={styles.techSpecLine}

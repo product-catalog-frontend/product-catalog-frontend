@@ -10,40 +10,38 @@ import { Link } from 'react-router-dom';
 import { ProductCardSkeleton } from './ProductCardSkeleton';
 
 interface ProductCardProps {
-  product: Product;
+  product?: Product;
   isLoading?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, isLoading = false }) => {
-  const { image, name, price, screen, capacity, ram, fullPrice, isOnSale } = product;
-
   const favourites = useFavouritesStore((state) => state.favourites);
-
   const toggleFavourite = useFavouritesStore((state) => state.toggleFavourite);
 
+  const addToCart = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeItem);
+  const cart = useCartStore((state) => state.cart);
+
+  if (isLoading || !product) {
+    return <ProductCardSkeleton />;
+  }
+
+  const { image, name, price, screen, capacity, ram, fullPrice, isOnSale } = product;
+
   const isFavourite = favourites.some((item) => item.id === product.id);
+  const isInCart = cart.some((item) => item.id === product.id);
 
   const handleFavouriteClick = () => {
     toggleFavourite(product);
   };
 
-  const addToCart = useCartStore((state) => state.addToCart);
-  const removeFromCart = useCartStore((state) => state.removeItem);
-  const cart = useCartStore((state) => state.cart);
-  const isInCart = product ? cart.some((item) => item.id === product.id) : false;
-
   const handleAddToCart = () => {
-    if (product) {
-      if (!isInCart) {
-        addToCart(product);
-      } else {
-        removeFromCart(product.id);
-      }
+    if (!isInCart) {
+      addToCart(product);
+    } else {
+      removeFromCart(product.id);
     }
   };
-  if (isLoading || !product) {
-    return <ProductCardSkeleton />;
-  }
   return (
     <article className={styles.card}>
       <Link

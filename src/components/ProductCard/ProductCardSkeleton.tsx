@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton';
 import styles from './ProductCardSkeleton.module.scss';
-
+const OPTIONS_SKELETON = [1, 2, 3];
 export const ProductCardSkeleton = () => {
   return (
     <article className={styles.card}>
@@ -25,7 +25,7 @@ export const ProductCardSkeleton = () => {
       </div>
 
       <div className={styles.options}>
-        {[1, 2, 3].map((i) => (
+        {OPTIONS_SKELETON.map((i) => (
           <div
             key={i}
             className={styles.option}
