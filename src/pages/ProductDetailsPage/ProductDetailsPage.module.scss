@@ -35,9 +35,12 @@ $gut: 16px;
 
 .mainContent {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: $gut;
+  grid-template-columns: #{gw-d(12) + $gut} #{gw-d(7)} #{gw-d(4)};
   align-items: start;
+
+  @media (max-width: ($desktop - 1px)) {
+    grid-template-columns: #{gw-t(7) + $gut} 1fr;
+  }
 
   @media (max-width: ($mobile - 1px)) {
     grid-template-columns: 1fr;
@@ -48,6 +51,7 @@ $gut: 16px;
 .gallery {
   display: flex;
   gap: $gut;
+  min-width: 0;
 
   @media (max-width: ($mobile - 1px)) {
     flex-direction: column-reverse;
@@ -114,17 +118,17 @@ $gut: 16px;
 .infoPanel {
   display: flex;
   flex-direction: column;
-}
+  min-width: 0;
+  margin-left: gw-d(1) + $gut;
 
-.itemId {
-  @extend .small-text;
-  color: var(--secondary-color);
-  width: 100%;
-  text-align: right;
-  margin-bottom: $spacing-xs;
+  @media (max-width: ($desktop - 1px)) {
+    margin-left: 0;
+  }
 }
 
 .itemIdDesktop {
+  padding-top: $spacing-xs;
+
   @media (max-width: ($desktop - 1px)) {
     display: none;
   }
@@ -132,13 +136,10 @@ $gut: 16px;
 
 .itemIdMobile {
   display: none;
+  margin-bottom: $spacing-lg;
 
   @media (max-width: ($desktop - 1px)) {
     display: block;
-    width: 100%;
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 24px 0 $spacing-lg;
   }
 }
 
@@ -184,11 +185,10 @@ $gut: 16px;
 }
 
 .actions {
+  height: 48px;
   display: flex;
-  height: 40px;
   gap: $spacing-sm;
   margin-bottom: $spacing-xl;
-  flex-wrap: wrap;
 }
 
 .specsShort {
@@ -256,6 +256,13 @@ $gut: 16px;
 }
 
 .techSpecsBlock {
+  min-width: 0;
+  margin-left: gw-d(1) + $gut;
+
+  @media (max-width: ($desktop - 1px)) {
+    margin-left: 0;
+  }
+
   h3 {
     @include section-header;
   }

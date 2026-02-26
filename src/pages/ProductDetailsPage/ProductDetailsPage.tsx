@@ -113,12 +113,7 @@ export const ProductDetailsPage = () => {
   if (isLoading || !details || !product) {
     return (
       <div className={styles.container}>
-        {!product && !details ?
-          <img
-            src={getCleanImagePath('product-not-found.png')}
-            alt="Not found"
-          />
-        : <div>{t('productDetails.loading')}</div>}
+        <div>{t('productDetails.loading')}</div>
       </div>
     );
   }

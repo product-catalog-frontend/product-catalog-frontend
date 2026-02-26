@@ -9,12 +9,13 @@ interface Props {
 }
 
 export const Footer: React.FC<Props> = ({ isDark }: Props) => {
+  const whiteLogo = getCleanImagePath('/img/logo-white.svg');
+  const darkLogo = getCleanImagePath('/img/logo-dark.svg');
+
   const { t } = useTranslation();
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const logo = getCleanImagePath('/img/logo.svg');
 
   return (
     <footer className={styles.footer}>
@@ -23,16 +24,10 @@ export const Footer: React.FC<Props> = ({ isDark }: Props) => {
           to="/"
           className={styles.logo}
         >
-          {isDark ?
-            <img
-              src="img/Logo.svg"
-              alt="NiceGadgets"
-            />
-          : <img
-              src={logo}
-              alt="NiceGadgets"
-            />
-          }
+          <img
+            src={isDark ? whiteLogo : darkLogo}
+            alt="NiceGadgets"
+          />
         </Link>
 
         <nav className={`${styles.links} uppercase`}>

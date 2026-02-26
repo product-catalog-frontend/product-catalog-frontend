@@ -20,7 +20,8 @@ export const Header: React.FC = () => {
 
   const isDark = useThemeStore((state) => state.isDark);
 
-  const logo = getCleanImagePath('/img/logo.svg');
+  const whiteLogo = getCleanImagePath('/img/logo-white.svg');
+  const darkLogo = getCleanImagePath('/img/logo-dark.svg');
 
   const navItems = [
     { to: '/', label: 'home' },
@@ -37,7 +38,7 @@ export const Header: React.FC = () => {
           className={styles.logoContainer}
         >
           <img
-            src={isDark ? 'img/Logo.svg' : logo}
+            src={isDark ? whiteLogo : darkLogo}
             alt="NiceGadgets"
           />
         </Link>
