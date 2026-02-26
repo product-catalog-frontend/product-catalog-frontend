@@ -91,7 +91,11 @@ export const ProductDetailsPage = () => {
     }
   }, [isLoading, product, details, category, navigate]);
 
-  if (!isLoading && !product && !details) {
+  if (isLoading) {
+    return <DetailPageSkeleton />;
+  }
+
+  if (!product && !details) {
     return (
       <div className={styles.notFound}>
         <img
@@ -111,7 +115,7 @@ export const ProductDetailsPage = () => {
     );
   }
 
-  if (isLoading || !details || !product) {
+  if (!details || !product) {
     return <DetailPageSkeleton />;
   }
 
