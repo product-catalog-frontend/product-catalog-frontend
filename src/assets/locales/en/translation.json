@@ -74,6 +74,8 @@
     "selectCapacity": "Select capacity",
     "about": "About",
     "techSpecs": "Tech specs",
+    "notApplicable": "Not applicable",
+    "mayLike": "You may also like",
     "specs": {
       "resolution": "Resolution",
       "processor": "Processor",
