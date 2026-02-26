@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './CartPage.module.scss';
 import { PrimaryButton, ArrowButton } from '../../components/common/Buttons';
 import { CartItem } from '../../components/CartItem/CartItem';
@@ -5,6 +6,7 @@ import { useCartStore } from '../../store/useCartStore';
 import { useTranslation } from 'react-i18next';
 import { getCleanImagePath } from '../../utils/getCleanImagePath';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { CheckoutModal } from '../../components/CheckoutModal/CheckoutModal';
 
 export const CartPage = () => {
   const cart = useCartStore((state) => state.cart);
@@ -12,12 +14,9 @@ export const CartPage = () => {
   const changeQuantity = useCartStore((state) => state.changeQuantity);
   const totalAmount = useCartStore((state) => state.totalAmount());
   const totalItems = useCartStore((state) => state.totalItems());
-  const clearCart = useCartStore((state) => state.clearCart);
   const { t } = useTranslation();
 
-  const handleCheckout = () => {
-    clearCart();
-  };
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   return (
     <div className={styles.page}>
@@ -58,11 +57,20 @@ export const CartPage = () => {
               <p className={styles.totalItems}>{t('cart.total', { count: totalItems })}</p>
             </div>
             <div className={styles.checkout}>
-              <PrimaryButton onClick={handleCheckout}>{t('cart.checkout')}</PrimaryButton>
+              <PrimaryButton onClick={() => setIsCheckoutOpen(true)}>
+                {t('cart.checkout')}
+              </PrimaryButton>
             </div>
           </div>
         </div>
       }
+
+      {isCheckoutOpen && (
+        <CheckoutModal
+          amount={totalAmount}
+          onClose={() => setIsCheckoutOpen(false)}
+        />
+      )}
     </div>
   );
 };
