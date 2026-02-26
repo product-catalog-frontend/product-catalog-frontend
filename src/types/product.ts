@@ -43,3 +43,7 @@ export interface Product {
 }
 
 export type ProductCategory = 'phones' | 'tablets' | 'accessories';
+
+export type CartItemType = Product & {
+  quantity: number;
+};

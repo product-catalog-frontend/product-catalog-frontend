@@ -1,11 +1,7 @@
 import React from 'react';
 import styles from './CartItem.module.scss';
 import { Icon } from '../common/Icon';
-import type { Product } from '../../types/product';
-
-export type CartItemType = Product & {
-  quantity: number;
-};
+import type { CartItemType } from '../../types/product';
 
 interface CartItemProps {
   item: CartItemType;

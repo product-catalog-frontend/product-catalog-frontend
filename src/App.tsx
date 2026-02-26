@@ -1,4 +1,11 @@
+import 'react-loading-skeleton/dist/skeleton.css';
 import { Routes, Route } from 'react-router-dom';
+import styles from './App.module.scss';
+import { useEffect } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { useLocation } from 'react-router-dom';
+
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
@@ -8,14 +15,17 @@ import { CartPage } from './pages/CartPage';
 import { FavouritesPage } from './pages/FavouritesPage';
 import { About } from './pages/AboutPage/About';
 import { Contacts } from './pages/ContactsPage/Contacts';
-import { Privacy } from './pages/PrivacyPage/Privacy';
+import { PrivacyPage } from './pages/PrivacyPage';
 import { NotFoundPage } from './pages/NotFoundPage';
-import styles from './App.module.scss';
-import { useEffect } from 'react';
 import { useProductStore } from './store/useProductStore';
 import { useThemeStore } from './store/useThemeStore';
-import 'react-loading-skeleton/dist/skeleton.css';
+import { OrderSuccessPage } from './pages/OrderSuccessPage';
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+
 export const App = () => {
+  const location = useLocation();
+  console.log('current path:', location.pathname);
   const fetchProducts = useProductStore((state) => state.fetchProducts);
 
   useEffect(() => {
@@ -42,6 +52,16 @@ export const App = () => {
             path="/"
             element={<HomePage />}
           />
+
+          <Route
+            path="/order-success"
+            element={
+              <Elements stripe={stripePromise}>
+                <OrderSuccessPage />
+              </Elements>
+            }
+          />
+
           <Route
             path="/:category"
             element={<ProductsPage />}
@@ -68,8 +88,9 @@ export const App = () => {
           />
           <Route
             path="/privacy"
-            element={<Privacy />}
+            element={<PrivacyPage />}
           />
+
           <Route
             path="*"
             element={<NotFoundPage />}
