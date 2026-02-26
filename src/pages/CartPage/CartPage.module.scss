@@ -1,110 +1,119 @@
 @use '../../assets/styles/variables.scss' as *;
 
-.cartPage {
-  display: flex;
-  gap: $spacing-xl;
-  padding: $spacing-lg;
-}
-
-.cartTitle {
-  margin-left: $spacing-md;
-  margin-bottom: $spacing-xl;
-}
-
-.cartItems {
-  flex: 2;
+.page {
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
-  margin-bottom: $spacing-xxl;
-}
+  padding: 0 $spacing-xl;
+  margin-top: $spacing-lg;
+  margin-bottom: $spacing-big;
 
-.cartSummary {
-  flex: 1;
-  border: 1px solid $elements-color;
-  padding: $spacing-lg;
-  height: fit-content;
-  background-color: $white;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-md;
-}
-
-.totalAmount {
-  text-align: center;
-  font-weight: $font-bold;
-  font-size: 32px;
-  line-height: 41px;
-}
-
-.totalItems {
-  text-align: center;
-  color: $secondary-color;
-  padding-bottom: $spacing-sm;
-  border-bottom: 1px solid $elements-color;
-}
-
-.checkoutBtn {
-  margin-top: $spacing-md;
-  padding: $spacing-md;
-  background-color: $primary-color;
-  color: $white;
-  border: none;
-  border-radius: $border-radius-md;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: $font-semibold;
-  transition: $transition-default;
-
-  &:hover {
-    opacity: 0.85;
-  }
-}
-
-.cartEmpty {
-  font-size: 20px;
-  text-align: center;
-  padding: $spacing-xxl;
-  color: $secondary-color;
-}
-
-.arrowButtonWrapper {
-  width: 100%;
-
-  button {
-    background-color: transparent;
-    border: none;
-    margin-top: $spacing-xl;
-    margin-bottom: $spacing-md;
-    margin-left: $spacing-md;
-  }
-}
-
-@media (max-width: $tablet) {
-  .cartPage {
-    flex-direction: column;
-  }
-
-  .cartSummary {
-    width: 100%;
-  }
-}
-
-@media (max-width: $mobile) {
-  .cartPage {
-    padding: $spacing-md;
-    gap: $spacing-lg;
-  }
+  min-height: calc(100vh - 200px);
 
   .cartTitle {
-    margin-left: $spacing-sm;
+    margin-top: $spacing-md;
+    margin-bottom: $spacing-sm;
+    margin-left: $spacing-md;
+
+    @media (max-width: $tablet) {
+      margin-left: 0;
+    }
+  }
+
+  .cartPage {
+    display: flex;
+    gap: $spacing-xl;
+    padding: $spacing-lg 0;
+
+    @media (max-width: $tablet) {
+      flex-direction: column;
+    }
+  }
+
+  .emptyState {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    padding: $spacing-xxl 0;
+
+    .emptyImage {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+
+    .emptyMessage {
+      margin-top: $spacing-md;
+      font-size: 15px;
+      font-weight: 600;
+      color: $secondary-color;
+    }
   }
 
   .cartItems {
-    margin-bottom: $spacing-xl;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: $spacing-md;
+    margin-bottom: $spacing-xxl;
   }
 
   .cartSummary {
-    margin-top: $spacing-lg;
+    flex: 1;
+    height: fit-content;
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    background-color: var(--main-bg, $white);
+    border: 1px solid var(--slider-border-color, $elements-color);
+  }
+
+  .totalAmount {
+    font-size: 32px;
+    line-height: 41px;
+    font-weight: $font-bold;
+    text-align: center;
+    color: var(--primary-text-color, inherit);
+  }
+
+  .totalItems {
+    padding-bottom: $spacing-sm;
+    text-align: center;
+    color: $secondary-color;
+    border-bottom: 1px solid var(--slider-border-color, $elements-color);
+  }
+
+  .checkout {
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: $spacing-md;
+
+    &Btn {
+      width: 100%;
+      padding: $spacing-md;
+      font-size: 16px;
+      font-weight: $font-semibold;
+      color: $white;
+      background-color: $primary-color;
+      border: none;
+      border-radius: $border-radius-md;
+      cursor: pointer;
+      transition: $transition-default;
+
+      &:hover {
+        opacity: 0.85;
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
   }
 }

@@ -3,7 +3,7 @@
 
 .about {
   padding: var.$spacing-xxl var.$spacing-lg;
-  color: var.$primary-color;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   gap: var.$spacing-xl;

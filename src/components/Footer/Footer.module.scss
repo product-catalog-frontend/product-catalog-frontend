@@ -3,15 +3,15 @@
 @use '../../assets/styles/utils/mixins.scss' as *;
 
 .footer {
-  border-top: 1px solid $elements-color;
-  background-color: $white;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--main-bg);
+  margin-top: 50px;
 }
 
 .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: $spacing-xl 152px;
 }
 
@@ -24,17 +24,32 @@
   gap: 106px;
 
   a {
+    position: relative;
     text-decoration: none;
-    color: $secondary-color;
+    color: var(--secondary-color);
     font-size: 12px;
-    letter-spacing: 0.04em;
     text-transform: uppercase;
+    padding-bottom: 8px;
 
     transition: color 0.2s ease;
 
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
+  }
+}
+
+.active {
+  color: var(--text-color);
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-color);
   }
 }
 
@@ -56,8 +71,9 @@
   align-items: center;
   justify-content: center;
 
-  border: 1px solid $elements-color;
-  background: $white;
+  border: 1px solid var(--slider-border-color);
+  background-color: var(--slider-bg);
+  color: var(--text-color);
   cursor: pointer;
 
   transition: all 0.2s ease;

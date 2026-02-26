@@ -3,12 +3,14 @@ import '../../assets/styles/variables.scss';
 import { ChevronButton } from '../common/Buttons';
 import { Slider } from '../Slider/Slider';
 import { useProductStore } from '../../store/useProductStore';
+import { useTranslation } from 'react-i18next';
 
 export const HotPricesCarousel = () => {
   const discountProducts = useProductStore((state) => state.discountProducts);
+  const { t } = useTranslation();
   return (
     <div className={styles.banner}>
-      <h2>Hot prices</h2>
+      <h2>{t('home.hotPrices')}</h2>
       <ChevronButton
         direction="left"
         className={styles['js-prev']}

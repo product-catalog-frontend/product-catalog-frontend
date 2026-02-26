@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Icon } from '../common/Icon';
 import styles from './Breadcrumbs.module.scss';
@@ -9,6 +10,12 @@ interface BreadcrumbsProps {
 }
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ categoryName, productName }) => {
+  const { t } = useTranslation();
+
+  const translatedCategory = t(`products.category.${categoryName}`, {
+    defaultValue: categoryName.charAt(0).toUpperCase() + categoryName.slice(1),
+  });
+
   return (
     <nav
       className={styles.breadcrumbs}
@@ -37,12 +44,9 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ categoryName, productN
               to={`/${categoryName.toLowerCase()}`}
               className={styles.link}
             >
-              {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
+              {translatedCategory}
             </Link>
-          : <span className={styles.current}>
-              {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
-            </span>
-          }
+          : <span className={styles.current}>{translatedCategory}</span>}
         </>
       )}
 

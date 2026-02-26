@@ -16,7 +16,7 @@
   }
 
   .link {
-    color: $primary-color;
+    color: var(--text-color);
     text-decoration: none;
     display: flex;
     align-items: center;

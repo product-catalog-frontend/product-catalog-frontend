@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Dropdown,
   DropdownTrigger,
@@ -19,15 +20,6 @@ type CategoryParam = {
   category?: 'phones' | 'tablets' | 'accessories';
 };
 
-const SORT_OPTIONS = [
-  { label: 'Newest', value: 'age' },
-  { label: 'Alphabetically', value: 'title' },
-  { label: 'Low to High', value: 'priceAsc' },
-  { label: 'High to Low', value: 'priceDesc' },
-];
-
-const ITEMS_OPTIONS = ['4', '8', '16', 'all'];
-
 export const ProductsPage = () => {
   const { category } = useParams<CategoryParam>();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -38,6 +30,22 @@ export const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { t } = useTranslation();
+
+  const ITEMS_OPTIONS = [
+    { label: '4', value: '4' },
+    { label: '8', value: '8' },
+    { label: '16', value: '16' },
+    { label: t('products.all'), value: 'all' },
+  ];
+
+  const SORT_OPTIONS = [
+    { label: t('sort.newest'), value: 'age' },
+    { label: t('sort.alphabetically'), value: 'title' },
+    { label: t('sort.lowToHigh'), value: 'priceAsc' },
+    { label: t('sort.highToLow'), value: 'priceDesc' },
+  ];
 
   useEffect(() => {
     let isMounted = true;
@@ -125,17 +133,19 @@ export const ProductsPage = () => {
       />
 
       <h1 className={styles.title}>
-        {category === 'phones' && 'Mobile phones'}
-        {category === 'tablets' && 'Tablets'}
-        {category === 'accessories' && 'Accessories'}
+        {category === 'phones' && t('products.category.phones')}
+        {category === 'tablets' && t('products.category.tablets')}
+        {category === 'accessories' && t('products.category.accessories')}
       </h1>
-      <p className={styles.count}>{total} models</p>
+      <p className={styles.count}>
+        {total} {t('products.models')}
+      </p>
 
       {total !== 0 ?
         <>
           <div className={styles.controls}>
             <div className={styles.control}>
-              <span className={styles.controlLabel}>Sort by</span>
+              <span className={styles.controlLabel}>{t('products.sortBy')}</span>
               <Dropdown>
                 <DropdownTrigger>{currentSortLabel}</DropdownTrigger>
                 <DropdownContent>
@@ -152,16 +162,16 @@ export const ProductsPage = () => {
             </div>
 
             <div className={styles.control}>
-              <span className={styles.controlLabel}>Items on page</span>
+              <span className={styles.controlLabel}>{t('products.itemsOnPage')}</span>
               <Dropdown>
-                <DropdownTrigger>{perPage}</DropdownTrigger>
+                <DropdownTrigger>{perPage === 'all' ? t('products.all') : perPage}</DropdownTrigger>
                 <DropdownContent>
                   {ITEMS_OPTIONS.map((option) => (
                     <DropdownItem
-                      key={option}
-                      onSelect={() => handlePerPageChange(option)}
+                      key={option.value}
+                      onSelect={() => handlePerPageChange(option.value)}
                     >
-                      {option}
+                      {option.label}
                     </DropdownItem>
                   ))}
                 </DropdownContent>
@@ -185,7 +195,7 @@ export const ProductsPage = () => {
             </div>
           )}
         </>
-      : <p className={styles.noProducts}>No products found in this category.</p>}
+      : <p className={styles.noProducts}>{t('products.noProducts')}</p>}
     </div>
   );
 };

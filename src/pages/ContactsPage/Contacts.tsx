@@ -1,21 +1,32 @@
 import styles from './Contacts.module.scss';
 import { Icon } from '../../components/common/Icon';
 import { ArrowButton } from '../../components/common/Buttons';
+import { useTranslation } from 'react-i18next';
+import { getCleanImagePath } from '../../utils/getCleanImagePath';
 
 export const Contacts: React.FC = () => {
+  const { t } = useTranslation();
+
+  const dmytroHPhoto = getCleanImagePath('/img/dmytroh-contacts.jpg');
+  const dmytroKPhoto = getCleanImagePath('/img/dmytrok-contacts.jpg');
+  const stanislavPhoto = getCleanImagePath('/img/stanislav-contacts.webp');
+  const adelinaPhoto = getCleanImagePath('/img/adelina-contacts.jpg');
+  const renataPhoto = getCleanImagePath('/img/renata-contacts.jpg');
+  const oleksandrPhoto = getCleanImagePath('/img/oleksandr-contacts.webp');
+
   return (
     <main className={styles.contacts}>
       <ArrowButton
         text="Back"
         back
       />
-      <h1>TEAM CONTACTS</h1>
+      <h1>{t('contacts.title')}</h1>
 
-      <p className={styles.subtitle}>Get in touch with us for collaboration or any questions</p>
+      <p className={styles.subtitle}>{t('contacts.subtitle')}</p>
       <section className={styles.team}>
         <div className={styles.card}>
           <img
-            src="/img/dmytroh-contacts.webp"
+            src={dmytroHPhoto}
             alt="Dmytro Halieba"
             className={styles.photo}
           />
@@ -53,7 +64,7 @@ export const Contacts: React.FC = () => {
 
         <div className={styles.card}>
           <img
-            src="/img/stanislav-contacts.webp"
+            src={stanislavPhoto}
             alt="Stanislav Mosakov"
             className={styles.photo}
           />
@@ -91,7 +102,7 @@ export const Contacts: React.FC = () => {
 
         <div className={styles.card}>
           <img
-            src="/img/dmytrok-contacts.jpg"
+            src={dmytroKPhoto}
             alt="Dmytro Kerziuk"
             className={styles.photo}
           />
@@ -129,7 +140,7 @@ export const Contacts: React.FC = () => {
 
         <div className={styles.card}>
           <img
-            src="/img/renata-contacts.jpg"
+            src={renataPhoto}
             alt="Renata Khotiakova"
             className={styles.photo}
           />
@@ -167,7 +178,7 @@ export const Contacts: React.FC = () => {
 
         <div className={styles.card}>
           <img
-            src="/img/adelina-contacts.jpg"
+            src={adelinaPhoto}
             alt="Adelina Yovdii"
             className={styles.photo}
           />
@@ -205,7 +216,7 @@ export const Contacts: React.FC = () => {
 
         <div className={styles.card}>
           <img
-            src="/img/oleksandr-contacts.webp"
+            src={oleksandrPhoto}
             alt="Braslavskyi Oleksand"
             className={styles.photo}
           />

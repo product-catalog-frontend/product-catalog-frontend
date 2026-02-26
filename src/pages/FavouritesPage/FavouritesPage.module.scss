@@ -2,11 +2,17 @@
 
 .favouritesPage {
   padding: 0 var.$spacing-xl;
-  margin-top: 24px;
-  color: var.$icons-color;
+  margin-top: var.$spacing-lg;
+  color: var(--text-color);
 
   .title {
-    margin-top: 16px;
+    margin-top: var.$spacing-md;
+    margin-bottom: var.$spacing-sm;
+  }
+
+  .count {
+    color: var.$secondary-color;
+    margin-bottom: var.$spacing-xl;
   }
 
   .emptyState {
@@ -23,10 +29,13 @@
       width: 50px;
       height: 50px;
       object-fit: contain;
+      margin-bottom: 20px;
     }
 
     .emptyMessage {
-      color: var.$secondary-color;
+      color: var(--secondary-color);
+      font-weight: 600;
+      font-size: 15px;
     }
   }
 

@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from './Privacy.module.scss';
 import { ArrowButton } from '../../components/common/Buttons';
+import { useTranslation } from 'react-i18next';
 
 export const Privacy: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <>
       <main className={styles.privacy}>
@@ -10,10 +12,10 @@ export const Privacy: React.FC = () => {
           text="Back"
           back
         />
-        <h1>Privacy Policy & License</h1>
+        <h1>{t('privacy.title')}</h1>
 
         <section>
-          <h2>Copyright & Intellectual Property</h2>
+          <h2>{t('privacy.copyright')}</h2>
           <p>
             All materials on this website, including text, graphics, logos, icons, images, and code,
             are the property of the Nice Gadgets Project Team.
@@ -22,7 +24,7 @@ export const Privacy: React.FC = () => {
         </section>
 
         <section>
-          <h2>MIT License</h2>
+          <h2>{t('privacy.mit')}</h2>
           <p>Copyright (c) 2026 Nice Gadgets Project Team</p>
           <p>
             Permission is hereby granted, free of charge, to any person obtaining a copy of this

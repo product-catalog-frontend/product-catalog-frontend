@@ -15,6 +15,8 @@ import {
   Github,
   Mail,
   Linkedin,
+  Sun,
+  Moon,
 } from 'lucide-react';
 
 const icons = {
@@ -33,6 +35,8 @@ const icons = {
   gitHub: Github,
   mail: Mail,
   linkedin: Linkedin,
+  sun: Sun,
+  moon: Moon,
 };
 
 export type IconName = keyof typeof icons;

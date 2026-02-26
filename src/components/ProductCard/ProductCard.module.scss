@@ -4,68 +4,95 @@
 
 .card {
   box-sizing: border-box;
-  padding: 32px;
-  border: 1px solid $elements-color;
-  display: flex;
-  width: 272px;
-  max-width: 100%;
-  flex-direction: column;
-  color: $icons-color;
-  min-height: 547px;
+  padding: $spacing-xl;
+  border: 1px solid var(--border-color);
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  width: 100%;
+  max-width: 272px;
+  min-height: 506px;
+  color: var(--primary-text-color);
+  transition: transform $transition-default;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
 }
+
 .link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 8px;
-
-  .titleLink {
-    margin-top: 24px;
-    align-self: flex-start;
-  }
+  text-decoration: none;
+  color: inherit;
 
   .imageLink {
-    width: min-content;
-    height: 234px;
+    width: 100%;
+    height: 200px;
+    display: block;
+    object-fit: contain;
+    margin-bottom: $spacing-lg;
   }
+
+  .titleLink {
+    margin-top: 0;
+    margin-bottom: $spacing-md;
+    align-self: flex-start;
+    min-height: 42px;
+  }
+}
+
+.prices {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.realPrice {
+  margin: 0;
+}
+
+.price {
+  color: $secondary-color;
+  text-decoration: line-through;
+  margin: 0;
 }
 
 .options {
-  border-top: 1px solid $elements-color;
-  margin-top: 8px;
-  padding: 8px 0;
+  border-top: 1px solid var(--border-color, $elements-color);
+  padding-top: $spacing-sm;
+  margin-top: auto;
   display: flex;
   flex-direction: column;
+  gap: $spacing-xs;
 }
 
 .option {
+  margin-top: 8px;
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
-
-  &:nth-child(3) {
-    margin-bottom: 8px;
-  }
 
   .label {
     color: $secondary-color;
+  }
+
+  .value {
+    color: var(--primary-text-color);
   }
 }
 
 .buttons {
   display: flex;
   justify-content: space-between;
-}
-
-.prices {
-  display: flex;
   gap: 8px;
-}
+  height: 40px;
+  margin-top: $spacing-lg;
 
-.price {
-  color: $secondary-color;
-  text-decoration: line-through;
+  .cartButton {
+    flex: 1;
+  }
 }

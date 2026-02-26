@@ -1,23 +1,24 @@
 @use '../../../../assets/styles/variables.scss' as var;
 
 .heartButton {
-  width: 40px;
-  height: 40px;
+  height: 100%;
+  aspect-ratio: 1 / 1;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: var.$white;
+  background: var(--slider-bg);
+  color: var(--text-color);
   border-radius: var.$border-radius-sm;
-  border: 1px solid var.$elements-color;
+  border: 1px solid var(--card-button-border);
 
   transition:
     border 0.2s,
     opacity 0.2s;
 
   &:hover:not(:disabled) {
-    border-width: 2px;
+    border-width: 1px;
     border-color: var.$primary-color;
   }
 
@@ -28,7 +29,7 @@
 }
 
 .selected {
-  border: 1px solid var.$elements-color;
+  border: 1px solid var(--card-button-border);
 
   .icon {
     color: var.$error-color;
