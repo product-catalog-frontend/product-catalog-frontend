@@ -14,7 +14,7 @@ import styles from './App.module.scss';
 import { useEffect } from 'react';
 import { useProductStore } from './store/useProductStore';
 import { useThemeStore } from './store/useThemeStore';
-
+import 'react-loading-skeleton/dist/skeleton.css';
 export const App = () => {
   const fetchProducts = useProductStore((state) => state.fetchProducts);
 

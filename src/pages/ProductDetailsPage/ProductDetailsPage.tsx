@@ -20,6 +20,7 @@ import { colorMap } from '../../utils/colorMap';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { useTranslation } from 'react-i18next';
 import { MayLikeCarousel } from '../../components/MayLikeCarousel/MayLikeCarousel';
+import { DetailPageSkeleton } from './DetailPageSkeleton';
 
 export const ProductDetailsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -111,11 +112,7 @@ export const ProductDetailsPage = () => {
   }
 
   if (isLoading || !details || !product) {
-    return (
-      <div className={styles.container}>
-        <div>{t('productDetails.loading')}</div>
-      </div>
-    );
+    return <DetailPageSkeleton />;
   }
 
   const {
