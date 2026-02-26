@@ -54,6 +54,9 @@ export const BurgerMenu: React.FC<Props> = ({
       <div className={styles.bottom}>
         <div className={styles.bottomButton}>
           <ThemeButton />
+        </div>
+
+        <div className={styles.bottomButton}>
           <LanguageSwitcher />
         </div>
 

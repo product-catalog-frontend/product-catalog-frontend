@@ -194,7 +194,7 @@ export const ProductDetailsPage = () => {
           <span className={cn(styles.itemId, styles.itemIdMobile)}>ID: {product.id}</span>
 
           <div className={styles.optionSection}>
-            <p className={styles.smallTextSecondary}>Available colors</p>
+            <p className={styles.smallTextSecondary}>{t('productDetails.availableColors')}</p>
             <div className={styles.colorOptions}>
               {colorsAvailable.map((colorItem: string) => (
                 <RoundButton
@@ -208,7 +208,7 @@ export const ProductDetailsPage = () => {
           </div>
 
           <div className={styles.optionSection}>
-            <p className={styles.smallTextSecondary}>Select capacity</p>
+            <p className={styles.smallTextSecondary}>{t('productDetails.selectCapacity')}</p>
             <div className={styles.capacityOptions}>
               {capacityAvailable.map((capacity: string) => (
                 <NumberButton
@@ -314,7 +314,7 @@ export const ProductDetailsPage = () => {
             <div className={styles.specLine}>
               <span className={styles.smallTextSecondary}>{t('productDetails.specs.camera')}</span>
               <span className={styles.smallTextPrimary}>
-                {camera && camera !== 'undefined' ? camera : 'Not applicable'}
+                {camera && camera !== 'undefined' ? camera : t('productDetails.notApplicable')}
               </span>
             </div>
             <div className={styles.specLine}>

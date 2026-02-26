@@ -62,6 +62,9 @@ export const Header: React.FC = () => {
         <div className={styles.buttons}>
           <div className={styles.iconButton}>
             <ThemeButton />
+          </div>
+
+          <div className={styles.iconButton}>
             <LanguageSwitcher />
           </div>
 
