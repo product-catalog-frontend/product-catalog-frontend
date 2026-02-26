@@ -3,7 +3,7 @@ import styles from './Privacy.module.scss';
 import { ArrowButton } from '../../components/common/Buttons';
 import { useTranslation } from 'react-i18next';
 
-export const Privacy: React.FC = () => {
+export const PrivacyPage: React.FC = () => {
   const { t } = useTranslation();
   return (
     <>
