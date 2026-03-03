@@ -1,3 +1,5 @@
+[DEMO] - https://product-catalog-frontend.github.io/product-catalog-frontend/
+
 # Product Catalog
 
 An online store for phones, tablets, and accessories built with React, TypeScript, and Vite.
