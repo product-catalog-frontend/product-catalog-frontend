@@ -1,8 +1,9 @@
-[DEMO] - https://product-catalog-frontend.github.io/product-catalog-frontend/
+# Product Catalog – Phones, Tablets & Accessories
 
-# Product Catalog
+## 📌 About the Project
+A modern and responsive product catalog web application that allows users to seamlessly browse and search for phones, tablets, and accessories. The project is built with a focus on high performance, scalable architecture, and a clean user interface (UI/UX).
 
-An online store for phones, tablets, and accessories built with React, TypeScript, and Vite.
+🔗 **Live Demo:** [Product Catalog Frontend](https://product-catalog-frontend.github.io/product-catalog-frontend/)
 
 ## 🎯 Project Overview
 
