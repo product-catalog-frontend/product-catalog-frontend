@@ -1,218 +1,115 @@
-# Product Catalog – Phones, Tablets & Accessories
+<div align="center">
+  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white" alt="Stripe" />
+  <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" />
+</div>
 
-## 📌 About the Project
-A modern and responsive product catalog web application that allows users to seamlessly browse and search for phones, tablets, and accessories. The project is built with a focus on high performance, scalable architecture, and a clean user interface (UI/UX).
+<h1 align="center">📱 Product Catalog</h1>
 
-🔗 **Live Demo:** [Product Catalog Frontend](https://product-catalog-frontend.github.io/product-catalog-frontend/)
+<p align="center">
+  <strong>A beautifully designed, full-stack e-commerce experience for tech enthusiasts to discover and purchase phones, tablets, and accessories.</strong>
+</p>
 
-## 🎯 Project Overview
+<p align="center">
+  <a href="YOUR_LINK_HERE">
+    <img src="https://img.shields.io/badge/View_Demo-Live_Site-success?style=for-the-badge&logo=vercel" alt="View Demo Here" />
+  </a>
+</p>
 
-This is a modern e-commerce application featuring:
-
-- Product catalog with phones, tablets, and accessories
-- Shopping cart functionality
-- Favorites list
-- Product details pages
-- Responsive design
-
-## 🚀 Tech Stack
-
-- **React 19** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Fast build tool and dev server
-- **React Router** - Client-side routing
-- **CSS Modules** - Component-scoped styling
-- **ESLint** - Code linting with plugins for React, TypeScript, a11y
-- **Prettier** - Code formatting
-- **Husky** - Git hooks
-- **lint-staged** - Run linters on staged files
-
-## 📋 Prerequisites
-
-- Node.js 20.x or higher
-- npm
-
-## 🛠️ Getting Started
-
-### Installation
-
-```bash
-# Clone the repository
-git clone <your-repo-url>
-
-# Navigate to project directory
-cd product-catalog-frontend
-
-# Install dependencies
-npm install
-```
-
-### Development
-
-```bash
-# Start development server
-npm run dev
-```
-
-The application will be available at `http://localhost:5173`
-
-### Build
-
-```bash
-# Create production build
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-## 📝 Available Scripts
-
-| Script                 | Description                  |
-| ---------------------- | ---------------------------- |
-| `npm run dev`          | Start development server     |
-| `npm run build`        | Build for production         |
-| `npm run preview`      | Preview production build     |
-| `npm run lint`         | Run ESLint with auto-fix     |
-| `npm run lint:check`   | Run ESLint without auto-fix  |
-| `npm run format`       | Format code with Prettier    |
-| `npm run format:check` | Check code formatting        |
-| `npm run fix-style`    | Run both Prettier and ESLint |
-
-## 📁 Project Structure
-
-needs to be updated
-
-```
-src/
-├── components/          # Shared components
-│   └── ComponentName/
-│       ├── index.ts
-│       ├── ComponentName.tsx
-│       └── ComponentName.module.scss
-├── modules/            # Feature modules
-│   ├── HomePage/
-│   ├── ProductsPage/
-│   ├── CartPage/
-│   ├── FavoritesPage/
-│   └── shared/        # Shared module content
-├── App.tsx
-└── main.tsx
-```
+<br />
 
 ## ✨ Features
 
-### Implemented
+Experience a seamless shopping journey with our carefully crafted functionalities:
 
-- [x] Project setup with Vite + React + TypeScript
-- [x] ESLint and Prettier configuration
-- [x] Pre-commit hooks with Husky
-- [x] GitHub Actions for CI/CD
-- [x] Deployment to GitHub Pages
+- 🛒 **Complete E-commerce Flow:** From exploring the product catalog to a secure checkout experience powered by **Stripe**.
+- 🌗 **Adaptive UI:** Elegant **Dark & Light modes** that respect your system preferences and toggle instantly.
+- 🌍 **Internationalization (i18n):** Built-in support for multiple languages (English & Ukrainian) to cater to a global audience.
+- 📱 **Responsive Design:** Fluid layouts with interactive carousels (Swiper) suitable for any device screen.
+- ❤️ **Wishlist & Cart Management:** Add items to your favorites or cart, with state persisted locally.
+- ⚡ **Lightning Fast:** Instant visual feedback with skeleton loaders and optimized asset delivery via Vite.
+- 🔍 **Smart Discovery:** Quick debounced search, reliable pagination, and advanced sorting capabilities.
 
-### To Be Implemented
+## 🛠 Tech Stack
 
-- [ ] Header with navigation, favorites, and cart icons
-- [ ] Footer with GitHub link and "Back to top" button
-- [ ] Home page with sliders and category blocks
-- [ ] Product pages (Phones, Tablets, Accessories)
-- [ ] Product details page
-- [ ] Shopping cart functionality
-- [ ] Favorites functionality
-- [ ] Search with debounce
-- [ ] Pagination
-- [ ] Sorting (Newest, Alphabetically, Cheapest)
-- [ ] Breadcrumbs navigation
-- [ ] 404 Not Found page
+Built with modern web technologies to ensure performance, scalability, and maintainability:
 
-## 🔧 Code Quality
+- **Frontend Library:** [React 19](https://react.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool & Dev Server:** [Vite](https://vitejs.dev/)
+- **Routing:** [React Router DOM](https://reactrouter.com/)
+- **State Management:** [Zustand](https://zustand-demo.pmnd.rs/) & [Redux Toolkit](https://redux-toolkit.js.org/)
+- **Payments Processing:** [Stripe](https://stripe.com/)
+- **Backend / Database:** [Supabase](https://supabase.com/)
+- **Styling:** Vanilla CSS / Sass / CSS Modules
+- **Code Quality:** ESLint, Prettier, Husky, lint-staged
 
-This project uses several tools to maintain code quality:
+## 🚀 Installation & Setup
 
-- **ESLint** with plugins:
-  - `eslint-plugin-react` - React-specific rules
-  - `eslint-plugin-react-hooks` - React Hooks rules
-  - `eslint-plugin-jsx-a11y` - Accessibility rules
-  - `eslint-plugin-import` - Import/export syntax rules
-  - `typescript-eslint` - TypeScript rules
+Want to run the project locally? Follow these steps:
 
-- **Prettier** for consistent code formatting
-- **Husky** for pre-commit hooks
-- **lint-staged** to run checks only on staged files
+### Prerequisites
 
-### Pre-commit Hooks
+- **Node.js**: v20.x or higher
+- **npm**: v9.x or higher
 
-Before each commit, the following checks run automatically on staged files:
+### Step-by-Step Guide
 
-- Code formatting with Prettier
-- Linting with ESLint
+1.  **Clone the repository:**
 
-## 🚢 Deployment
+    ```bash
+    git clone <your-repo-url>
+    cd product-catalog-frontend
+    ```
 
-The application is automatically deployed to GitHub Pages on every push to the `main` branch.
+2.  **Install the dependencies:**
 
-**Live Demo:** [Your GitHub Pages URL]
+    ```bash
+    npm install
+    ```
 
-### CI/CD Pipeline
+3.  **Set up Environment Variables:**
+    Create a `.env` file in the root directory and add your Supabase credentials and Stripe publishable key:
 
-- **Deploy Action**: Runs on push to `main`, builds and deploys to GitHub Pages
-- **Lint Action**: Runs on Pull Requests, checks code quality
+    ```env
+    VITE_SUPABASE_URL=your_supabase_project_url_here
+    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+    VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key_here
+    ```
 
-## 🤝 Contributing
+4.  **Start the development server:**
 
-### Workflow
+    ```bash
+    npm run dev
+    ```
 
-1. Pull the latest `main` branch
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Push your branch to GitHub
-4. Open a Pull Request to `main`
-5. Write your code and push changes
-6. Request review from teammates
-7. Address review comments if needed
-8. Merge after approval
+5.  **Open in Browser:**
+    Navigate to [http://localhost:5173](http://localhost:5173) to see the app in action!
 
-### Branch Protection Rules
+## 💡 Usage
 
-The `main` branch is protected:
+Here are a few ways to interact with the project:
 
-- ✅ Requires pull request reviews before merging
-- ✅ Requires status checks to pass (linting)
-- ✅ No direct pushes allowed
-- ✅ No force pushes
+- **Browse Products:** Use the top navigation to explore `Phones`, `Tablets`, or `Accessories`.
+- **Toggle Theme & Language:** Click the moon/sun icon in the header to intuitively switch between light and dark modes, or use the language selector to switch translations.
+- **Manage Options & Cart:** Click on any product to see details, adjust capacities/colors, and add it to your cart. Click the Cart icon in the header to view your selected items, adjust quantities, or proceed to checkout.
+- **Secure Checkout:** In the cart, click "Checkout" to see our fully-integrated Stripe payment modal.
+- **Add to Favorites:** Click the heart icon on any product card or details page to easily save it for later.
 
-### Code Style Guidelines
+## 📁 Available Scripts
 
-- Use **CSS Modules** for styling
-- Keep `.module.scss` files together with components
-- Each component in separate folder with `index.ts`, `ComponentName.tsx`, `ComponentName.module.scss`
-- Use **TypeScript** for type safety
-- Follow **ESLint** and **Prettier** rules
-
-## 📊 Data Structure
-
-### Product Object
-
-```typescript
-{
-  id: string; // Required for fetching details
-  name: string; // Product name
-  image: string; // Link to image (relative to public folder)
-  price: number; // Current price
-  fullPrice: number; // Original price (for discount)
-  year: number; // Used for sorting by newest
-  capacity: string; // e.g., "64GB"
-  color: string; // e.g., "black"
-}
-```
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 👥 Team
-
-[Add your team members here]
+| Command           | Description                                                      |
+| :---------------- | :--------------------------------------------------------------- |
+| `npm run dev`     | Start the Vite dev server with hot-reload.                       |
+| `npm run build`   | Compile TypeScript and build the app for production.             |
+| `npm run preview` | Preview the production build locally.                            |
+| `npm run lint`    | Run ESLint to find code style issues and automatically fix them. |
+| `npm run format`  | Run Prettier to format source code.                              |
 
 ---
 
-**Made with ❤️**
+<p align="center">
+  <strong>Made with ❤️ by the Team</strong>
+</p>
