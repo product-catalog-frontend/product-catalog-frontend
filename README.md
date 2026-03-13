@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="YOUR_LINK_HERE">
+  <a href="https://product-catalog-frontend.github.io/product-catalog-frontend/">
     <img src="https://img.shields.io/badge/View_Demo-Live_Site-success?style=for-the-badge&logo=vercel" alt="View Demo Here" />
   </a>
 </p>
@@ -60,7 +60,7 @@ Want to run the project locally? Follow these steps:
 1.  **Clone the repository:**
 
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/product-catalog-frontend/product-catalog-frontend.git
     cd product-catalog-frontend
     ```
 
@@ -107,6 +107,57 @@ Here are a few ways to interact with the project:
 | `npm run preview` | Preview the production build locally.                            |
 | `npm run lint`    | Run ESLint to find code style issues and automatically fix them. |
 | `npm run format`  | Run Prettier to format source code.                              |
+
+## 👨‍💻 Meet the Team
+
+<table align="center">
+  <tr>
+    <td align="center">
+      <a href="https://github.com/dmytro-halieba">
+        <img src="https://github.com/dmytro-halieba.png" width="100px;" alt="Dmytro Halieba" style="border-radius: 50%;" /><br />
+        <sub><b>Dmytro Halieba</b></sub>
+      </a><br />
+      👑 <b>Team Lead / Developer</b>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Staskovych">
+        <img src="https://github.com/Staskovych.png" width="100px;" alt="Stanislav Mosakov" style="border-radius: 50%;" /><br />
+        <sub><b>Stanislav Mosakov</b></sub>
+      </a><br />
+      🎯 <b>Project Manager / Developer</b>
+    </td>
+    <td align="center">
+      <a href="https://github.com/pupsao">
+        <img src="https://github.com/pupsao.png" width="100px;" alt="Dmytro Kerziuk" style="border-radius: 50%;" /><br />
+        <sub><b>Dmytro Kerziuk</b></sub>
+      </a><br />
+      💻 Developer
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/AdelinaY18">
+        <img src="https://github.com/AdelinaY18.png" width="100px;" alt="Adelina Yovdii" style="border-radius: 50%;" /><br />
+        <sub><b>Adelina Yovdii</b></sub>
+      </a><br />
+      💻 Developer
+    </td>
+    <td align="center">
+      <a href="https://github.com/Renata11111-afk">
+        <img src="https://github.com/Renata11111-afk.png" width="100px;" alt="Renata Khotiakova" style="border-radius: 50%;" /><br />
+        <sub><b>Renata Khotiakova</b></sub>
+      </a><br />
+      💻 Developer
+    </td>
+    <td align="center">
+      <a href="https://github.com/Starkillerr">
+        <img src="https://github.com/Starkillerr.png" width="100px;" alt="Oleksandr Braslavskyi" style="border-radius: 50%;" /><br />
+        <sub><b>Oleksandr Braslavskyi</b></sub>
+      </a><br />
+      💻 Developer
+    </td>
+  </tr>
+</table>
 
 ---
 
